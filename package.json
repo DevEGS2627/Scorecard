@@ -1,0 +1,14 @@
+{
+  "name": "egs-quizit",
+  "version": "1.0.0",
+  "description": "EGS Quiz Arena - Live Scoreboard",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": ["quiz", "scoreboard", "egs"],
+  "author": "",
+  "license": "ISC"
+}
