@@ -1,4 +1,7 @@
 node_modules/
 EGS-Quizit-main/
+backup_*/
+backup_*.zip
 .DS_Store
 Thumbs.db
+
