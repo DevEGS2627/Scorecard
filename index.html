@@ -1380,25 +1380,79 @@ body.pres-paddles-off .pres-stage-body{
   position:absolute;
   inset:0;
   border-radius:17px;
-  background:linear-gradient(115deg,transparent 0%,rgba(255,255,255,0.01) 40%,rgba(255,255,255,0.065) 50%,rgba(255,255,255,0.01) 60%,transparent 100%);
-  background-size:320% 100%;
-  animation:cardLivingGleam 22s cubic-bezier(0.4,0,0.2,1) infinite;
+  background:linear-gradient(115deg,transparent 0%,rgba(255,255,255,0.005) 30%,rgba(255,255,255,0.038) 50%,rgba(255,255,255,0.005) 70%,transparent 100%);
+  background-size:350% 100%;
+  animation:cardLivingGleam 48s cubic-bezier(0.4,0,0.2,1) infinite;
   pointer-events:none;
   z-index:2;
 }
 .pres-card:nth-child(1)::before{animation-delay:0s}
-.pres-card:nth-child(2)::before{animation-delay:3.6s}
-.pres-card:nth-child(3)::before{animation-delay:7.2s}
-.pres-card:nth-child(4)::before{animation-delay:10.8s}
-.pres-card:nth-child(5)::before{animation-delay:14.4s}
-.pres-card:nth-child(6)::before{animation-delay:18s}
+.pres-card:nth-child(2)::before{animation-delay:8s}
+.pres-card:nth-child(3)::before{animation-delay:16s}
+.pres-card:nth-child(4)::before{animation-delay:24s}
+.pres-card:nth-child(5)::before{animation-delay:32s}
+.pres-card:nth-child(6)::before{animation-delay:40s}
 
 @keyframes cardLivingGleam{
-  0%{background-position:320% 0;opacity:0}
-  3%{opacity:1}
-  14%{background-position:-320% 0;opacity:1}
-  15%,100%{background-position:-320% 0;opacity:0}
+  0%{background-position:300% 0;opacity:0}
+  3%{opacity:0.85}
+  16%{background-position:-300% 0;opacity:0.85}
+  20%,100%{background-position:-300% 0;opacity:0}
 }
+
+/* Slower, calmer direct turn breathing */
+.pres-card.direct-turn{
+  border-color:var(--pres-accent)!important;
+  box-shadow:0 0 0 2px var(--pres-accent),0 0 20px var(--pres-accent-glow),0 16px 40px rgba(0,0,0,0.45)!important;
+  animation:directTurnBreathing 7.5s ease-in-out infinite alternate!important;
+}
+@keyframes directTurnBreathing{
+  0%{box-shadow:0 0 0 2px var(--pres-accent),0 0 12px var(--pres-accent-glow),0 12px 30px rgba(0,0,0,0.35);transform:translateY(0)}
+  100%{box-shadow:0 0 0 2.2px var(--pres-accent),0 0 22px var(--pres-accent-glow),0 16px 42px rgba(0,0,0,0.48);transform:translateY(-1px)}
+}
+
+/* Locked / Scored Card & Banner Styles */
+.pres-dock-locked-banner{
+  grid-column:1/-1;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 16px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;
+  color:var(--pres-ink);
+}
+.pres-lock-icon{font-size:22px;line-height:1}
+.pres-lock-info strong{display:block;font-size:11.5px;font-weight:750;color:var(--pres-accent)}
+.pres-lock-info span{display:block;font-size:9.5px;color:var(--pres-muted);margin-top:2px}
+.pres-dock-flow-badge{
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.12em;
+  padding:2px 7px;
+  border-radius:6px;
+  background:rgba(255,255,255,0.08);
+  margin-right:6px;
+}
+.pres-dock-flow-badge.locked{background:rgba(234,179,8,0.18);color:#fde047;border:1px solid rgba(234,179,8,0.35)}
+.pres-scored-card-tag{
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.08em;
+  padding:3px 8px;
+  border-radius:6px;
+  background:rgba(34,197,94,0.18);
+  border:1px solid rgba(34,197,94,0.35);
+  color:#86efac;
+}
+.pres-direct-card-tag.scored{
+  background:rgba(59,130,246,0.18);
+  border-color:rgba(59,130,246,0.35);
+  color:#93c5fd;
+}
+.pres-dock-team-chip.scored-chip{opacity:0.75;border-style:dashed}
+.pres-dock-team-chip.scored-chip.active{opacity:1;border-style:solid;border-color:rgba(255,255,255,0.4)}
 
 /* CONTINUOUS DIRECT TURN ANIMATION (Calm, Slow Living Glow Halo Pulse) */
 .pres-card.direct-turn{
@@ -2312,7 +2366,7 @@ function canEdit(){return !cloudEnabled||!!judgeUser}function setStatus(s){if($(
 function safe(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function compactLogo(source,done){var image=new Image();image.onerror=function(){done(null)};image.onload=function(){try{var side=128,c=document.createElement('canvas'),ctx=c.getContext('2d'),scale=Math.min(side/image.width,side/image.height),w=image.width*scale,h=image.height*scale;c.width=side;c.height=side;ctx.fillStyle='#fff';ctx.fillRect(0,0,side,side);ctx.drawImage(image,(side-w)/2,(side-h)/2,w,h);var data=c.toDataURL('image/jpeg',0.7);if(data.length>22000){side=96;c.width=side;c.height=side;ctx.fillStyle='#fff';ctx.fillRect(0,0,side,side);scale=Math.min(side/image.width,side/image.height);w=image.width*scale;h=image.height*scale;ctx.drawImage(image,(side-w)/2,(side-h)/2,w,h);data=c.toDataURL('image/jpeg',0.62)}done(data)}catch(e){done(null)}};image.src=source}
 function compactStoredLogos(){var indexes=[];state.logos.forEach(function(src,i){if(src&&src.indexOf('data:image/')===0&&(!src.startsWith('data:image/jpeg')||src.length>22000))indexes.push(i)});if(!indexes.length)return;var next=0,changed=false;function step(){if(next>=indexes.length){if(changed)persist();return}var i=indexes[next++];compactLogo(state.logos[i],function(data){if(data&&data.length<state.logos[i].length){state.logos[i]=data;changed=true}step()})}step()}var LOGO_BUCKET='quiz-team-logos',migratingLogos=false;
-function uploadLogoData(dataUrl,teamIndex){return new Promise(function(resolve,reject){try{var parts=dataUrl.split(','),mime=(parts[0].match(/:(.*?);/)||[])[1]||'image/jpeg',binary=atob(parts[1]),bytes=new Uint8Array(binary.length);for(var j=0;j<binary.length;j++)bytes[j]=binary.charCodeAt(j);var blob=new Blob([bytes],{type:mime}),rand=window.crypto&&crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2),path='teams/team-'+(teamIndex+1)+'-'+rand+'.jpg';cloudClient.storage.from(LOGO_BUCKET).upload(path,blob,{contentType:'image/jpeg',cacheControl:'31536000',upsert:false}).then(function(result){if(result.error){reject(result.error);return}var publicUrl=cloudClient.storage.from(LOGO_BUCKET).getPublicUrl(path).data.publicUrl;resolve(publicUrl)}).catch(reject)}catch(err){reject(err)}})}
+function uploadLogoData(dataUrl,teamIndex){return new Promise(function(resolve,reject){try{var parts=dataUrl.split(','),mime=(parts[0].match(/:(.*?);/)||[])[1]||'image/jpeg',binary=atob(parts[1]),bytes=new Uint8Array(binary.length);for(var j=0;j<binary.length;j++)bytes[j]=binary.charCodeAt(j);var blob=new Blob([bytes],{type:mime}),rand=window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2),path='teams/team-'+(teamIndex+1)+'-'+rand+'.jpg';cloudClient.storage.from(LOGO_BUCKET).upload(path,blob,{contentType:'image/jpeg',cacheControl:'31536000',upsert:false}).then(function(result){if(result.error){reject(result.error);return}var publicUrl=cloudClient.storage.from(LOGO_BUCKET).getPublicUrl(path).data.publicUrl;resolve(publicUrl)}).catch(reject)}catch(err){reject(err)}})}
 function migrateEmbeddedLogos(){if(migratingLogos||!cloudEnabled||!judgeUser||!cloudClient)return;var ids=[];state.logos.forEach(function(value,i){if(typeof value==='string'&&value.indexOf('data:image/')===0)ids.push(i)});if(!ids.length)return;migratingLogos=true;var cursor=0,changed=false;function next(){if(cursor>=ids.length){migratingLogos=false;if(changed){persist();render();toast('Existing team logos moved to shared storage.')}return}var i=ids[cursor++];compactLogo(state.logos[i],function(compact){if(!compact){next();return}uploadLogoData(compact,i).then(function(url){state.logos[i]=url;changed=true;next()}).catch(function(){migratingLogos=false;toast('An old logo could not be uploaded. Try replacing it in Quiz setup.')})})}next()}function toast(msg){var el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove('show')},2100)}
 function roundIndex(){return Math.max(0,Math.min(state.rounds.length-1,Number($('roundSelect').value)||0))}
 function isFinal(i){return (i==null?roundIndex():i)===Number(state.finalRound)}
@@ -2507,15 +2561,15 @@ function initPresParticles() {
   window.addEventListener('resize', resizePresCanvas);
 
   presParticles = [];
-  var count = 28; // Subtle particle count for clean minimal stage
+  var count = 44; // Slightly increased intensity and count
   for (var i = 0; i < count; i++) {
     presParticles.push({
       x: Math.random() * (presCanvas.width || window.innerWidth),
       y: Math.random() * (presCanvas.height || window.innerHeight),
-      radius: Math.random() * 1.8 + 0.6,
-      speedY: Math.random() * 0.14 + 0.05, // Greatly reduced speed (3x slower drift)
+      radius: Math.random() * 2.2 + 0.9,
+      speedY: Math.random() * 0.13 + 0.04,
       speedX: (Math.random() - 0.5) * 0.08,
-      alpha: Math.random() * 0.28 + 0.12, // Soft, non-dazzling
+      alpha: Math.random() * 0.42 + 0.30, // Increased luminous visibility
       phase: Math.random() * Math.PI * 2
     });
   }
@@ -2650,15 +2704,15 @@ function initSiteParticles() {
   window.addEventListener('resize', resizeSiteCanvas);
 
   siteParticles = [];
-  var count = 28;
+  var count = 42;
   for (var i = 0; i < count; i++) {
     siteParticles.push({
       x: Math.random() * (siteCanvas.width || window.innerWidth),
       y: Math.random() * (siteCanvas.height || window.innerHeight),
-      radius: Math.random() * 1.8 + 0.6,
+      radius: Math.random() * 2.2 + 0.9,
       speedY: Math.random() * 0.12 + 0.04,
       speedX: (Math.random() - 0.5) * 0.08,
-      alpha: Math.random() * 0.35 + 0.15,
+      alpha: Math.random() * 0.42 + 0.28,
       phase: Math.random() * Math.PI * 2
     });
   }
@@ -2693,10 +2747,14 @@ function animateSiteParticles() {
     if (p.x > siteCanvas.width + 10) p.x = -10;
 
     var pulseAlpha = p.alpha * (0.8 + 0.2 * Math.sin(now * 1.5 + p.phase));
+    siteCtx.save();
+    siteCtx.shadowBlur = 6;
+    siteCtx.shadowColor = 'rgba(' + r + ',' + g + ',' + b + ',' + (pulseAlpha * 0.75) + ')';
     siteCtx.beginPath();
     siteCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
     siteCtx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + pulseAlpha + ')';
     siteCtx.fill();
+    siteCtx.restore();
   }
 
   siteAnimFrame = requestAnimationFrame(animateSiteParticles);
@@ -2946,25 +3004,39 @@ function renderPresentation() {
   if ($('presOrderLabel')) $('presOrderLabel').textContent = presState.orderMode === 'seating' ? 'Seating (1-6)' : 'Live Standings';
   if ($('presOrderToggle')) $('presOrderToggle').classList.toggle('active', presState.orderMode === 'standings');
 
+  // Question scoring status map for current round & question
+  var currQ = presState.currentQuestion;
+  var qScores = {};
+  state.entries.forEach(function(e){
+    if (e.round === selected && e.question === currQ) {
+      qScores[e.team] = e;
+    }
+  });
+
   // Bottom Operator Dock Header & Target Indicator
   var activeTeamName = state.teams[presState.selectedTeam] || 'Team 1';
   var activeTeamPts = scoreOf(presState.selectedTeam);
-  if ($('presDockQNum')) $('presDockQNum').textContent = 'Q' + presState.currentQuestion;
+  var selectedTeamScored = qScores[presState.selectedTeam];
+
+  if ($('presDockQNum')) $('presDockQNum').textContent = 'Q' + currQ;
   if ($('presDockFlowText')) {
-    if (presState.selectedTeam === directTeam) {
-      $('presDockFlowText').innerHTML = 'Direct Turn: <strong id="presTargetName">' + safe(activeTeamName) + ' (' + activeTeamPts + ' pts)</strong>';
+    if (selectedTeamScored) {
+      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge locked">🔒 SCORED</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong> (' + safe(selectedTeamScored.kindLabel) + ' ' + pointsLabel(selectedTeamScored.points) + ' pts)';
+    } else if (presState.selectedTeam === directTeam) {
+      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge">🎯 DIRECT</span> <strong id="presTargetName">' + safe(activeTeamName) + ' (' + activeTeamPts + ' pts)</strong>';
     } else {
-      $('presDockFlowText').innerHTML = 'Pounce Target: <strong id="presTargetName">' + safe(activeTeamName) + ' (' + activeTeamPts + ' pts)</strong>';
+      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge">⚡ POUNCE</span> <strong id="presTargetName">' + safe(activeTeamName) + ' (' + activeTeamPts + ' pts)</strong>';
     }
   }
 
-  // Quick Team Switcher Chips in Dock
+  // Quick Team Switcher Chips in Dock with scored indicator
   if ($('presDockTeamStrip')) {
     $('presDockTeamStrip').innerHTML = state.teams.map(function(name, i){
       var isT = (presState.selectedTeam === i);
       var isD = (directTeam === i);
-      return '<button type="button" class="pres-dock-team-chip ' + (isT ? 'active ' : '') + (isD ? 'direct-chip ' : '') + '" data-dock-team="' + i + '">' +
-        (isD ? '● ' : '') + '#' + (i + 1) + ' ' + safe(name) +
+      var isScored = qScores[i];
+      return '<button type="button" class="pres-dock-team-chip ' + (isT ? 'active ' : '') + (isD ? 'direct-chip ' : '') + (isScored ? 'scored-chip ' : '') + '" data-dock-team="' + i + '">' +
+        (isScored ? '✓ ' : (isD ? '🎯 ' : '')) + '#' + (i + 1) + ' ' + safe(name) + (isScored ? ' (' + pointsLabel(isScored.points) + ')' : '') +
       '</button>';
     }).join('');
 
@@ -2974,7 +3046,12 @@ function renderPresentation() {
         presState.selectedTeam = Number(chip.dataset.dockTeam);
         renderPresentation();
         var dtName = state.teams[presState.selectedTeam];
-        toast('Targeted ' + dtName + (presState.selectedTeam === directTeam ? ' (Direct Turn)' : ' (Pounce Candidate)'));
+        var sc = qScores[presState.selectedTeam];
+        if (sc) {
+          toast(dtName + ' is already scored for Q' + currQ + ' (' + sc.kindLabel + ')');
+        } else {
+          toast('Targeted ' + dtName + (presState.selectedTeam === directTeam ? ' (Direct Turn)' : ' (Pounce Candidate)'));
+        }
       });
     });
   }
@@ -3014,8 +3091,15 @@ function renderPresentation() {
     var badge = t.logo ? '<img src="' + safe(t.logo) + '" alt="">' : '<span>' + safe((t.name.trim()[0] || 'T').toUpperCase()) + '</span>';
     var rankClass = t.rank === 0 ? 'rank-1' : t.rank === 1 ? 'rank-2' : t.rank === 2 ? 'rank-3' : 'rank-other';
 
+    var tScored = qScores[t.i];
     var statusTag = '';
-    if (isDirect) {
+    if (tScored) {
+      if (isDirect) {
+        statusTag = '<div class="pres-direct-card-tag scored">🎯 DIRECT · ' + safe(tScored.kindLabel) + ' (' + pointsLabel(tScored.points) + ')</div>';
+      } else {
+        statusTag = '<div class="pres-scored-card-tag">✓ POUNCED · ' + safe(tScored.kindLabel) + ' (' + pointsLabel(tScored.points) + ')</div>';
+      }
+    } else if (isDirect) {
       statusTag = '<div class="pres-direct-card-tag">🎯 DIRECT QUESTION</div>';
     } else if (isTarget) {
       statusTag = '<span class="pres-target-card-hint">⚡ POUNCING TEAM</span>';
@@ -3039,6 +3123,7 @@ function renderPresentation() {
         (isTarget && !isDirect ? 'active-target ' : '') +
         (isJustScored ? 'score-impact ' : '') +
         (isArmedTarget ? 'armed-target ' : '') +
+        (tScored ? 'team-question-scored ' : '') +
       '" data-team="' + t.i + '" id="presCard_' + t.i + '">' +
       '<div class="pres-card-head">' +
         '<div class="pres-rank-pill ' + rankClass + '">' +
@@ -3151,12 +3236,40 @@ function renderPresentation() {
 function record(team,mark){
   if(!canEdit())return toast('Only the signed-in judge can record scores.');
   if(!state.teams[team])return;
+  
+  var currR = roundIndex();
+  var currQ = presState.currentQuestion;
+  var directT = getDirectTeamForQuestion(currQ);
+
+  // RULE 1: Each team can ONLY be scored once per question (be it direct or pounce)
+  var alreadyScored = state.entries.find(function(e){
+    return e.round === currR && e.question === currQ && e.team === team;
+  });
+  if (alreadyScored) {
+    toast(state.teams[team] + ' has already been scored for Question ' + currQ + ' (' + alreadyScored.kindLabel + ' ' + pointsLabel(alreadyScored.points) + ' pts). Press Undo (U) to change.');
+    return;
+  }
+
+  // RULE 2: Pounce is DISABLED for the team for whom the question is for (direct team)
+  var isPounce = (mark.kind === 'pounceCorrect' || mark.kind === 'pounceWrong' || (mark.kind === 'finalWrong' && team !== directT));
+  if (team === directT && isPounce) {
+    toast(state.teams[team] + ' is the direct turn team and cannot pounce on their own question.');
+    return;
+  }
+
+  // RULE 3: Direct Correct is only for the direct team
+  var isDirectCorrect = (mark.kind === 'correct' || (mark.kind === 'finalCorrect' && team === directT));
+  if (team !== directT && isDirectCorrect && mark.kind !== 'bonus') {
+    // If targeted a non-direct team with direct mark, convert to pounce or block
+    mark = { kind: 'pounceCorrect', points: state.correct };
+  }
+
   var pts = Number(mark.points);
   var entry = {
-    id: window.crypto && crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random(),
+    id: window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : String(Date.now()) + Math.random(),
     team: team,
-    round: roundIndex(),
-    question: presState.currentQuestion,
+    round: currR,
+    question: currQ,
     points: pts,
     kind: mark.kind,
     kindLabel: kindLabel(mark.kind),
@@ -3334,15 +3447,30 @@ document.addEventListener('keydown', function(e){
       toast('Targeted ' + state.teams[tIdx] + (tIdx === directT ? ' (Direct Turn)' : ' (Pounce Candidate)'));
     }
   } else if (e.key === 'c' || e.key === 'C') {
-    var targetT = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : getDirectTeamForQuestion(presState.currentQuestion);
+    var dt = getDirectTeamForQuestion(presState.currentQuestion);
+    var targetT = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : dt;
+    if (targetT !== dt) {
+      toast('Direct Correct is only for the direct turn team (' + state.teams[dt] + '). For pouncing teams, press P.');
+      return;
+    }
     var cMark = isFinal() ? { kind: 'finalCorrect', points: state.correct } : { kind: 'correct', points: state.correct };
     record(targetT, cMark);
   } else if (e.key === 'p' || e.key === 'P') {
-    var targetP = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : getDirectTeamForQuestion(presState.currentQuestion);
+    var dtP = getDirectTeamForQuestion(presState.currentQuestion);
+    var targetP = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : dtP;
+    if (targetP === dtP) {
+      toast(state.teams[dtP] + ' is the direct turn team and cannot pounce on their own question.');
+      return;
+    }
     var pMark = { kind: 'pounceCorrect', points: state.correct };
     record(targetP, pMark);
   } else if (e.key === 'd' || e.key === 'D') {
-    var targetD = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : getDirectTeamForQuestion(presState.currentQuestion);
+    var dtD = getDirectTeamForQuestion(presState.currentQuestion);
+    var targetD = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : dtD;
+    if (targetD === dtD) {
+      toast(state.teams[dtD] + ' is the direct turn team and cannot pounce.');
+      return;
+    }
     var dMark = isFinal() ? { kind: 'finalWrong', points: -state.finalPenalty } : { kind: 'pounceWrong', points: -state.pouncePenalty };
     record(targetD, dMark);
   } else if (e.key === 'w' || e.key === 'W') {
