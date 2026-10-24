@@ -2720,6 +2720,16 @@ body[data-palette="midnight-champagne"] .site-link-btn:hover {
   }
 }
 
+
+/* Disabled styling for question and round arrows */
+.pres-q-step-btn:disabled,
+.pres-nav-arrow:disabled,
+#presDockNextQ:disabled {
+  opacity: 0.35 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  filter: grayscale(0.5);
+}
 </style></head>
 <body>
 <div class="site-ambient-aurora" id="siteAmbientAurora" aria-hidden="true">
@@ -3471,13 +3481,35 @@ function stopPresParticles() {
   }
 }
 
-function nextQuestion() {
-  presState.currentQuestion++;
-  var dt = getDirectTeamForQuestion(presState.currentQuestion);
-  presState.selectedTeam = dt;
+var MAX_QUESTIONS_PER_ROUND = 6;
+
+function setRound(idx) {
+  var target = Math.max(0, Math.min(state.rounds.length - 1, Number(idx) || 0));
+  $('roundSelect').value = target;
+  presState.currentQuestion = 1;
+  presState.selectedTeam = getDirectTeamForQuestion(1);
   armedMark = null;
-  renderPresentation();
-  toast('Question ' + presState.currentQuestion + ' · Direct Turn: ' + state.teams[dt]);
+  render();
+  var roundName = state.rounds[target] || ('Round ' + (target + 1));
+  toast((target + 1) + '. ' + roundName + ' · Question 1 of ' + MAX_QUESTIONS_PER_ROUND);
+}
+
+function nextQuestion() {
+  if (presState.currentQuestion < MAX_QUESTIONS_PER_ROUND) {
+    presState.currentQuestion++;
+    var dt = getDirectTeamForQuestion(presState.currentQuestion);
+    presState.selectedTeam = dt;
+    armedMark = null;
+    renderPresentation();
+    toast('Question ' + presState.currentQuestion + ' of ' + MAX_QUESTIONS_PER_ROUND + ' · Direct Turn: ' + state.teams[dt]);
+  } else {
+    var cur = roundIndex();
+    if (cur < state.rounds.length - 1) {
+      toast('Question ' + MAX_QUESTIONS_PER_ROUND + ' is the final question of Round ' + (cur + 1) + '. Press Next Round ▶ or Right Arrow to move to Round ' + (cur + 2) + '.');
+    } else {
+      toast('Question ' + MAX_QUESTIONS_PER_ROUND + ' is the final question of the quiz.');
+    }
+  }
 }
 
 function prevQuestion() {
@@ -3487,7 +3519,9 @@ function prevQuestion() {
     presState.selectedTeam = dt;
     armedMark = null;
     renderPresentation();
-    toast('Question ' + presState.currentQuestion + ' · Direct Turn: ' + state.teams[dt]);
+    toast('Question ' + presState.currentQuestion + ' of ' + MAX_QUESTIONS_PER_ROUND + ' · Direct Turn: ' + state.teams[dt]);
+  } else {
+    toast('Already on Question 1 of this round.');
   }
 }
 
@@ -3815,7 +3849,12 @@ function renderPresentation() {
   
   // Upper Question HUD Updates
   if ($('presRoundTitle')) $('presRoundTitle').textContent = (selected + 1) + '. ' + safe(roundName) + (isFinalRound ? ' · Final' : '');
-  if ($('presQBadge')) $('presQBadge').textContent = 'QUESTION ' + presState.currentQuestion + ' OF ' + state.teams.length;
+  if ($('presQBadge')) $('presQBadge').textContent = 'QUESTION ' + presState.currentQuestion + ' OF ' + MAX_QUESTIONS_PER_ROUND;
+  if ($('presPrevQBtn')) $('presPrevQBtn').disabled = (presState.currentQuestion <= 1);
+  if ($('presNextQBtn')) $('presNextQBtn').disabled = (presState.currentQuestion >= MAX_QUESTIONS_PER_ROUND);
+  if ($('presDockNextQ')) $('presDockNextQ').disabled = (presState.currentQuestion >= MAX_QUESTIONS_PER_ROUND);
+  if ($('presPrevRound')) $('presPrevRound').disabled = (selected <= 0);
+  if ($('presNextRound')) $('presNextRound').disabled = (selected >= state.rounds.length - 1);
   if ($('presDirectTeamName')) $('presDirectTeamName').textContent = state.teams[directTeam] || ('Team ' + (directTeam + 1));
   if ($('presOrderLabel')) $('presOrderLabel').textContent = presState.orderMode === 'seating' ? 'Seating (1-6)' : 'Live Standings';
   if ($('presOrderToggle')) $('presOrderToggle').classList.toggle('active', presState.orderMode === 'standings');
@@ -3834,7 +3873,7 @@ function renderPresentation() {
   var activeTeamPts = scoreOf(presState.selectedTeam);
   var selectedTeamScored = qScores[presState.selectedTeam];
 
-  if ($('presDockQNum')) $('presDockQNum').textContent = 'Q' + currQ;
+  if ($('presDockQNum')) $('presDockQNum').textContent = 'Q' + currQ + '/' + MAX_QUESTIONS_PER_ROUND;
   if ($('presDockFlowText')) {
     if (selectedTeamScored) {
       $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge locked">🔒 Done</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong>';
@@ -4155,7 +4194,15 @@ function applyRemote(remote){if(!remote||!Array.isArray(remote.teams)||!Array.is
   setPresAnimMode(presState.animationMode);render();applyingRemote=false;setStatus('Live · synced');migrateEmbeddedLogos()}
 function startCloud(){var cfg=window.QUIZ_SUPABASE_CONFIG||{};if(!cfg.url||!cfg.publishableKey){setStatus('Local scores');accessUI();return}cloudEnabled=true;setStatus('Connecting…');accessUI();import('https://esm.sh/@supabase/supabase-js@2').then(function(mod){cloudClient=mod.createClient(cfg.url,cfg.publishableKey);cloudClient.auth.getSession().then(function(r){judgeUser=r.data&&r.data.session?r.data.session.user:null;accessUI();return cloudClient.from('quiz_state').select('state').eq('id','main').maybeSingle()}).then(function(r){if(r&&r.error){setStatus('Cloud setup needed');toast('Cloud scoreboard could not connect. Check setup.');compactStoredLogos();return}if(r&&r.data&&r.data.state)applyRemote(r.data.state);else{if(judgeUser){if(state.logos.some(function(v){return typeof v==='string'&&v.indexOf('data:image/')===0}))migrateEmbeddedLogos();else persist()}else setStatus('Waiting for judge setup')}cloudClient.channel('quiz-state-live').on('postgres_changes',{event:'*',schema:'public',table:'quiz_state',filter:'id=eq.main'},function(payload){if(payload.new&&payload.new.state)applyRemote(payload.new.state)}).subscribe(function(status){if(status==='SUBSCRIBED')setStatus(judgeUser?'Live · judge':'Live · viewer')})}).catch(function(){setStatus('Cloud unavailable');compactStoredLogos()});cloudClient.auth.onAuthStateChange(function(_event,session){judgeUser=session?session.user:null;accessUI();render();setStatus(judgeUser?'Live · judge':'Live · viewer');if(judgeUser)cloudClient.from('quiz_state').select('state').eq('id','main').maybeSingle().then(function(r){if(r.data&&r.data.state)applyRemote(r.data.state);else if(state.logos.some(function(v){return typeof v==='string'&&v.indexOf('data:image/')===0}))migrateEmbeddedLogos();else persist()})})}).catch(function(){setStatus('Cloud setup needed');toast('Cloud library could not load. Check internet connection.')})}
 function closeAuth(){$('authModal').classList.remove('open')}
-$('judgeAuthBtn').addEventListener('click',function(){ closeSiteMenu(); if(!cloudEnabled){toast('Shared access is not configured yet.');return}if(judgeUser){cloudClient.auth.signOut();return}$('authModal').classList.add('open')});$('closeAuth').addEventListener('click',closeAuth);$('authModal').addEventListener('click',function(e){if(e.target===$('authModal'))closeAuth()});$('authForm').addEventListener('submit',function(e){e.preventDefault();if(!cloudClient)return;cloudClient.auth.signInWithPassword({email:$('judgeEmail').value.trim(),password:$('judgePassword').value}).then(function(r){if(r.error){toast('Sign in failed. Check the judge account details.');return}$('judgePassword').value='';closeAuth();toast('Judge signed in.')})});applyTheme(state.theme);if(!(window.QUIZ_SUPABASE_CONFIG&&window.QUIZ_SUPABASE_CONFIG.url&&window.QUIZ_SUPABASE_CONFIG.publishableKey))compactStoredLogos();$('themeSelect').addEventListener('change',function(){applyTheme($('themeSelect').value);persist();toast('Display colors updated.')});$('settingsBtn').addEventListener('click',function(){ closeSiteMenu(); openSettings(); });$('closeSettings').addEventListener('click',closeSettings);$('saveSettings').addEventListener('click',saveSettings);$('addTeam').addEventListener('click',addTeam);$('roundSelect').addEventListener('change',function(){armedMark=null;render()});$('settingsModal').addEventListener('click',function(e){if(e.target===$('settingsModal'))closeSettings()});document.addEventListener('keydown',function(e){if(e.key==='Escape'){ closeSettings(); closeSiteMenu(); }});$('downloadScores').addEventListener('click',exportScoreboard);$('downloadTransactions').addEventListener('click',exportTransactions);$( 'hidePaddles' ).addEventListener('click',function(){$( 'markDock' ).classList.add('hidden');$( 'showPaddles' ).classList.add('visible');document.body.classList.add('paddles-hidden')});$( 'showPaddles' ).addEventListener('click',function(){$( 'markDock' ).classList.remove('hidden');$( 'showPaddles' ).classList.remove('visible');document.body.classList.remove('paddles-hidden')});
+$('judgeAuthBtn').addEventListener('click',function(){ closeSiteMenu(); if(!cloudEnabled){toast('Shared access is not configured yet.');return}if(judgeUser){cloudClient.auth.signOut();return}$('authModal').classList.add('open')});$('closeAuth').addEventListener('click',closeAuth);$('authModal').addEventListener('click',function(e){if(e.target===$('authModal'))closeAuth()});$('authForm').addEventListener('submit',function(e){e.preventDefault();if(!cloudClient)return;cloudClient.auth.signInWithPassword({email:$('judgeEmail').value.trim(),password:$('judgePassword').value}).then(function(r){if(r.error){toast('Sign in failed. Check the judge account details.');return}$('judgePassword').value='';closeAuth();toast('Judge signed in.')})});applyTheme(state.theme);if(!(window.QUIZ_SUPABASE_CONFIG&&window.QUIZ_SUPABASE_CONFIG.url&&window.QUIZ_SUPABASE_CONFIG.publishableKey))compactStoredLogos();$('themeSelect').addEventListener('change',function(){applyTheme($('themeSelect').value);persist();toast('Display colors updated.')});$('settingsBtn').addEventListener('click',function(){ closeSiteMenu(); openSettings(); });$('closeSettings').addEventListener('click',closeSettings);$('saveSettings').addEventListener('click',saveSettings);$('addTeam').addEventListener('click',addTeam);$('roundSelect').addEventListener('change',function(){
+  presState.currentQuestion = 1;
+  presState.selectedTeam = getDirectTeamForQuestion(1);
+  armedMark = null;
+  render();
+  var idx = roundIndex();
+  var rName = state.rounds[idx] || ('Round ' + (idx + 1));
+  toast((idx + 1) + '. ' + rName + ' · Question 1 of ' + MAX_QUESTIONS_PER_ROUND);
+});$('settingsModal').addEventListener('click',function(e){if(e.target===$('settingsModal'))closeSettings()});document.addEventListener('keydown',function(e){if(e.key==='Escape'){ closeSettings(); closeSiteMenu(); }});$('downloadScores').addEventListener('click',exportScoreboard);$('downloadTransactions').addEventListener('click',exportTransactions);$( 'hidePaddles' ).addEventListener('click',function(){$( 'markDock' ).classList.add('hidden');$( 'showPaddles' ).classList.add('visible');document.body.classList.add('paddles-hidden')});$( 'showPaddles' ).addEventListener('click',function(){$( 'markDock' ).classList.remove('hidden');$( 'showPaddles' ).classList.remove('visible');document.body.classList.remove('paddles-hidden')});
 
 // Presentation Mode Listeners
 $('launchPresBtn').addEventListener('click', openPresentation);
@@ -4209,8 +4256,16 @@ if ($('presOrderToggle')) $('presOrderToggle').addEventListener('click', toggleP
 if ($('presNextQBtn')) $('presNextQBtn').addEventListener('click', nextQuestion);
 if ($('presPrevQBtn')) $('presPrevQBtn').addEventListener('click', prevQuestion);
 if ($('presDockNextQ')) $('presDockNextQ').addEventListener('click', nextQuestion);
-$('presPrevRound').addEventListener('click', function(){ var cur = roundIndex(); if(cur>0){ $('roundSelect').value = cur - 1; armedMark=null; render(); } });
-$('presNextRound').addEventListener('click', function(){ var cur = roundIndex(); if(cur<state.rounds.length-1){ $('roundSelect').value = cur + 1; armedMark=null; render(); } });
+$('presPrevRound').addEventListener('click', function(){
+  var cur = roundIndex();
+  if (cur > 0) setRound(cur - 1);
+  else toast('Already on the first round (' + state.rounds[0] + ').');
+});
+$('presNextRound').addEventListener('click', function(){
+  var cur = roundIndex();
+  if (cur < state.rounds.length - 1) setRound(cur + 1);
+  else toast('Already on the final round (' + state.rounds[cur] + ').');
+});
 
 // 3-Dot Overflow Popover Menu Toggle & Outside Click
 if ($('presMenuBtn')) $('presMenuBtn').addEventListener('click', togglePresMenu);
@@ -4290,19 +4345,13 @@ document.addEventListener('keydown', function(e){
   } else if (e.key === 'ArrowLeft' || e.key === '[') {
     e.preventDefault();
     var cur = roundIndex();
-    if (cur > 0) {
-      $('roundSelect').value = cur - 1;
-      armedMark = null;
-      render();
-    }
+    if (cur > 0) setRound(cur - 1);
+    else toast('Already on the first round (' + state.rounds[0] + ').');
   } else if (e.key === 'ArrowRight' || e.key === ']') {
     e.preventDefault();
     var curR = roundIndex();
-    if (curR < state.rounds.length - 1) {
-      $('roundSelect').value = curR + 1;
-      armedMark = null;
-      render();
-    }
+    if (curR < state.rounds.length - 1) setRound(curR + 1);
+    else toast('Already on the final round (' + state.rounds[curR] + ').');
   } else if (e.key >= '1' && e.key <= '9') {
     var tIdx = Number(e.key) - 1;
     if (tIdx < state.teams.length) {
