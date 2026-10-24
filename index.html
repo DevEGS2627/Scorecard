@@ -1805,7 +1805,32 @@ body.pres-paddles-off .pres-operator-dock{transform:translate(-50%,125%);opacity
   gap:4px;
   align-items:center;
   overflow-x:auto;
+  scrollbar-width:none!important;
+  -ms-overflow-style:none!important;
 }
+.pres-dock-team-strip::-webkit-scrollbar{
+  display:none!important;
+  width:0!important;
+  height:0!important;
+}
+.pres-dock-already-scored{
+  grid-column:1/-1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:12px 18px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;
+  color:var(--pres-ink);
+  text-align:center;
+}
+.pres-dock-already-scored .pres-lock-icon{font-size:18px}
+.pres-dock-lock-text strong{font-size:11.5px;font-weight:750;color:var(--pres-accent);margin-right:6px}
+.pres-dock-lock-text span{font-size:10.5px;color:var(--pres-muted)}
+.pres-paddle-name{font-size:clamp(12px,1.2vw,14px)!important;font-weight:800!important}
+.pres-dock-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))!important}
 .pres-dock-team-chip{
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.12);
@@ -3021,22 +3046,22 @@ function renderPresentation() {
   if ($('presDockQNum')) $('presDockQNum').textContent = 'Q' + currQ;
   if ($('presDockFlowText')) {
     if (selectedTeamScored) {
-      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge locked">🔒 SCORED</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong> (' + safe(selectedTeamScored.kindLabel) + ' ' + pointsLabel(selectedTeamScored.points) + ' pts)';
+      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge locked">🔒 Done</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong>';
     } else if (presState.selectedTeam === directTeam) {
-      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge">🎯 DIRECT</span> <strong id="presTargetName">' + safe(activeTeamName) + ' (' + activeTeamPts + ' pts)</strong>';
+      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge">Direct</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong>';
     } else {
-      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge">⚡ POUNCE</span> <strong id="presTargetName">' + safe(activeTeamName) + ' (' + activeTeamPts + ' pts)</strong>';
+      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge pounce">Pounce</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong>';
     }
   }
 
-  // Quick Team Switcher Chips in Dock with scored indicator
+  // Quick Team Switcher Chips in Dock: Compact, minimal, no score clutter
   if ($('presDockTeamStrip')) {
     $('presDockTeamStrip').innerHTML = state.teams.map(function(name, i){
       var isT = (presState.selectedTeam === i);
       var isD = (directTeam === i);
       var isScored = qScores[i];
-      return '<button type="button" class="pres-dock-team-chip ' + (isT ? 'active ' : '') + (isD ? 'direct-chip ' : '') + (isScored ? 'scored-chip ' : '') + '" data-dock-team="' + i + '">' +
-        (isScored ? '✓ ' : (isD ? '🎯 ' : '')) + '#' + (i + 1) + ' ' + safe(name) + (isScored ? ' (' + pointsLabel(isScored.points) + ')' : '') +
+      return '<button type="button" class="pres-dock-team-chip ' + (isT ? 'active ' : '') + (isD ? 'direct-chip ' : '') + (isScored ? 'scored-chip ' : '') + '" data-dock-team="' + i + '" title="' + safe(name) + (isScored ? ' (Scored)' : (isD ? ' (Direct)' : '')) + '">' +
+        (isScored ? '✓ ' : (isD ? '🎯 ' : '')) + '#' + (i + 1) + ' ' + safe(name) +
       '</button>';
     }).join('');
 
@@ -3184,31 +3209,41 @@ function renderPresentation() {
     });
   });
 
-  // Dedicated Operator Scoring Dock (The ONLY Single Location for Scoring Controls)
+  // Dedicated Operator Scoring Dock: Minimal, Uncluttered, Strict Rules
   var isTargetDirect = (presState.selectedTeam === directTeam);
-  var actionList = isTargetDirect ? [
-    { kind: isFinalRound ? 'finalCorrect' : 'correct', name: 'Direct · Correct', sub: 'Award to ' + safe(activeTeamName), points: state.correct, tone: 'green', hk: 'C' },
-    { kind: 'wrong', name: 'Direct · Pass / Wrong', sub: '0 pts · Open for pounce', points: 0, tone: 'neutral', hk: 'W' },
-    { kind: 'pounceCorrect', name: 'Pounce · Correct', sub: 'Award to pouncing team', points: state.correct, tone: 'blue', hk: 'P' },
-    { kind: isFinalRound ? 'finalWrong' : 'pounceWrong', name: 'Pounce · Deduction', sub: 'Deduct from pouncing team', points: isFinalRound ? -state.finalPenalty : -state.pouncePenalty, tone: 'red', hk: 'D' }
-  ] : [
-    { kind: 'pounceCorrect', name: 'Pounce · Correct', sub: 'Award to ' + safe(activeTeamName), points: state.correct, tone: 'blue', hk: 'P' },
-    { kind: isFinalRound ? 'finalWrong' : 'pounceWrong', name: 'Pounce · Deduction', sub: 'Deduct from ' + safe(activeTeamName), points: isFinalRound ? -state.finalPenalty : -state.pouncePenalty, tone: 'red', hk: 'D' },
-    { kind: isFinalRound ? 'finalCorrect' : 'correct', name: 'Bonus Award', sub: 'Award points to ' + safe(activeTeamName), points: state.correct, tone: 'green', hk: 'C' },
-    { kind: 'wrong', name: 'Wrong Answer', sub: '0 points recorded', points: 0, tone: 'neutral', hk: 'W' }
-  ];
+  var targetAlreadyScored = qScores[presState.selectedTeam];
 
-  $('presPaddleDeck').innerHTML = actionList.map(function(m){
-    var armed = armedMark && armedMark.kind === m.kind;
-    return '<button type="button" draggable="true" class="pres-paddle-item ' + (armed ? 'armed' : '') + '" data-kind="' + m.kind + '" data-points="' + m.points + '" title="' + safe(m.name) + ' (Hotkey: ' + m.hk + ')">' +
-      '<span class="pres-paddle-val ' + m.tone + '">' + pointsLabel(m.points) + '</span>' +
-      '<span class="pres-paddle-info">' +
-        '<span class="pres-paddle-name">' + safe(m.name) + '</span>' +
-        '<span class="pres-paddle-sub">' + safe(m.sub) + '</span>' +
-      '</span>' +
-      '<span class="pres-paddle-hotkey">' + m.hk + '</span>' +
-    '</button>';
-  }).join('');
+  if (targetAlreadyScored) {
+    // If selected team is already scored for this question: lock dock and show clean banner
+    $('presPaddleDeck').innerHTML = '<div class="pres-dock-already-scored">' +
+      '<span class="pres-lock-icon">🔒</span>' +
+      '<div class="pres-dock-lock-text">' +
+        '<strong>' + safe(activeTeamName) + ' is already scored for Q' + currQ + '.</strong> ' +
+        '<span>Select another team or press <b>Next (Space)</b>. To edit, press <b>Undo (U)</b>.</span>' +
+      '</div>' +
+    '</div>';
+  } else {
+    // Direct team: ONLY Direct Correct & Pass/Wrong (Pounce is DISABLED)
+    // Non-direct team: ONLY Pounce Correct & Pounce Deduction
+    var actionList = isTargetDirect ? [
+      { kind: isFinalRound ? 'finalCorrect' : 'correct', name: 'Direct Correct', points: state.correct, tone: 'green', hk: 'C' },
+      { kind: 'wrong', name: 'Pass / Wrong', points: 0, tone: 'neutral', hk: 'W' }
+    ] : [
+      { kind: 'pounceCorrect', name: 'Pounce Correct', points: state.correct, tone: 'blue', hk: 'P' },
+      { kind: isFinalRound ? 'finalWrong' : 'pounceWrong', name: 'Pounce Deduction', points: isFinalRound ? -state.finalPenalty : -state.pouncePenalty, tone: 'red', hk: 'D' }
+    ];
+
+    $('presPaddleDeck').innerHTML = actionList.map(function(m){
+      var armed = armedMark && armedMark.kind === m.kind;
+      return '<button type="button" draggable="true" class="pres-paddle-item ' + (armed ? 'armed' : '') + '" data-kind="' + m.kind + '" data-points="' + m.points + '" title="' + safe(m.name) + ' (' + m.hk + ')">' +
+        '<span class="pres-paddle-val ' + m.tone + '">' + pointsLabel(m.points) + '</span>' +
+        '<span class="pres-paddle-info">' +
+          '<span class="pres-paddle-name">' + safe(m.name) + '</span>' +
+        '</span>' +
+        '<span class="pres-paddle-hotkey">' + m.hk + '</span>' +
+      '</button>';
+    }).join('');
+  }
 
   $('presPaddleDeck').querySelectorAll('.pres-paddle-item').forEach(function(btn){
     btn.addEventListener('click', function(e){
