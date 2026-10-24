@@ -1998,6 +1998,728 @@ body.pres-paddles-off .pres-operator-dock{transform:translate(-50%,125%);opacity
 }
 
 
+
+
+/* ==========================================================================
+   TOPBAR COMPACT ACTIONS & SLEEK MORE DROPDOWN MENU
+   ========================================================================== */
+.site-menu-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.site-menu-btn {
+  height: 34px;
+  padding: 0 12px;
+  gap: 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e3efff;
+  font: 700 11.5px 'Manrope', sans-serif;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  user-select: none;
+}
+.site-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.25);
+}
+.site-menu-btn:active {
+  transform: scale(0.97);
+}
+.site-menu-dots {
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  color: #ffd46b;
+  font-weight: 800;
+}
+.site-menu-label {
+  font-weight: 700;
+}
+
+/* More Dropdown Menu Popover */
+.site-menu-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 320px;
+  max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 84px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+  background: rgba(8, 14, 26, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  backdrop-filter: saturate(190%) blur(28px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  padding: 14px;
+  z-index: 1000;
+  transform-origin: top right;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.site-menu-popover.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.site-menu-popover::-webkit-scrollbar {
+  width: 6px;
+}
+.site-menu-popover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+/* Champagne OLED Theme adaptation for site menu */
+body[data-palette="midnight-champagne"] .site-menu-btn {
+  background: rgba(212, 190, 147, 0.08);
+  border-color: rgba(212, 190, 147, 0.25);
+  color: #fdfcf9;
+}
+body[data-palette="midnight-champagne"] .site-menu-btn:hover {
+  background: rgba(212, 190, 147, 0.16);
+  border-color: rgba(212, 190, 147, 0.45);
+}
+body[data-palette="midnight-champagne"] .site-menu-dots {
+  color: #ffd875;
+}
+body[data-palette="midnight-champagne"] .site-menu-popover {
+  background: rgba(14, 12, 18, 0.96);
+  border-color: rgba(212, 190, 147, 0.28);
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.8), 0 0 24px rgba(212, 190, 147, 0.08);
+}
+
+.site-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 11px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 12px;
+}
+body[data-palette="midnight-champagne"] .site-menu-head {
+  border-bottom-color: rgba(212, 190, 147, 0.18);
+}
+.site-menu-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.site-menu-title {
+  font: 800 12px 'Manrope', sans-serif;
+  letter-spacing: 0.12em;
+  color: #ffd46b;
+  text-transform: uppercase;
+}
+body[data-palette="midnight-champagne"] .site-menu-title {
+  color: #ffd875;
+}
+.site-menu-sub {
+  font-size: 9.5px;
+  color: #9cb2cf;
+  font-weight: 500;
+}
+body[data-palette="midnight-champagne"] .site-menu-sub {
+  color: #c9bea9;
+}
+.site-menu-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #cfdeee;
+  font-size: 13px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.site-menu-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+body[data-palette="midnight-champagne"] .site-menu-close {
+  background: rgba(212, 190, 147, 0.08);
+  border-color: rgba(212, 190, 147, 0.2);
+  color: #e5dac9;
+}
+
+.site-menu-group {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.site-menu-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.site-field-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.site-field-icon {
+  font-size: 15px;
+}
+.site-field-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.site-field-meta strong {
+  font: 800 11px 'Manrope', sans-serif;
+  letter-spacing: 0.06em;
+  color: #eef5ff;
+  text-transform: uppercase;
+}
+body[data-palette="midnight-champagne"] .site-field-meta strong {
+  color: #f7f3eb;
+}
+.site-field-meta small {
+  font-size: 9px;
+  color: #8da4c2;
+}
+body[data-palette="midnight-champagne"] .site-field-meta small {
+  color: #b0a48f;
+}
+.site-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+.site-menu-select {
+  width: 100%;
+  height: 38px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  color: #ffffff;
+  font: 700 12px 'DM Sans', sans-serif;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: all 0.18s ease;
+}
+.site-menu-select:hover, .site-menu-select:focus {
+  border-color: #5c99e2;
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(92, 153, 226, 0.2);
+}
+body[data-palette="midnight-champagne"] .site-menu-select {
+  background-color: #17151f;
+  border-color: rgba(212, 190, 147, 0.32);
+  color: #fcfbfa;
+}
+body[data-palette="midnight-champagne"] .site-menu-select:hover,
+body[data-palette="midnight-champagne"] .site-menu-select:focus {
+  border-color: #d4be93;
+  box-shadow: 0 0 0 3px rgba(212, 190, 147, 0.2);
+}
+.site-menu-select option {
+  background: #0f1c30;
+  color: #fff;
+  padding: 8px;
+}
+body[data-palette="midnight-champagne"] .site-menu-select option {
+  background: #141219;
+  color: #f7f3eb;
+}
+
+.site-menu-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 12px 0;
+}
+body[data-palette="midnight-champagne"] .site-menu-divider {
+  background: rgba(212, 190, 147, 0.16);
+}
+
+.site-menu-action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.site-action-btn {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 10px;
+  border-radius: 11px;
+  font: 750 11.5px 'Manrope', sans-serif;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+.site-action-btn.judge-btn {
+  background: linear-gradient(135deg, rgba(35, 98, 165, 0.35), rgba(20, 60, 110, 0.55));
+  border: 1px solid rgba(110, 175, 245, 0.35);
+  color: #e5f1ff;
+}
+.site-action-btn.judge-btn:hover {
+  background: linear-gradient(135deg, rgba(45, 120, 200, 0.45), rgba(25, 80, 140, 0.65));
+  border-color: rgba(140, 195, 255, 0.6);
+  transform: translateY(-1px);
+}
+.site-action-btn.setup-btn {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e5f1ff;
+}
+.site-action-btn.setup-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+body[data-palette="midnight-champagne"] .site-action-btn.judge-btn {
+  background: linear-gradient(135deg, rgba(212, 190, 147, 0.2), rgba(160, 140, 100, 0.35));
+  border-color: rgba(212, 190, 147, 0.45);
+  color: #fff9ed;
+}
+body[data-palette="midnight-champagne"] .site-action-btn.setup-btn {
+  background: rgba(212, 190, 147, 0.08);
+  border-color: rgba(212, 190, 147, 0.25);
+  color: #f7f3eb;
+}
+
+.site-menu-quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.site-menu-group-label {
+  font: 800 9.5px 'Manrope', sans-serif;
+  letter-spacing: 0.14em;
+  color: #8fa5c2;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+body[data-palette="midnight-champagne"] .site-menu-group-label {
+  color: #b0a48f;
+}
+.site-link-btn {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border-radius: 9px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #c8d9ee;
+  font: 600 11.5px 'DM Sans', sans-serif;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+.site-link-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  transform: translateX(2px);
+}
+body[data-palette="midnight-champagne"] .site-link-btn {
+  color: #d8cebe;
+}
+body[data-palette="midnight-champagne"] .site-link-btn:hover {
+  background: rgba(212, 190, 147, 0.12);
+  border-color: rgba(212, 190, 147, 0.25);
+  color: #fff;
+}
+.site-link-icon {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   UNIVERSAL RESPONSIVE ENGINE (MOBILE, TABLETS, LAPTOPS & 4K)
+   ========================================================================== */
+
+/* TABLETS & MEDIUM SCREENS (<= 1024px) */
+@media (max-width: 1024px) {
+  .topbar {
+    height: 64px;
+    padding: 0 clamp(12px, 2.8vw, 24px);
+  }
+  .egs-logo {
+    height: 40px;
+    max-width: 145px;
+  }
+  .brand-quiz-logo {
+    height: 40px;
+    max-width: 90px;
+  }
+  .brand-subtitle {
+    display: none;
+  }
+  .brand-title {
+    font-size: 13px;
+  }
+  .wrap {
+    padding: 24px 18px 260px;
+  }
+  .teams {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px;
+  }
+  .deck {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .pres-stage-body {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* PHONES & SMALL TABLETS (<= 768px) */
+@media (max-width: 768px) {
+  .topbar {
+    height: 58px;
+    padding: 0 10px;
+  }
+  .brand {
+    gap: 8px;
+  }
+  .brand-logos {
+    gap: 6px;
+  }
+  .egs-logo {
+    height: 35px;
+    max-width: 120px;
+    padding: 3px 5px;
+  }
+  .brand-quiz-logo {
+    height: 35px;
+    max-width: 76px;
+    padding: 3px 5px;
+  }
+  .brand-divider, .brand-event {
+    display: none !important;
+  }
+  .top-actions {
+    gap: 6px;
+  }
+  .live {
+    height: 30px;
+    padding: 4px 9px;
+    font-size: 10px;
+  }
+  .pres-trigger-btn {
+    height: 32px !important;
+    padding: 4px 10px !important;
+    font-size: 11px !important;
+  }
+  .pres-trigger-btn .pres-btn-text {
+    display: inline-block;
+  }
+  .site-menu-btn {
+    height: 32px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+  .site-menu-popover {
+    width: min(320px, calc(100vw - 16px));
+    right: 0;
+  }
+
+  /* Main Hero banner */
+  .hero {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 16px 14px !important;
+    gap: 14px !important;
+    border-radius: 18px !important;
+  }
+  .hero h1 {
+    font-size: clamp(22px, 5.5vw, 30px) !important;
+    margin: 4px 0 !important;
+  }
+  .hero p {
+    font-size: 11.5px !important;
+  }
+  .hero:after {
+    display: none !important;
+  }
+  .round-picker {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Paddles Deck */
+  .deck {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    padding-bottom: 24px !important;
+  }
+  .mark-card {
+    min-height: 120px !important;
+    padding: 12px 12px 10px !important;
+    margin-bottom: 12px !important;
+    border-radius: 15px !important;
+  }
+  .mark-card:after {
+    height: 28px !important;
+    width: 12px !important;
+  }
+  .mark-card .drag-hint {
+    display: none !important;
+  }
+  .mark-card .mark-value {
+    font-size: 22px !important;
+    right: 12px !important;
+    bottom: 8px !important;
+  }
+
+  /* Teams Grid: Single column for maximum clarity on phones */
+  .teams {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .team-card {
+    padding: 12px 14px !important;
+    border-radius: 15px !important;
+  }
+  .team-badge {
+    width: 42px !important;
+    height: 42px !important;
+    flex: 0 0 42px !important;
+    border-radius: 12px !important;
+  }
+  .team-name {
+    font-size: 13.5px !important;
+  }
+  .team-score-pair {
+    margin-top: 10px !important;
+    gap: 8px !important;
+  }
+  .score-current, .score-total {
+    min-height: 66px !important;
+    padding: 8px 10px !important;
+  }
+  .score-current strong, .score-total strong {
+    font-size: 24px !important;
+  }
+
+  /* Bottom Dock */
+  .mark-dock {
+    width: calc(100vw - 16px) !important;
+    left: 8px !important;
+    right: 8px !important;
+    margin: 16px 0 0 !important;
+    padding: 10px 10px 2px !important;
+    border-radius: 16px !important;
+  }
+  .mark-dock .deck {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    padding-bottom: 20px !important;
+  }
+  .mark-dock .mark-card {
+    min-height: 110px !important;
+    padding: 10px 11px !important;
+    margin-bottom: 10px !important;
+  }
+  .mark-dock .mark-value {
+    font-size: 20px !important;
+  }
+
+  /* History / Transactions */
+  .log-item {
+    grid-template-columns: 28px minmax(0, 1fr) auto 32px !important;
+    gap: 8px !important;
+    padding: 10px 0 !important;
+  }
+  .log-team-avatar {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .transaction-change {
+    min-width: 50px !important;
+    font-size: 13px !important;
+    padding: 5px 6px !important;
+  }
+  .undo {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+  }
+
+  /* Modals */
+  .modal {
+    width: 95vw !important;
+    max-height: 90vh !important;
+    border-radius: 16px !important;
+  }
+  .modal-head {
+    padding: 14px 16px !important;
+  }
+  .modal-body {
+    padding: 14px 16px !important;
+  }
+  .settings-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+  }
+  .settings-row input, .settings-row select {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 42px !important;
+    font-size: 16px !important; /* iOS zoom prevention */
+    box-sizing: border-box !important;
+  }
+  .team-edit-row {
+    grid-template-columns: minmax(0, 1fr) 88px 34px !important;
+    gap: 6px !important;
+  }
+  .team-edit-row > input {
+    height: 42px !important;
+    font-size: 16px !important;
+  }
+  .logo-control {
+    height: 42px !important;
+  }
+  .clear-logo {
+    height: 42px !important;
+    width: 34px !important;
+  }
+
+  /* PRESENTATION MODE ON MOBILE / TABLET */
+  .pres-header {
+    height: 56px !important;
+    padding: 0 10px !important;
+    gap: 8px !important;
+  }
+  .pres-logo.egs {
+    height: 22px !important;
+  }
+  .pres-logo.quiz {
+    height: 22px !important;
+  }
+  .pres-round-pill {
+    padding: 3px 8px !important;
+    font-size: 11px !important;
+  }
+  .pres-nav-btn {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .pres-q-badge {
+    padding: 3px 8px !important;
+  }
+  .pres-q-num {
+    font-size: 12px !important;
+  }
+  .pres-turn-chip {
+    display: none !important; /* Save space on mobile */
+  }
+  .pres-ctrl-btn {
+    height: 32px !important;
+    padding: 0 8px !important;
+    font-size: 10.5px !important;
+  }
+  .pres-ctrl-btn .pres-btn-label {
+    display: none !important;
+  }
+  .pres-stage-body {
+    grid-template-columns: 1fr !important;
+    padding: 8px 10px 110px !important;
+    gap: 10px !important;
+  }
+  .pres-card {
+    min-height: 110px !important;
+    padding: 12px !important;
+    border-radius: 16px !important;
+  }
+  .pres-card-score strong {
+    font-size: 26px !important;
+  }
+  .pres-dock-body {
+    padding: 8px 10px 10px !important;
+  }
+  .pres-paddle-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .pres-paddle-btn {
+    min-height: 44px !important;
+    padding: 8px 10px !important;
+  }
+}
+
+/* ULTRA COMPACT MOBILE PHONES (<= 430px: iPhone 12/13/14/15/16, Galaxy S, Pixel) */
+@media (max-width: 430px) {
+  .topbar {
+    height: 54px;
+    padding: 0 8px;
+  }
+  .brand-logos {
+    gap: 4px;
+  }
+  .egs-logo {
+    height: 30px;
+    max-width: 105px;
+    padding: 2px 4px;
+  }
+  .brand-quiz-logo {
+    height: 30px;
+    max-width: 66px;
+    padding: 2px 4px;
+  }
+  .live {
+    font-size: 9px;
+    padding: 3px 6px;
+    height: 26px;
+  }
+  .live:before {
+    width: 5px;
+    height: 5px;
+    margin-right: 4px;
+  }
+  .pres-trigger-btn {
+    height: 28px !important;
+    padding: 3px 7px !important;
+    font-size: 10.5px !important;
+  }
+  .pres-trigger-btn .pres-btn-text {
+    display: none !important; /* Only icon on smallest phones */
+  }
+  .site-menu-btn {
+    height: 28px;
+    padding: 0 7px;
+  }
+  .site-menu-label {
+    display: none !important;
+  }
+  .site-menu-dots {
+    font-size: 16px;
+  }
+}
+
 </style></head>
 <body>
 <div class="site-ambient-aurora" id="siteAmbientAurora" aria-hidden="true">
@@ -2014,48 +2736,117 @@ body.pres-paddles-off .pres-operator-dock{transform:translate(-50%,125%);opacity
     </div>
     <span class="brand-divider"></span>
     <div class="brand-event">
-      <span>ANNUAL INTER-SCHOOL</span>
-      <strong>QUIZ ARENA</strong>
+      <span class="brand-subtitle">ANNUAL INTER-SCHOOL</span>
+      <strong class="brand-title">QUIZ ARENA</strong>
     </div>
   </div>
   <div class="top-actions">
     <span class="live" id="syncStatus">Local scores</span>
-    <label class="palette-picker" title="Display Theme">
-      <span>DISPLAY</span>
-      <select id="themeSelect" aria-label="Choose display colors">
-        <option value="midnight">Midnight</option>
-        <option value="midnight-champagne">Midnight Champagne · OLED Gold</option>
-        <option value="school">School blue</option>
-        <option value="slate">Slate blue</option>
-        <option value="emerald">Emerald</option>
-        <option value="burgundy">Burgundy</option>
-        <option value="indigo">Indigo</option>
-        <option value="aurora">Aurora</option>
-        <option value="sunset">Sunset</option>
-        <option value="electric">Electric</option>
-        <option value="citrus">Citrus pop</option>
-        <option value="coral">Coral pop</option>
-        <option value="candy">Candy pop</option>
-        <option value="pearl">Pearl · solid light</option>
-        <option value="arctic">Arctic · ice gradient</option>
-        <option value="blush">Blush · soft gradient</option>
-        <option value="crimson">Crimson &amp; black</option>
-        <option value="glacier">Glacier · soft blue gradient</option>
-      </select>
-    </label>
-    <label class="palette-picker anim-picker" id="siteAnimPicker" title="Animation & Lighting Mode">
-      <span>MOTION</span>
-      <select id="siteAnimSelect" aria-label="Choose animation mode">
-        <option value="gentle">✨ Gentle Sheen</option>
-        <option value="breathing">💫 Soft Ambient</option>
-        <option value="fireflies">🌌 Floating Stars</option>
-        <option value="aurora">🌊 Slow Aurora</option>
-        <option value="static">🛑 Static / Clean</option>
-      </select>
-    </label>
-    <button class="iconbtn" id="judgeAuthBtn">Judge sign in</button>
-    <button class="iconbtn" id="settingsBtn">⚙ &nbsp;Quiz setup</button>
-    <button class="iconbtn pres-trigger-btn" id="launchPresBtn" title="Launch Presentation Mode (P)">📺 &nbsp;<b>Presentation Mode</b></button>
+    <button type="button" class="iconbtn pres-trigger-btn" id="launchPresBtn" title="Launch Presentation Mode (P)">
+      <span class="pres-btn-icon">📺</span>
+      <span class="pres-btn-text">Presentation Mode</span>
+    </button>
+    <div class="site-menu-container">
+      <button type="button" class="iconbtn site-menu-btn" id="siteMenuBtn" aria-label="Open controls &amp; themes menu" aria-expanded="false" title="Themes, animations &amp; settings">
+        <span class="site-menu-dots">•••</span>
+        <span class="site-menu-label">More</span>
+      </button>
+      <div class="site-menu-popover" id="siteMenuPopover" role="dialog" aria-label="Scoreboard controls and theme settings">
+        <div class="site-menu-head">
+          <div class="site-menu-title-group">
+            <span class="site-menu-title">SETTINGS &amp; THEMES</span>
+            <span class="site-menu-sub">Display, lighting &amp; quiz controls</span>
+          </div>
+          <button type="button" class="site-menu-close" id="siteMenuCloseBtn" aria-label="Close menu">✕</button>
+        </div>
+
+        <div class="site-menu-body">
+          <div class="site-menu-group">
+            <label class="site-menu-field" for="themeSelect">
+              <div class="site-field-header">
+                <span class="site-field-icon">🎨</span>
+                <div class="site-field-meta">
+                  <strong>STAGE PALETTE</strong>
+                  <small>18 tailored school &amp; dark themes</small>
+                </div>
+              </div>
+              <div class="site-select-wrapper">
+                <select id="themeSelect" class="site-menu-select" aria-label="Choose display colors">
+                  <option value="midnight">Midnight · Classic Navy</option>
+                  <option value="midnight-champagne">Midnight Champagne · OLED Gold</option>
+                  <option value="school">School blue</option>
+                  <option value="slate">Slate blue</option>
+                  <option value="emerald">Emerald</option>
+                  <option value="burgundy">Burgundy</option>
+                  <option value="indigo">Indigo</option>
+                  <option value="aurora">Aurora</option>
+                  <option value="sunset">Sunset</option>
+                  <option value="electric">Electric</option>
+                  <option value="citrus">Citrus pop</option>
+                  <option value="coral">Coral pop</option>
+                  <option value="candy">Candy pop</option>
+                  <option value="pearl">Pearl · solid light</option>
+                  <option value="arctic">Arctic · ice gradient</option>
+                  <option value="blush">Blush · soft gradient</option>
+                  <option value="crimson">Crimson &amp; black</option>
+                  <option value="glacier">Glacier · soft blue gradient</option>
+                </select>
+              </div>
+            </label>
+
+            <label class="site-menu-field" id="siteAnimPicker" for="siteAnimSelect">
+              <div class="site-field-header">
+                <span class="site-field-icon">✨</span>
+                <div class="site-field-meta">
+                  <strong>LIGHTING &amp; MOTION</strong>
+                  <small>Live ambient sheen &amp; aura</small>
+                </div>
+              </div>
+              <div class="site-select-wrapper">
+                <select id="siteAnimSelect" class="site-menu-select" aria-label="Choose animation mode">
+                  <option value="gentle">✨ Gentle Sheen (Calm Living Gleam)</option>
+                  <option value="breathing">💫 Soft Ambient (Breathing Aurora)</option>
+                  <option value="fireflies">🌌 Floating Stars (Subtle Particles)</option>
+                  <option value="aurora">🌊 Slow Aurora (Rich Gradient Wave)</option>
+                  <option value="static">🛑 Static / Clean (Minimal Battery)</option>
+                </select>
+              </div>
+            </label>
+          </div>
+
+          <div class="site-menu-divider"></div>
+
+          <div class="site-menu-group site-menu-action-buttons">
+            <button type="button" class="site-action-btn judge-btn" id="judgeAuthBtn">
+              <span class="site-action-icon">👤</span>
+              <span class="site-action-text">Judge sign in</span>
+            </button>
+            <button type="button" class="site-action-btn setup-btn" id="settingsBtn">
+              <span class="site-action-icon">⚙️</span>
+              <span class="site-action-text">Quiz setup</span>
+            </button>
+          </div>
+
+          <div class="site-menu-divider"></div>
+
+          <div class="site-menu-group site-menu-quick-links">
+            <div class="site-menu-group-label">QUICK ACTIONS</div>
+            <button type="button" class="site-link-btn" id="siteMenuExportScores">
+              <span class="site-link-icon">📊</span>
+              <span>Download Scores (CSV)</span>
+            </button>
+            <button type="button" class="site-link-btn" id="siteMenuExportHistory">
+              <span class="site-link-icon">📜</span>
+              <span>Download Transactions (CSV)</span>
+            </button>
+            <button type="button" class="site-link-btn" id="siteMenuTogglePaddles">
+              <span class="site-link-icon">🏓</span>
+              <span>Toggle Scoring Dock</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 <main class="wrap">
@@ -3364,12 +4155,51 @@ function applyRemote(remote){if(!remote||!Array.isArray(remote.teams)||!Array.is
   setPresAnimMode(presState.animationMode);render();applyingRemote=false;setStatus('Live · synced');migrateEmbeddedLogos()}
 function startCloud(){var cfg=window.QUIZ_SUPABASE_CONFIG||{};if(!cfg.url||!cfg.publishableKey){setStatus('Local scores');accessUI();return}cloudEnabled=true;setStatus('Connecting…');accessUI();import('https://esm.sh/@supabase/supabase-js@2').then(function(mod){cloudClient=mod.createClient(cfg.url,cfg.publishableKey);cloudClient.auth.getSession().then(function(r){judgeUser=r.data&&r.data.session?r.data.session.user:null;accessUI();return cloudClient.from('quiz_state').select('state').eq('id','main').maybeSingle()}).then(function(r){if(r&&r.error){setStatus('Cloud setup needed');toast('Cloud scoreboard could not connect. Check setup.');compactStoredLogos();return}if(r&&r.data&&r.data.state)applyRemote(r.data.state);else{if(judgeUser){if(state.logos.some(function(v){return typeof v==='string'&&v.indexOf('data:image/')===0}))migrateEmbeddedLogos();else persist()}else setStatus('Waiting for judge setup')}cloudClient.channel('quiz-state-live').on('postgres_changes',{event:'*',schema:'public',table:'quiz_state',filter:'id=eq.main'},function(payload){if(payload.new&&payload.new.state)applyRemote(payload.new.state)}).subscribe(function(status){if(status==='SUBSCRIBED')setStatus(judgeUser?'Live · judge':'Live · viewer')})}).catch(function(){setStatus('Cloud unavailable');compactStoredLogos()});cloudClient.auth.onAuthStateChange(function(_event,session){judgeUser=session?session.user:null;accessUI();render();setStatus(judgeUser?'Live · judge':'Live · viewer');if(judgeUser)cloudClient.from('quiz_state').select('state').eq('id','main').maybeSingle().then(function(r){if(r.data&&r.data.state)applyRemote(r.data.state);else if(state.logos.some(function(v){return typeof v==='string'&&v.indexOf('data:image/')===0}))migrateEmbeddedLogos();else persist()})})}).catch(function(){setStatus('Cloud setup needed');toast('Cloud library could not load. Check internet connection.')})}
 function closeAuth(){$('authModal').classList.remove('open')}
-$('judgeAuthBtn').addEventListener('click',function(){if(!cloudEnabled){toast('Shared access is not configured yet.');return}if(judgeUser){cloudClient.auth.signOut();return}$('authModal').classList.add('open')});$('closeAuth').addEventListener('click',closeAuth);$('authModal').addEventListener('click',function(e){if(e.target===$('authModal'))closeAuth()});$('authForm').addEventListener('submit',function(e){e.preventDefault();if(!cloudClient)return;cloudClient.auth.signInWithPassword({email:$('judgeEmail').value.trim(),password:$('judgePassword').value}).then(function(r){if(r.error){toast('Sign in failed. Check the judge account details.');return}$('judgePassword').value='';closeAuth();toast('Judge signed in.')})});applyTheme(state.theme);if(!(window.QUIZ_SUPABASE_CONFIG&&window.QUIZ_SUPABASE_CONFIG.url&&window.QUIZ_SUPABASE_CONFIG.publishableKey))compactStoredLogos();$('themeSelect').addEventListener('change',function(){applyTheme($('themeSelect').value);persist();toast('Display colors updated.')});$('settingsBtn').addEventListener('click',openSettings);$('closeSettings').addEventListener('click',closeSettings);$('saveSettings').addEventListener('click',saveSettings);$('addTeam').addEventListener('click',addTeam);$('roundSelect').addEventListener('change',function(){armedMark=null;render()});$('settingsModal').addEventListener('click',function(e){if(e.target===$('settingsModal'))closeSettings()});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSettings()});$('downloadScores').addEventListener('click',exportScoreboard);$('downloadTransactions').addEventListener('click',exportTransactions);$( 'hidePaddles' ).addEventListener('click',function(){$( 'markDock' ).classList.add('hidden');$( 'showPaddles' ).classList.add('visible');document.body.classList.add('paddles-hidden')});$( 'showPaddles' ).addEventListener('click',function(){$( 'markDock' ).classList.remove('hidden');$( 'showPaddles' ).classList.remove('visible');document.body.classList.remove('paddles-hidden')});
+$('judgeAuthBtn').addEventListener('click',function(){ closeSiteMenu(); if(!cloudEnabled){toast('Shared access is not configured yet.');return}if(judgeUser){cloudClient.auth.signOut();return}$('authModal').classList.add('open')});$('closeAuth').addEventListener('click',closeAuth);$('authModal').addEventListener('click',function(e){if(e.target===$('authModal'))closeAuth()});$('authForm').addEventListener('submit',function(e){e.preventDefault();if(!cloudClient)return;cloudClient.auth.signInWithPassword({email:$('judgeEmail').value.trim(),password:$('judgePassword').value}).then(function(r){if(r.error){toast('Sign in failed. Check the judge account details.');return}$('judgePassword').value='';closeAuth();toast('Judge signed in.')})});applyTheme(state.theme);if(!(window.QUIZ_SUPABASE_CONFIG&&window.QUIZ_SUPABASE_CONFIG.url&&window.QUIZ_SUPABASE_CONFIG.publishableKey))compactStoredLogos();$('themeSelect').addEventListener('change',function(){applyTheme($('themeSelect').value);persist();toast('Display colors updated.')});$('settingsBtn').addEventListener('click',function(){ closeSiteMenu(); openSettings(); });$('closeSettings').addEventListener('click',closeSettings);$('saveSettings').addEventListener('click',saveSettings);$('addTeam').addEventListener('click',addTeam);$('roundSelect').addEventListener('change',function(){armedMark=null;render()});$('settingsModal').addEventListener('click',function(e){if(e.target===$('settingsModal'))closeSettings()});document.addEventListener('keydown',function(e){if(e.key==='Escape'){ closeSettings(); closeSiteMenu(); }});$('downloadScores').addEventListener('click',exportScoreboard);$('downloadTransactions').addEventListener('click',exportTransactions);$( 'hidePaddles' ).addEventListener('click',function(){$( 'markDock' ).classList.add('hidden');$( 'showPaddles' ).classList.add('visible');document.body.classList.add('paddles-hidden')});$( 'showPaddles' ).addEventListener('click',function(){$( 'markDock' ).classList.remove('hidden');$( 'showPaddles' ).classList.remove('visible');document.body.classList.remove('paddles-hidden')});
 
 // Presentation Mode Listeners
 $('launchPresBtn').addEventListener('click', openPresentation);
 $('presExitBtn').addEventListener('click', closePresentation);
 if ($('presExitMenuBtn')) $('presExitMenuBtn').addEventListener('click', closePresentation);
+
+// Main Site Header More Dropdown Menu
+function toggleSiteMenu(e) {
+  if (e) e.stopPropagation();
+  var pop = $('siteMenuPopover');
+  var btn = $('siteMenuBtn');
+  if (!pop) return;
+  var isOpen = pop.classList.toggle('open');
+  if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+
+function closeSiteMenu() {
+  var pop = $('siteMenuPopover');
+  var btn = $('siteMenuBtn');
+  if (pop && pop.classList.contains('open')) {
+    pop.classList.remove('open');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
+}
+
+if ($('siteMenuBtn')) $('siteMenuBtn').addEventListener('click', toggleSiteMenu);
+if ($('siteMenuCloseBtn')) $('siteMenuCloseBtn').addEventListener('click', closeSiteMenu);
+if ($('siteMenuExportScores')) $('siteMenuExportScores').addEventListener('click', function(){ closeSiteMenu(); exportScoreboard(); });
+if ($('siteMenuExportHistory')) $('siteMenuExportHistory').addEventListener('click', function(){ closeSiteMenu(); exportTransactions(); });
+if ($('siteMenuTogglePaddles')) $('siteMenuTogglePaddles').addEventListener('click', function(){
+  closeSiteMenu();
+  var isHidden = $('markDock').classList.toggle('hidden');
+  $('showPaddles').classList.toggle('visible', isHidden);
+  document.body.classList.toggle('paddles-hidden', isHidden);
+  toast(isHidden ? 'Scoring dock minimized.' : 'Scoring dock restored.');
+});
+
+// Close popover when clicking outside or pressing Escape
+document.addEventListener('click', function(e){
+  if (!e.target.closest('.site-menu-container')) {
+    closeSiteMenu();
+  }
+});
+
 $('presFullscreenBtn').addEventListener('click', togglePresFullscreen);
 $('presOperatorToggle').addEventListener('click', togglePresPaddles);
 $('presDockMinimize').addEventListener('click', togglePresPaddles);
