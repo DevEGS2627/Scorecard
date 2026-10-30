@@ -3113,80 +3113,6 @@ body.pres-paddles-off .pres-stats-view {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Callout on Scoreboard Page to switch to Stats Page */
-.dash-stats-cta-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 22px 28px;
-  margin: 22px 0 24px;
-  background: linear-gradient(135deg, rgba(17, 34, 60, 0.85) 0%, rgba(10, 20, 38, 0.92) 100%);
-  border: 1px solid rgba(84, 134, 186, 0.4);
-  border-radius: 18px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  flex-wrap: wrap;
-}
-.dash-stats-cta-content {
-  flex: 1 1 320px;
-}
-.dash-stats-cta-badge {
-  display: inline-block;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  padding: 3px 9px;
-  border-radius: 999px;
-  margin-bottom: 8px;
-}
-.dash-stats-cta-title {
-  font-family: 'Manrope', sans-serif;
-  font-size: 17px;
-  font-weight: 850;
-  color: #ffffff;
-  margin-bottom: 4px;
-}
-.dash-stats-cta-desc {
-  font-size: 12.5px;
-  color: #9cb5d1;
-  margin: 0;
-  line-height: 1.4;
-}
-.dash-stats-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 22px;
-  background: linear-gradient(135deg, #1d6199 0%, #15456f 100%);
-  border: 1px solid #5aa0d8;
-  color: #ffffff;
-  font-family: 'Manrope', sans-serif;
-  font-size: 13.5px;
-  font-weight: 800;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 16px rgba(56, 189, 248, 0.2);
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  white-space: nowrap;
-}
-.dash-stats-cta-btn:hover {
-  background: linear-gradient(135deg, #2475b8 0%, #1b5384 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 24px rgba(56, 189, 248, 0.35);
-}
-.dash-stats-cta-btn .dash-stats-cta-arrow {
-  font-size: 16px;
-  transition: transform 0.2s;
-}
-.dash-stats-cta-btn:hover .dash-stats-cta-arrow {
-  transform: translateX(4px);
-}
-
 /* Dedicated Stats Page Layout */
 .dash-stats-hero-banner {
   display: flex;
@@ -4024,6 +3950,547 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   }
 }
 
+/* ==========================================================================
+   DESKTOP ZERO-SCROLL HOME PAGE (Fits 100vh perfectly without scrollbars)
+   ========================================================================== */
+@media (min-width: 851px) {
+  body:not(.stats-page-active) {
+    overflow: hidden !important;
+    height: 100vh !important;
+  }
+  body:not(.stats-page-active) .wrap {
+    height: calc(100vh - 76px) !important;
+    max-height: calc(100vh - 76px) !important;
+    padding: clamp(8px, 1.4vh, 18px) clamp(16px, 3.5vw, 48px) 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  #dashPageScoreboard {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    overflow: hidden !important;
+  }
+  #dashPageScoreboard .hero {
+    margin-bottom: clamp(6px, 1vh, 12px) !important;
+    padding: clamp(10px, 1.4vh, 16px) clamp(16px, 2.2vw, 26px) !important;
+    flex-shrink: 0 !important;
+  }
+  #dashPageScoreboard .team-head {
+    margin-bottom: clamp(4px, 0.6vh, 8px) !important;
+    flex-shrink: 0 !important;
+  }
+  #dashPageScoreboard .teams {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: clamp(8px, 1.2vh, 14px) !important;
+    align-content: stretch !important;
+  }
+  #dashPageScoreboard .team-card {
+    min-height: 0 !important;
+    padding: clamp(10px, 1.4vh, 16px) clamp(12px, 1.5vw, 18px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+  #dashPageScoreboard .board-footer {
+    margin-top: clamp(4px, 0.6vh, 8px) !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE PHONE SCREEN RESPONSIVENESS (<= 768px & <= 480px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Mobile Topbar */
+  .topbar {
+    height: 56px !important;
+    padding: 0 10px !important;
+    gap: 6px !important;
+  }
+  .brand {
+    gap: 6px !important;
+  }
+  .brand-event {
+    display: none !important;
+  }
+  .brand-divider {
+    display: none !important;
+  }
+  .brand-logos {
+    gap: 5px !important;
+  }
+  .egs-logo {
+    height: 28px !important;
+    max-width: 95px !important;
+    padding: 2px 4px !important;
+  }
+  .brand-quiz-logo {
+    height: 28px !important;
+    max-width: 62px !important;
+    padding: 2px 4px !important;
+  }
+  .dash-page-nav {
+    padding: 2px !important;
+    gap: 2px !important;
+  }
+  .dash-nav-pill {
+    padding: 5px 9px !important;
+    font-size: 11px !important;
+    gap: 4px !important;
+  }
+  .dash-nav-icon {
+    font-size: 12px !important;
+  }
+  .top-actions {
+    gap: 6px !important;
+  }
+  .live {
+    padding: 4px 7px !important;
+    font-size: 9px !important;
+  }
+  .pres-trigger-btn {
+    padding: 5px 8px !important;
+    font-size: 11px !important;
+  }
+  .pres-btn-text {
+    display: none !important;
+  }
+  .pres-btn-icon {
+    font-size: 15px !important;
+    margin: 0 !important;
+  }
+  .site-menu-btn {
+    padding: 5px 8px !important;
+  }
+  .site-menu-label {
+    display: none !important;
+  }
+
+  /* Mobile Wrap & Home Page */
+  .wrap {
+    padding: 10px 10px 70px !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  .hero {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding: 12px 14px !important;
+    margin-bottom: 10px !important;
+    border-radius: 14px !important;
+  }
+  .eyebrow {
+    font-size: 8px !important;
+  }
+  .hero h1 {
+    font-size: 19px !important;
+    margin: 2px 0 !important;
+  }
+  .hero p {
+    font-size: 11px !important;
+  }
+  .round-picker {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 7px 10px !important;
+    border-radius: 10px !important;
+  }
+  .round-picker label {
+    font-size: 8px !important;
+    margin-bottom: 3px !important;
+  }
+  .round-picker select {
+    font-size: 13px !important;
+  }
+  .team-head {
+    margin: 2px 0 6px !important;
+  }
+  .team-head h2 {
+    font-size: 12px !important;
+  }
+  .team-head p {
+    font-size: 9px !important;
+  }
+  .sorttag {
+    font-size: 8px !important;
+    padding: 3px 6px !important;
+  }
+  .teams {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+  .team-card {
+    min-height: 88px !important;
+    padding: 9px !important;
+    border-radius: 13px !important;
+  }
+  .team-top {
+    gap: 6px !important;
+  }
+  .team-badge {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 11px !important;
+    border-radius: 8px !important;
+  }
+  .team-name {
+    font-size: 12px !important;
+  }
+  .team-sub {
+    font-size: 8px !important;
+  }
+  .team-score strong {
+    font-size: 19px !important;
+  }
+  .team-score small {
+    font-size: 7px !important;
+  }
+  .team-drop-hint {
+    font-size: 7.5px !important;
+    margin-top: 5px !important;
+    padding-top: 4px !important;
+  }
+  .board-footer {
+    margin-top: 8px !important;
+    font-size: 9.5px !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+    text-align: center !important;
+  }
+  .show-paddles {
+    right: 12px !important;
+    bottom: 12px !important;
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+    border-radius: 999px !important;
+  }
+  
+  /* Mobile Scoring Dock Drawer */
+  .mark-dock {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 10px 10px 14px !important;
+    border-radius: 18px 18px 0 0 !important;
+    background: #081425fa !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 -8px 30px rgba(0,0,0,0.6) !important;
+    z-index: 50 !important;
+  }
+  .mark-dock .deck {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    padding: 0 0 8px !important;
+  }
+  .mark-dock .mark-card {
+    min-height: 82px !important;
+    padding: 8px 10px !important;
+    margin-bottom: 0 !important;
+    border-radius: 12px !important;
+    grid-template-rows: 24px auto auto !important;
+  }
+  .mark-dock .mark-card:after {
+    height: 14px !important;
+    width: 10px !important;
+  }
+  .mark-dock .mark-icon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .mark-dock .mark-name {
+    font-size: 10px !important;
+  }
+  .mark-dock .mark-sub {
+    font-size: 7.5px !important;
+  }
+  .mark-dock .mark-value {
+    font-size: 17px !important;
+  }
+
+  /* Mobile Stats Page */
+  .dash-stats-hero-banner {
+    padding: 12px 14px !important;
+    margin-bottom: 10px !important;
+    border-radius: 14px !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .dash-back-btn {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+  }
+  .dash-stats-title-block h1.dash-stats-h1 {
+    font-size: 18px !important;
+    margin: 2px 0 !important;
+  }
+  .dash-stats-title-block p.dash-stats-sub {
+    font-size: 10.5px !important;
+  }
+  .dash-stats-header-actions {
+    width: 100% !important;
+    display: flex !important;
+    gap: 6px !important;
+  }
+  .dash-stats-header-actions .export-btn {
+    flex: 1 !important;
+    padding: 8px 6px !important;
+    font-size: 10px !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  .dash-stats-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+    margin-bottom: 10px !important;
+  }
+  .dash-kpi-card {
+    padding: 9px 11px !important;
+    border-radius: 11px !important;
+  }
+  .dash-kpi-label {
+    font-size: 8px !important;
+  }
+  .dash-kpi-val {
+    font-size: 17px !important;
+    margin: 3px 0 1px !important;
+  }
+  .dash-kpi-sub {
+    font-size: 9.5px !important;
+  }
+  .main-stats-panel {
+    padding: 12px 10px !important;
+    border-radius: 14px !important;
+    margin-top: 10px !important;
+  }
+  .main-stats-head {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    margin-bottom: 8px !important;
+  }
+  .main-stats-head h2 {
+    font-size: 15px !important;
+  }
+  .main-stats-head p {
+    font-size: 10px !important;
+  }
+  .main-stats-matrix-wrap {
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 10px !important;
+  }
+  .main-stats-table {
+    min-width: 480px !important;
+  }
+  .main-stats-table th, .main-stats-table td {
+    padding: 7px 8px !important;
+    font-size: 11.5px !important;
+  }
+  .analytics-panel {
+    padding: 12px 10px !important;
+    border-radius: 14px !important;
+    margin-top: 10px !important;
+  }
+  .analytics-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+    padding: 0 0 10px !important;
+  }
+  .analytics-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 0 !important;
+  }
+  .team-analytics {
+    grid-template-columns: 1fr !important;
+  }
+  .history-panel {
+    padding: 12px 10px !important;
+    border-radius: 14px !important;
+    margin-top: 10px !important;
+  }
+  .history {
+    padding: 0 !important;
+    max-height: 260px !important;
+    overflow-y: auto !important;
+  }
+  .log-item {
+    grid-template-columns: 26px minmax(0, 1fr) auto 30px !important;
+    gap: 6px !important;
+    padding: 8px 0 !important;
+  }
+  .log-main {
+    font-size: 10.5px !important;
+  }
+  .log-detail {
+    font-size: 7.5px !important;
+  }
+  .undo {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 12px !important;
+    padding: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+  .dash-back-btn-lg {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 10px !important;
+    font-size: 12px !important;
+  }
+
+  /* Mobile Stage Presentation Mode */
+  .pres-header {
+    height: 52px !important;
+    padding: 0 8px !important;
+    gap: 4px !important;
+  }
+  .pres-live-tag {
+    display: none !important;
+  }
+  .pres-logo.egs {
+    height: 22px !important;
+    max-width: 80px !important;
+  }
+  .pres-logo.quiz {
+    height: 20px !important;
+    max-width: 50px !important;
+  }
+  .pres-question-hud {
+    gap: 4px !important;
+  }
+  .pres-round-pill {
+    padding: 3px 6px !important;
+    font-size: 10px !important;
+  }
+  .pres-q-badge {
+    display: none !important;
+  }
+  .pres-turn-badge {
+    padding: 2px 6px !important;
+    font-size: 9px !important;
+  }
+  .pres-q-step-btn {
+    padding: 4px 6px !important;
+    font-size: 9.5px !important;
+  }
+  .pres-pill-btn {
+    padding: 4px 6px !important;
+    font-size: 9.5px !important;
+    gap: 3px !important;
+  }
+  .pres-stage-body.podium-layout {
+    padding: 6px 8px !important;
+    height: calc(100vh - 52px - 100px) !important;
+  }
+  .arena-podium-cols {
+    gap: 6px !important;
+    grid-template-columns: 1fr 1.12fr 1fr !important;
+  }
+  .arena-pedestal {
+    padding: 8px 6px !important;
+    border-radius: 13px !important;
+  }
+  .pedestal-rank-tag {
+    font-size: 9px !important;
+    padding: 2px 6px !important;
+  }
+  .pedestal-team-name {
+    font-size: 12px !important;
+  }
+  .pedestal-score strong {
+    font-size: clamp(20px, 6vw, 32px) !important;
+  }
+  .arena-contender-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+  .arena-contender-card {
+    min-height: 64px !important;
+    padding: 6px !important;
+    border-radius: 10px !important;
+  }
+  .contender-name {
+    font-size: 10px !important;
+  }
+  .contender-score-val {
+    font-size: 15px !important;
+  }
+  
+  /* Presentation Stats Table on mobile */
+  .pres-stats-view {
+    padding: 10px 8px !important;
+    height: calc(100vh - 52px - 80px) !important;
+  }
+  .pres-stats-view-heading {
+    font-size: 16px !important;
+  }
+  .pres-stats-matrix-container {
+    overflow-x: auto !important;
+    width: 100% !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .pres-matrix-table {
+    min-width: 480px !important;
+  }
+  .pres-matrix-table th, .pres-matrix-table td {
+    padding: 7px 8px !important;
+    font-size: 11px !important;
+  }
+  .pres-matrix-avatar {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .pres-matrix-team-name {
+    font-size: 12px !important;
+  }
+  .pres-matrix-total {
+    font-size: 17px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .topbar {
+    padding: 0 6px !important;
+  }
+  .dash-nav-pill {
+    padding: 5px 6px !important;
+    font-size: 10px !important;
+  }
+  .teams {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+  .team-card {
+    padding: 8px !important;
+  }
+  .team-name {
+    font-size: 11px !important;
+  }
+  .team-score strong {
+    font-size: 17px !important;
+  }
+}
+
 </style></head>
 <body class="paddles-hidden">
 <div class="site-ambient-aurora" id="siteAmbientAurora" aria-hidden="true">
@@ -4192,31 +4659,6 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
     <span id="roundSummary">Round points shown for selected round</span>
     <span id="resultCount">0 results recorded</span>
   </div>
-
-  <!-- Dedicated Callout to Switch to Detailed Stats Page -->
-  <div class="dash-stats-cta-card">
-    <div class="dash-stats-cta-content">
-      <span class="dash-stats-cta-badge">📊 TOURNAMENT BREAKDOWN</span>
-      <div class="dash-stats-cta-title">Round-by-Round Breakdown &amp; Performance Trends</div>
-      <p class="dash-stats-cta-desc">Full 6-round matrix for every team, accuracy breakdown, pounce tracking, and downloadable activity CSVs.</p>
-    </div>
-    <button type="button" class="dash-stats-cta-btn" id="dashGoToStatsBtn">
-      <span>View Full Stats Page</span>
-      <span class="dash-stats-cta-arrow">→</span>
-    </button>
-  </div>
-
-  <section class="panel history-panel">
-    <div class="panel-head">
-      <div>
-        <h2>Scoring history</h2>
-        <p>Undo a result if it was entered by mistake.</p>
-      </div>
-    </div>
-    <div class="history" id="history"></div>
-  </section>
-
-  <div class="footer-note" id="storageNote">Scores are saved in this browser on this device.</div>
 </div>
 
 <!-- ==========================================================================
@@ -4282,6 +4724,19 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
       </section>
     </div>
   </section>
+
+  <!-- Scoring History (Moved to Stats Section Only) -->
+  <section class="panel history-panel" id="historyPanel">
+    <div class="panel-head">
+      <div>
+        <h2>Scoring history</h2>
+        <p>Undo a result if it was entered by mistake.</p>
+      </div>
+    </div>
+    <div class="history" id="history"></div>
+  </section>
+
+  <div class="footer-note" id="storageNote">Scores are saved in this browser on this device.</div>
 
   <div class="dash-stats-bottom-nav">
     <button type="button" class="dash-back-btn-lg" id="dashBottomBackBtn">
@@ -4645,7 +5100,6 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
             <span class="pres-kbd">V</span>
           </button>
         </div>
-        <div class="pres-stats-kpi-bar" id="presStatsKpiBar"></div>
         <div class="pres-stats-matrix-container" id="presStatsMatrixContainer"></div>
       </div>
     </section>
@@ -4801,6 +5255,8 @@ function setDashboardPage(page, silent) {
   var btnScoreboard = $('dashNavScoreboard');
   var btnStats = $('dashNavStats');
 
+  document.body.classList.toggle('stats-page-active', page === 'stats');
+
   if (page === 'scoreboard') {
     if (scoreboardPage) scoreboardPage.style.display = '';
     if (statsPage) statsPage.style.display = 'none';
@@ -4809,6 +5265,7 @@ function setDashboardPage(page, silent) {
     if (!silent) {
       try { history.replaceState(null, '', '#scoreboard'); } catch(e){}
     }
+    window.scrollTo({ top: 0, behavior: 'instant' });
   } else {
     if (scoreboardPage) scoreboardPage.style.display = 'none';
     if (statsPage) statsPage.style.display = '';
@@ -4820,6 +5277,7 @@ function setDashboardPage(page, silent) {
     renderMainStatsMatrix();
     renderAnalytics();
     renderDashStatsKpis();
+    renderHistory();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
@@ -5511,82 +5969,24 @@ function togglePresStats() {
 
 function renderPresStatsView() {
   var container = $('presStatsMatrixContainer');
-  var kpiBar = $('presStatsKpiBar');
   if (!container || !presState.active) return;
   var selected = roundIndex();
 
   var ranked = state.teams.map(function(name, i){
-    var directPts = 0;
-    var pouncePts = 0;
-    var bestRoundScore = -Infinity;
-    var bestRoundIndex = 0;
-    state.rounds.forEach(function(r, rI){
-      var rScore = scoreOf(i, rI);
-      if (rScore > bestRoundScore) {
-        bestRoundScore = rScore;
-        bestRoundIndex = rI;
-      }
-    });
-    state.entries.forEach(function(e){
-      if (Number(e.team) === i) {
-        var pts = Number(e.points) || 0;
-        if (String(e.kind || '').indexOf('pounce') === 0) {
-          pouncePts += pts;
-        } else {
-          directPts += pts;
-        }
-      }
-    });
-
     return {
       name: name,
       i: i,
       total: scoreOf(i),
       current: scoreOf(i, selected),
-      logo: state.logos[i] || '',
-      directPts: directPts,
-      pouncePts: pouncePts,
-      bestRoundScore: bestRoundScore === -Infinity ? 0 : bestRoundScore,
-      bestRoundIndex: bestRoundIndex
+      logo: state.logos[i] || ''
     };
   }).sort(function(a, b){ return b.total - a.total || a.i - b.i; });
-
-  var leader = ranked[0] || { name: 'None', total: 0 };
-  var runnerUp = ranked[1] || { total: 0 };
-  var leadMargin = Math.max(0, leader.total - runnerUp.total);
-  var totalPoints = state.entries.reduce(function(n, e){ return n + (Number(e.points) || 0); }, 0);
-  var pounceEntries = state.entries.filter(function(e){ return String(e.kind || '').indexOf('pounce') === 0; });
-  var roundName = state.rounds[selected] || ('Round ' + (selected + 1));
-
-  if (kpiBar) {
-    kpiBar.innerHTML = 
-      '<div class="pres-stats-kpi-card" style="--kpi-idx: 0;">' +
-        '<span class="kpi-label">👑 TOURNAMENT LEADER</span>' +
-        '<div class="kpi-val gold">' + safe(leader.name) + ' (' + leader.total + ' PTS)</div>' +
-        '<div class="kpi-sub">' + (state.entries.length ? (leadMargin > 0 ? '+' + leadMargin + ' pts ahead of 2nd place' : 'Tied for 1st place') : 'Awaiting first score') + '</div>' +
-      '</div>' +
-      '<div class="pres-stats-kpi-card" style="--kpi-idx: 1;">' +
-        '<span class="kpi-label">🎯 ACTIVE ROUND</span>' +
-        '<div class="kpi-val">' + safe(roundShort(roundName) || ('R' + (selected + 1))) + ' · ' + safe(roundName) + '</div>' +
-        '<div class="kpi-sub">Question ' + presState.currentQuestion + ' of ' + MAX_QUESTIONS_PER_ROUND + '</div>' +
-      '</div>' +
-      '<div class="pres-stats-kpi-card" style="--kpi-idx: 2;">' +
-        '<span class="kpi-label">⚡ ARENA TOTAL POINTS</span>' +
-        '<div class="kpi-val">' + totalPoints + ' PTS</div>' +
-        '<div class="kpi-sub">Across all ' + state.teams.length + ' teams</div>' +
-      '</div>' +
-      '<div class="pres-stats-kpi-card" style="--kpi-idx: 3;">' +
-        '<span class="kpi-label">🦅 POUNCE EVENTS</span>' +
-        '<div class="kpi-val">' + pounceEntries.length + ' Events</div>' +
-        '<div class="kpi-sub">' + (pounceEntries.length ? 'Aggressive answers logged' : 'No pounce attempts yet') + '</div>' +
-      '</div>';
-  }
 
   var html = '<div class="pres-matrix-card">';
   html += '<table class="pres-matrix-table">';
   html += '<thead><tr>';
-  html += '<th style="width:75px;">Rank</th>';
-  html += '<th style="width:260px;">Team</th>';
+  html += '<th style="width:70px;">Rank</th>';
+  html += '<th style="width:240px;">Team</th>';
   state.rounds.forEach(function(rName, rI){
     var isCur = (rI === selected);
     var shortLabel = roundShort(rName) || ('R' + (rI + 1));
@@ -5602,22 +6002,12 @@ function renderPresStatsView() {
     var isLeader = (rIdx === 0 && t.total > 0);
     var rankTagCls = rIdx === 0 ? 'rank-1' : (rIdx === 1 ? 'rank-2' : (rIdx === 2 ? 'rank-3' : ''));
     var logoHtml = t.logo ? '<img src="' + safe(t.logo) + '" alt="">' : '<span>' + safe((t.name.trim()[0] || 'T').toUpperCase()) + '</span>';
-    var bestRShort = roundShort(state.rounds[t.bestRoundIndex] || '') || ('R' + (t.bestRoundIndex + 1));
 
     html += '<tr class="pres-matrix-row' + (isLeader ? ' leader-row' : '') + '" style="--r-idx: ' + rIdx + ';">';
     html += '<td><span class="pres-matrix-rank-tag ' + rankTagCls + '">' + (isLeader ? '👑 ' : '') + '#' + String(rIdx + 1).padStart(2, '0') + '</span></td>';
     html += '<td><div class="pres-matrix-team-cell">';
     html += '  <div class="pres-matrix-avatar">' + logoHtml + '</div>';
-    html += '  <div class="pres-matrix-team-details">';
-    html += '    <span class="pres-matrix-team-name">' + safe(t.name) + '</span>';
-    html += '    <div class="pres-matrix-sub-badges">';
-    html += '      <span class="pres-matrix-sub-chip">Direct: ' + t.directPts + '</span>';
-    html += '      <span class="pres-matrix-sub-chip">Pounce: ' + t.pouncePts + '</span>';
-    if (t.bestRoundScore > 0) {
-      html += '    <span class="pres-matrix-best-chip">★ Best: +' + t.bestRoundScore + ' (' + safe(bestRShort) + ')</span>';
-    }
-    html += '    </div>';
-    html += '  </div>';
+    html += '  <span class="pres-matrix-team-name">' + safe(t.name) + '</span>';
     html += '</div></td>';
 
     state.rounds.forEach(function(rName, rI){
@@ -6193,6 +6583,8 @@ window.addEventListener('hashchange', function(){
 });
 if (window.location.hash === '#stats') {
   setDashboardPage('stats', true);
+} else {
+  setDashboardPage('scoreboard', true);
 }
 
 $( 'hidePaddles' ).addEventListener('click',function(){$( 'markDock' ).classList.add('hidden');$( 'showPaddles' ).classList.add('visible');document.body.classList.add('paddles-hidden')});
