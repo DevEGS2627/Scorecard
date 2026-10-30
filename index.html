@@ -64,7 +64,7 @@ body{background:radial-gradient(ellipse at 12% 7%,#173463 0,transparent 32%),rad
 .log-team-avatar img{width:100%;height:100%;object-fit:contain;background:white;padding:2px}
 .log-copy{min-width:0}.log-main{display:flex;align-items:center;flex-wrap:wrap;gap:3px;color:#e5effc}.log-detail{display:flex;align-items:center;gap:8px}.log-detail i{width:3px;height:3px;border-radius:50%;background:#6e86a5}
 .transaction-change{min-width:64px;text-align:center;padding:7px 9px;border-radius:11px;font:800 15px Manrope;background:#113b30;color:#79e0b4;box-shadow:inset 0 0 0 1px #2c6956,0 5px 15px #0004}.transaction-change small{display:block;font:800 7px 'DM Sans';letter-spacing:.13em;color:#92b5a6}.transaction-change.minus{background:#3c202e;color:#ff8b9a;box-shadow:inset 0 0 0 1px #754052,0 5px 15px #0004}.transaction-change.minus small{color:#c89ba8}.transaction-change.zero{background:#1c2a3c;color:#bdcce0;box-shadow:inset 0 0 0 1px #40536c,0 5px 15px #0004}.undo{width:29px;height:29px;padding:0;font-size:15px;display:grid;place-items:center;transition:transform .18s,background .18s}.undo:hover{transform:rotate(-20deg) scale(1.08);background:#351c2b}
-.settings-help{margin:-5px 0 12px;color:#8ea3be;font-size:10px}.team-edit-list{grid-template-columns:1fr;gap:9px}.team-edit-row{display:grid;grid-template-columns:minmax(0,1fr) 100px 30px;align-items:center;gap:8px}.team-edit-row>input{width:100%;min-width:0}.logo-control{height:37px;display:flex;align-items:center;justify-content:center;gap:6px;border:1px dashed #405a78;border-radius:9px;color:#c3d9f1;font-size:10px;cursor:pointer;position:relative;overflow:hidden;background:#102039}.logo-control:hover{border-color:#83bce9;background:#152945}.logo-control input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}.logo-preview{width:22px;height:22px;object-fit:contain;border-radius:5px;background:#fff;padding:2px}.logo-placeholder{font-size:15px;color:#9dcfff}.clear-logo{height:30px;border:1px solid #304863;background:#112039;color:#9eb2ca;border-radius:8px}
+.settings-help{margin:-5px 0 12px;color:#8ea3be;font-size:10px}.team-edit-list{grid-template-columns:1fr;gap:9px}.team-edit-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;align-items:center;gap:8px;min-height:50px}.team-edit-row>input{width:100%;min-width:0}.team-spectrum-picker{position:relative;display:inline-flex;align-items:center;flex-shrink:0}.team-color-input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer;padding:0;margin:0;border:0;z-index:2}.team-color-swatch-btn{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 11px;background:rgba(15,23,42,0.7);border:1px solid rgba(255,255,255,0.18);border-radius:10px;color:#e2e8f0;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:750;transition:all 0.2s cubic-bezier(0.16,1,0.3,1);box-shadow:0 2px 8px rgba(0,0,0,0.25);user-select:none;pointer-events:none}.team-spectrum-picker:hover .team-color-swatch-btn{background:rgba(30,41,59,0.9);border-color:rgba(255,255,255,0.4);box-shadow:0 4px 14px rgba(0,0,0,0.35);transform:translateY(-1px)}.swatch-circle{width:17px;height:17px;border-radius:50%;border:2px solid #ffffff;display:inline-block;flex-shrink:0;transition:background 0.15s,box-shadow 0.15s}.swatch-label{letter-spacing:0.02em}.logo-control{height:37px;display:flex;align-items:center;justify-content:center;gap:6px;border:1px dashed #405a78;border-radius:9px;color:#c3d9f1;font-size:10px;cursor:pointer;position:relative;overflow:hidden;background:#102039}.logo-control:hover{border-color:#83bce9;background:#152945}.logo-control input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}.logo-preview{width:22px;height:22px;object-fit:contain;border-radius:5px;background:#fff;padding:2px}.logo-placeholder{font-size:15px;color:#9dcfff}.clear-logo{height:30px;border:1px solid #304863;background:#112039;color:#9eb2ca;border-radius:8px}
 @keyframes transactionIn{from{opacity:0;transform:translateX(12px) scale(.985)}to{opacity:1;transform:none}}
 .log-item{animation:transactionIn .35s cubic-bezier(.2,.8,.2,1) both}.transaction-change.plus{animation:scoreBump .4s ease-out}@keyframes scoreBump{0%{transform:scale(.8);filter:brightness(1.8)}65%{transform:scale(1.08)}100%{transform:scale(1)}}
 @media(max-width:850px){.mark-dock{margin-left:-5px;margin-right:-5px}.mark-dock .deck{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mark-dock .mark-card{min-height:126px}}
@@ -2600,15 +2600,28 @@ body[data-palette="midnight-champagne"] .site-link-btn:hover {
     box-sizing: border-box !important;
   }
   .team-edit-row {
-    grid-template-columns: minmax(0, 1fr) 88px 34px !important;
+    grid-template-columns: minmax(0, 1fr) auto auto 34px !important;
     gap: 6px !important;
   }
   .team-edit-row > input {
     height: 42px !important;
     font-size: 16px !important;
   }
+  .team-color-swatch-btn {
+    height: 42px !important;
+    padding: 0 8px !important;
+    gap: 0 !important;
+  }
+  .swatch-label {
+    display: none !important;
+  }
   .logo-control {
     height: 42px !important;
+    min-width: 44px !important;
+    padding: 0 6px !important;
+  }
+  .logo-control span {
+    display: none !important;
   }
   .clear-logo {
     height: 42px !important;
@@ -3958,12 +3971,12 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 
 .pres-racetrack-wrap {
   width: 100%;
-  max-width: 1360px;
+  max-width: clamp(1000px, 94vw, 1540px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: auto auto;
-  gap: clamp(8px, 1.2vh, 14px);
+  gap: clamp(8px, 1.4vh, 16px);
   box-sizing: border-box;
 }
 
@@ -3977,7 +3990,7 @@ body.pres-paddles-off .pres-stage-body.track-layout {
   font-family: 'Manrope', ui-monospace, monospace;
   font-size: clamp(10px, 0.95vw, 12px);
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #f59e0b;
 }
@@ -3985,54 +3998,58 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 .pres-racetrack-list {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.2vh, 12px);
+  gap: clamp(10px, 1.6vh, 18px);
   width: 100%;
 }
 
-/* Individual Race Track Row Card */
+/* Individual Race Track Row Card - Majestic Projector Stature */
 .pres-track-row {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(140px, 190px) minmax(90px, 120px) 1fr auto;
+  grid-template-columns: minmax(170px, 240px) minmax(110px, 160px) 1fr auto;
   align-items: center;
-  gap: clamp(10px, 1.4vw, 22px);
-  background: linear-gradient(90deg, rgba(13, 20, 36, 0.94) 0%, rgba(9, 14, 28, 0.98) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 18px;
-  padding: clamp(8px, 1.2vh, 14px) clamp(14px, 1.6vw, 24px);
-  min-height: clamp(56px, 8.2vh, 72px);
+  gap: clamp(12px, 1.6vw, 26px);
+  background: linear-gradient(90deg, rgba(13, 20, 36, 0.95) 0%, rgba(9, 14, 28, 0.98) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: clamp(16px, 1.6vw, 22px);
+  padding: clamp(10px, 1.5vh, 18px) clamp(16px, 2vw, 30px);
+  min-height: clamp(68px, 9.8vh, 92px);
   box-sizing: border-box;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
   cursor: pointer;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
 }
+body:not(.pres-paddles-off) .pres-track-row {
+  min-height: clamp(56px, 7.8vh, 76px);
+  padding: clamp(8px, 1.2vh, 14px) clamp(14px, 1.8vw, 24px);
+}
 .pres-track-row:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.28);
-  background: linear-gradient(90deg, rgba(18, 28, 50, 0.96) 0%, rgba(13, 20, 40, 0.98) 100%);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  background: linear-gradient(90deg, rgba(18, 28, 52, 0.97) 0%, rgba(13, 20, 42, 0.99) 100%);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .pres-track-row.is-active, .pres-track-row.active-target {
   border: 2px solid #22d3ee !important;
-  box-shadow: 0 0 28px rgba(34, 211, 238, 0.45) !important;
+  box-shadow: 0 0 32px rgba(34, 211, 238, 0.5) !important;
 }
 .pres-track-row.direct-turn {
-  border: 1.5px solid rgba(245, 158, 11, 0.75) !important;
-  box-shadow: 0 0 24px rgba(245, 158, 11, 0.3) !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.85) !important;
+  box-shadow: 0 0 26px rgba(245, 158, 11, 0.35) !important;
 }
 .pres-track-row.direct-turn.is-active {
   border: 2px solid #22d3ee !important;
-  box-shadow: 0 0 32px rgba(34, 211, 238, 0.55), 0 0 12px rgba(245, 158, 11, 0.4) !important;
+  box-shadow: 0 0 36px rgba(34, 211, 238, 0.6), 0 0 14px rgba(245, 158, 11, 0.45) !important;
 }
 .pres-track-row.score-pulse {
   animation: trackScoreFlash 1s ease-in-out;
 }
 @keyframes trackScoreFlash {
   0% { transform: scale(1); filter: brightness(1); }
-  30% { transform: scale(1.02); filter: brightness(1.4); }
+  30% { transform: scale(1.025); filter: brightness(1.4); }
   100% { transform: scale(1); filter: brightness(1); }
 }
 
@@ -4040,21 +4057,21 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 .track-row-team {
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1vw, 14px);
+  gap: clamp(10px, 1.2vw, 18px);
   min-width: 0;
 }
 .track-avatar-wrap {
-  width: clamp(34px, 2.8vw, 42px);
-  height: clamp(34px, 2.8vw, 42px);
-  border-radius: 12px;
+  width: clamp(44px, 3.2vw, 56px);
+  height: clamp(44px, 3.2vw, 56px);
+  border-radius: 14px;
   background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-  padding: 2px;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.45);
+  padding: 3px;
   box-sizing: border-box;
 }
 .track-avatar-wrap img {
@@ -4064,7 +4081,7 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 }
 .track-avatar-wrap span {
   font-family: 'Manrope', sans-serif;
-  font-size: 16px;
+  font-size: clamp(18px, 1.4vw, 24px);
   font-weight: 900;
   color: #0f172a;
 }
@@ -4075,8 +4092,8 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 }
 .track-seat-tag {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9.5px;
-  font-weight: 800;
+  font-size: clamp(10px, 0.85vw, 12.5px);
+  font-weight: 850;
   letter-spacing: 0.08em;
   color: #38bdf8;
   margin-bottom: 2px;
@@ -4087,7 +4104,7 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 
 .track-team-name {
   font-family: 'Manrope', 'DM Sans', sans-serif;
-  font-size: clamp(14px, 1.2vw, 17px);
+  font-size: clamp(16px, 1.35vw, 21.5px);
   font-weight: 850;
   color: #f8fafc;
   white-space: nowrap;
@@ -4100,12 +4117,12 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 .track-row-score {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   white-space: nowrap;
 }
 .track-score-val {
   font-family: 'Manrope', 'DM Sans', sans-serif;
-  font-size: clamp(26px, 2.2vw, 36px);
+  font-size: clamp(34px, 2.9vw, 48px);
   font-weight: 900;
   line-height: 1;
   color: #ffffff;
@@ -4120,26 +4137,26 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 
 .track-delta-chip {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10.5px;
+  font-size: clamp(11.5px, 0.9vw, 13.5px);
   font-weight: 850;
-  padding: 2px 6px;
-  border-radius: 6px;
+  padding: 3px 8px;
+  border-radius: 7px;
   letter-spacing: 0.02em;
 }
 .track-delta-chip.pos {
-  background: rgba(34, 197, 94, 0.2);
+  background: rgba(34, 197, 94, 0.22);
   color: #4ade80;
-  border: 1px solid rgba(74, 222, 128, 0.4);
+  border: 1px solid rgba(74, 222, 128, 0.45);
 }
 .track-delta-chip.zero {
-  background: rgba(148, 163, 184, 0.15);
+  background: rgba(148, 163, 184, 0.16);
   color: #94a3b8;
-  border: 1px solid rgba(148, 163, 184, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.32);
 }
 .track-delta-chip.neg {
-  background: rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.22);
   color: #f87171;
-  border: 1px solid rgba(248, 113, 113, 0.4);
+  border: 1px solid rgba(248, 113, 113, 0.45);
 }
 
 /* Middle: Race Track Lane & Fill & Puck */
@@ -4149,17 +4166,17 @@ body.pres-paddles-off .pres-stage-body.track-layout {
   display: flex;
   align-items: center;
   min-width: 0;
-  padding: 0 12px;
+  padding: 0 14px;
   box-sizing: border-box;
 }
 .track-trough {
   position: relative;
   width: 100%;
-  height: 6px;
+  height: clamp(8px, 1.1vh, 11px);
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 .track-fill {
   position: absolute;
@@ -4171,19 +4188,19 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 }
 .track-fill.rank-1 {
   background: linear-gradient(90deg, #f59e0b, #fbbf24);
-  box-shadow: 0 0 14px rgba(251, 191, 36, 0.7);
+  box-shadow: 0 0 16px rgba(251, 191, 36, 0.75);
 }
 .track-fill.rank-2 {
   background: linear-gradient(90deg, #10b981, #34d399);
-  box-shadow: 0 0 14px rgba(52, 211, 153, 0.7);
+  box-shadow: 0 0 16px rgba(52, 211, 153, 0.75);
 }
 .track-fill.rank-3 {
   background: linear-gradient(90deg, #ea580c, #fb923c);
-  box-shadow: 0 0 14px rgba(251, 146, 60, 0.7);
+  box-shadow: 0 0 16px rgba(251, 146, 60, 0.75);
 }
 .track-fill.rank-4 {
   background: linear-gradient(90deg, #2563eb, #60a5fa);
-  box-shadow: 0 0 14px rgba(96, 165, 250, 0.7);
+  box-shadow: 0 0 16px rgba(96, 165, 250, 0.75);
 }
 .track-fill.rank-5 {
   background: linear-gradient(90deg, #64748b, #94a3b8);
@@ -4203,22 +4220,24 @@ body.pres-paddles-off .pres-stage-body.track-layout {
   pointer-events: none;
 }
 .track-puck {
-  width: clamp(28px, 2.2vw, 34px);
-  height: clamp(28px, 2.2vw, 34px);
+  width: clamp(36px, 2.7vw, 48px);
+  height: clamp(36px, 2.7vw, 48px);
   border-radius: 50%;
   background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
   box-sizing: border-box;
-  padding: 2px;
+  padding: 3px;
   flex-shrink: 0;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-width: 3px;
+  border-style: solid;
 }
 .pres-track-row:hover .track-puck {
-  transform: scale(1.1);
+  transform: scale(1.12);
 }
 .track-puck img {
   width: 100%;
@@ -4228,54 +4247,54 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 }
 .track-puck span {
   font-family: 'Manrope', sans-serif;
-  font-size: 13px;
+  font-size: clamp(15px, 1.1vw, 20px);
   font-weight: 900;
   color: #0f172a;
 }
 .track-puck.rank-1 {
-  border: 2.5px solid #fbbf24;
-  box-shadow: 0 0 18px rgba(251, 191, 36, 0.85), 0 4px 10px rgba(0, 0, 0, 0.4);
+  border-color: #fbbf24;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.9), 0 4px 12px rgba(0, 0, 0, 0.45);
 }
 .track-puck.rank-2 {
-  border: 2.5px solid #34d399;
-  box-shadow: 0 0 18px rgba(52, 211, 153, 0.85), 0 4px 10px rgba(0, 0, 0, 0.4);
+  border-color: #34d399;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.9), 0 4px 12px rgba(0, 0, 0, 0.45);
 }
 .track-puck.rank-3 {
-  border: 2.5px solid #fb923c;
-  box-shadow: 0 0 18px rgba(251, 146, 60, 0.85), 0 4px 10px rgba(0, 0, 0, 0.4);
+  border-color: #fb923c;
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.9), 0 4px 12px rgba(0, 0, 0, 0.45);
 }
 .track-puck.rank-4 {
-  border: 2px solid #60a5fa;
-  box-shadow: 0 0 14px rgba(96, 165, 250, 0.7);
+  border-color: #60a5fa;
+  box-shadow: 0 0 16px rgba(96, 165, 250, 0.75);
 }
 .track-puck.rank-5 {
-  border: 2px solid #94a3b8;
+  border-color: #94a3b8;
 }
 .track-puck.rank-6 {
-  border: 2px solid #38bdf8;
-  box-shadow: 0 0 14px rgba(56, 189, 248, 0.6);
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.65);
 }
 
 .track-pts-badge {
   font-family: 'Manrope', sans-serif;
-  font-size: 8px;
+  font-size: clamp(9px, 0.75vw, 11px);
   font-weight: 850;
   color: #94a3b8;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 1px 4px;
-  border-radius: 4px;
-  margin-left: 6px;
-  letter-spacing: 0.05em;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 2px 6px;
+  border-radius: 5px;
+  margin-left: 8px;
+  letter-spacing: 0.06em;
   white-space: nowrap;
 }
 
 /* Far Right: Rank Label */
 .track-row-rank {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: clamp(10px, 0.9vw, 11.5px);
+  font-size: clamp(12.5px, 1.05vw, 15px);
   font-weight: 900;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   white-space: nowrap;
   text-align: right;
   color: #94a3b8;
@@ -4287,25 +4306,39 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 
 @media (max-width: 768px) {
   .pres-track-row {
-    grid-template-columns: minmax(100px, 130px) minmax(60px, 80px) 1fr auto !important;
-    gap: 8px !important;
-    padding: 8px 10px !important;
+    grid-template-columns: minmax(110px, 140px) minmax(65px, 90px) 1fr auto !important;
+    gap: 10px !important;
+    padding: 10px 12px !important;
+    min-height: 58px !important;
+  }
+  .track-avatar-wrap {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+  }
+  .track-avatar-wrap span {
+    font-size: 15px !important;
   }
   .track-team-name {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
   .track-score-val {
-    font-size: 20px !important;
+    font-size: 22px !important;
+  }
+  .track-delta-chip {
+    font-size: 10px !important;
+    padding: 2px 5px !important;
   }
   .track-puck {
-    width: 24px !important;
-    height: 24px !important;
+    width: 26px !important;
+    height: 26px !important;
+    border-width: 2px !important;
   }
   .track-pts-badge {
     display: none !important;
   }
   .track-row-rank {
-    font-size: 9px !important;
+    font-size: 10px !important;
   }
 }
 
@@ -5554,9 +5587,11 @@ body.pres-paddles-off .pres-stage-body.track-layout {
 (function(){
 'use strict';
 var KEY='egs-quiz-scoreboard-v1';
-var defaults={teams:['Team 1','Team 2','Team 3','Team 4','Team 5','Team 6'],rounds:['Science','Sports','General Knowledge','History','Current Affairs','Music','Final Round'],finalRound:6,correct:10,pouncePenalty:5,finalPenalty:5,theme:'midnight',logos:[],entries:[]};
+var defaultTeamColors=['#f59e0b','#10b981','#f97316','#3b82f6','#8b5cf6','#06b6d4','#ec4899','#ef4444','#14b8a6','#84cc16','#eab308','#6366f1','#a855f7','#0284c7'];
+function getTeamColor(i){if(state&&Array.isArray(state.colors)&&state.colors[i])return state.colors[i];return defaultTeamColors[i%defaultTeamColors.length]}
+var defaults={teams:['Team 1','Team 2','Team 3','Team 4','Team 5','Team 6'],colors:['#f59e0b','#10b981','#f97316','#3b82f6','#8b5cf6','#06b6d4'],rounds:['Science','Sports','General Knowledge','History','Current Affairs','Music','Final Round'],finalRound:6,correct:10,pouncePenalty:5,finalPenalty:5,theme:'midnight',logos:[],entries:[]};
 var state=load(),armedMark=null,lastTeam=null,toastTimer,cloudClient=null,cloudEnabled=false,judgeUser=null,remoteTimer=null,applyingRemote=false;
-function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&Array.isArray(s.teams)&&Array.isArray(s.rounds)){var loaded=Object.assign({},defaults,s,{teams:s.teams.length?s.teams:defaults.teams,rounds:s.rounds.length?s.rounds:defaults.rounds,entries:Array.isArray(s.entries)?s.entries:[],logos:Array.isArray(s.logos)?s.logos:[]});if(loaded.rounds.length===6&&(Number(loaded.finalRound)===5||String(loaded.rounds[5]).toLowerCase()==="music")){loaded.rounds.push("Final Round");loaded.finalRound=6}return loaded}}catch(e){}return JSON.parse(JSON.stringify(defaults))}
+function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&Array.isArray(s.teams)&&Array.isArray(s.rounds)){var loaded=Object.assign({},defaults,s,{teams:s.teams.length?s.teams:defaults.teams,colors:Array.isArray(s.colors)&&s.colors.length?s.colors:defaults.colors.slice(),rounds:s.rounds.length?s.rounds:defaults.rounds,entries:Array.isArray(s.entries)?s.entries:[],logos:Array.isArray(s.logos)?s.logos:[]});if(loaded.rounds.length===6&&(Number(loaded.finalRound)===5||String(loaded.rounds[5]).toLowerCase()==="music")){loaded.rounds.push("Final Round");loaded.finalRound=6}return loaded}}catch(e){}return JSON.parse(JSON.stringify(defaults))}
 function persist(){var json=JSON.stringify(state),localSaved=true;try{localStorage.setItem(KEY,json)}catch(err){localSaved=false;setTimeout(function(){toast(cloudEnabled&&judgeUser?'Browser storage is full; changes will sync online.':'Browser storage is full; remove large logos or free browser space.')},80)}if(cloudEnabled&&judgeUser&&cloudClient&&!applyingRemote){clearTimeout(remoteTimer);remoteTimer=setTimeout(function(){cloudClient.from('quiz_state').upsert({id:'main',state:state,updated_at:new Date().toISOString()},{onConflict:'id'}).then(function(r){if(r.error){setStatus('Sync issue');toast('Could not sync scores. Check your connection.')}})},250)}return localSaved}function applyTheme(theme){var allowed=['midnight','school','slate','emerald','burgundy','indigo','aurora','sunset','electric','citrus','coral','candy','pearl','arctic','blush','crimson','glacier','midnight-champagne'];state.theme=allowed.indexOf(theme)>=0?theme:'midnight';document.body.dataset.palette=state.theme;if($('themeSelect'))$('themeSelect').value=state.theme;if(typeof updateSiteThemeMotion==='function')updateSiteThemeMotion();}
 function $(id){return document.getElementById(id)}
 function canEdit(){return !cloudEnabled||!!judgeUser}function setStatus(s){if($('syncStatus'))$('syncStatus').textContent=s}function accessUI(){document.body.classList.toggle('cloud-viewer',cloudEnabled&&!judgeUser);$('judgeAuthBtn').textContent=judgeUser?'Judge · sign out':'Judge sign in';$('settingsBtn').disabled=!canEdit();$('storageNote').textContent=cloudEnabled?'Shared live scoreboard · viewers can read; signed-in judge can edit.':'Scores are saved in this browser on this device.';if(cloudEnabled&&!judgeUser){$('markDock').classList.add('hidden');$('showPaddles').classList.remove('visible')}else if(cloudEnabled&&judgeUser){$('markDock').classList.remove('hidden')}}
@@ -5588,9 +5623,10 @@ function renderBoard(){
     var badge=t.logo?'<img class="team-logo" alt="" src="'+safe(t.logo)+'">':safe((t.name.trim()[0]||'T').toUpperCase());
     var cls='team-card'+(armedMark?' armed-target':'')+(oldFlash===t.i?' flash':'');
     var hint=armedMark?'TAP TO AWARD '+pointsLabel(armedMark.points):'DROP A PADDLE HERE';
-    var html='<div role="button" tabindex="0" class="'+cls+'" data-team="'+t.i+'" style="--i:'+rank+'" aria-label="Drop mark on '+safe(t.name)+' to score">';
+    var teamCol=getTeamColor(t.i);
+    var html='<div role="button" tabindex="0" class="'+cls+'" data-team="'+t.i+'" style="--team-col:'+teamCol+'; --i:'+rank+'" aria-label="Drop mark on '+safe(t.name)+' to score">';
     html+='<div class="team-card-top"><div class="rank '+(rank===0&&t.total>0?'first':'')+'">'+String(rank+1).padStart(2,'0')+'</div>';
-    html+='<div class="team-badge">'+badge+'</div><div class="team-title"><div class="team-name">'+safe(t.name)+'</div>';
+    html+='<div class="team-badge" style="box-shadow: 0 0 14px '+teamCol+'44; border-color: '+teamCol+'88;">'+badge+'</div><div class="team-title"><div class="team-name">'+safe(t.name)+'</div>';
     html+='<span class="team-sub">'+t.count+' '+(t.count===1?'transaction':'transactions')+'</span></div><div class="drop-arrow" title="Score this team">↙</div></div>';
     html+='<div class="team-score-pair"><div class="score-current"><small>'+safe(roundName)+'</small><strong>'+t.current+'</strong><span>MARKS</span></div>';
     html+='<div class="score-total"><small>TOTAL SCORE</small><strong>'+t.total+'</strong><span>ALL ROUNDS</span></div></div>';
@@ -6768,17 +6804,21 @@ function renderPresentation() {
       var deltaSign = t.current > 0 ? '+' + t.current : (t.current < 0 ? String(t.current) : '+0');
       var deltaClass = t.current > 0 ? 'pos' : (t.current < 0 ? 'neg' : 'zero');
       var scoreValClass = t.total < 0 ? 'neg' : rankTierClass;
+      var teamCol = getTeamColor(t.i);
 
       // Calculate track progress percentage: min 3%, max 92% (leaves room for puck)
       var pct = t.total > 0 ? Math.min(92, Math.max(3, (t.total / trackMax) * 92)) : 3;
 
-      trackHtml += '<div class="pres-track-row ' + (isDirect ? 'direct-turn ' : '') + (isActive ? 'is-active active-target ' : '') + (isScored ? 'score-pulse ' : '') + '" data-team="' + t.i + '" id="presCard_' + t.i + '" style="--i:' + idx + '">';
+      var fillCustom = 'width:' + pct + '%; background: linear-gradient(90deg, ' + teamCol + 'bb, ' + teamCol + '); box-shadow: 0 0 16px ' + teamCol + 'cc;';
+      var puckCustom = 'border-color: ' + teamCol + '; box-shadow: 0 0 20px ' + teamCol + 'dd, 0 4px 12px rgba(0, 0, 0, 0.45);';
+
+      trackHtml += '<div class="pres-track-row ' + (isDirect ? 'direct-turn ' : '') + (isActive ? 'is-active active-target ' : '') + (isScored ? 'score-pulse ' : '') + '" data-team="' + t.i + '" id="presCard_' + t.i + '" style="--team-col:' + teamCol + '; --i:' + idx + '">';
       
       // Identity
       trackHtml += '  <div class="track-row-team">';
       trackHtml += '    <div class="track-avatar-wrap">' + logoHtml + '</div>';
       trackHtml += '    <div class="track-team-info">';
-      trackHtml += '      <span class="track-seat-tag ' + (rankNum === 1 ? 'gold' : (rankNum === 2 ? 'green' : (rankNum === 3 ? 'orange' : ''))) + '">#' + seatNum + '</span>';
+      trackHtml += '      <span class="track-seat-tag" style="color:' + teamCol + ';">#' + seatNum + '</span>';
       trackHtml += '      <span class="track-team-name">' + safe(t.name) + '</span>';
       trackHtml += '    </div>';
       trackHtml += '  </div>';
@@ -6792,9 +6832,9 @@ function renderPresentation() {
       // Race Track Lane
       trackHtml += '  <div class="track-lane">';
       trackHtml += '    <div class="track-trough">';
-      trackHtml += '      <div class="track-fill ' + rankTierClass + '" style="width:' + pct + '%;"></div>';
+      trackHtml += '      <div class="track-fill ' + rankTierClass + '" style="' + fillCustom + '"></div>';
       trackHtml += '      <div class="track-puck-wrap" style="left:' + pct + '%;">';
-      trackHtml += '        <div class="track-puck ' + rankTierClass + '">' + logoHtml + '</div>';
+      trackHtml += '        <div class="track-puck ' + rankTierClass + '" style="' + puckCustom + '">' + logoHtml + '</div>';
       trackHtml += '        <span class="track-pts-badge">PTS</span>';
       trackHtml += '      </div>';
       trackHtml += '    </div>';
@@ -7033,9 +7073,9 @@ function record(team,mark){
   }, 2000);
 }
 
-function openSettings(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');$('correctPoints').value=state.correct;$('pouncePenalty').value=state.pouncePenalty;$('finalPenalty').value=state.finalPenalty;$('finalRound').innerHTML=state.rounds.map(function(r,i){return '<option value="'+i+'">'+(i+1)+'. '+safe(r)+'</option>'}).join('');$('finalRound').value=state.finalRound;$('teamEdits').innerHTML=state.teams.map(function(t,i){var preview=state.logos[i]?'<img class="logo-preview" src="'+safe(state.logos[i])+'" alt="">':'<span class="logo-placeholder">＋</span>';return '<div class="team-edit-row"><input data-team="'+i+'" aria-label="Team '+(i+1)+' name" value="'+safe(t)+'" maxlength="32"><button type="button" class="logo-control" data-upload="'+i+'">'+preview+'<span>'+(state.logos[i]?'Change logo':'Add logo')+'</span></button><input type="file" data-logo="'+i+'" accept="image/*" hidden aria-label="Upload logo for '+safe(t)+'"><button type="button" class="clear-logo" data-clear-logo="'+i+'" title="Remove logo">×</button></div>'}).join('');$('roundEdits').innerHTML=state.rounds.map(function(r,i){return '<div class="round-edit-row"><span>ROUND '+(i+1)+'</span><input data-round="'+i+'" value="'+safe(r)+'" maxlength="40"></div>'}).join('');document.querySelectorAll('[data-upload]').forEach(function(b){b.addEventListener('click',function(){var input=document.querySelector('[data-logo="'+b.dataset.upload+'"]');if(input)input.click()})});document.querySelectorAll('[data-logo]').forEach(function(input){input.addEventListener('change',function(){var file=input.files&&input.files[0],i=Number(input.dataset.logo);if(!file)return;if(!/^image\//.test(file.type)){toast('Choose an image file for the logo.');input.value='';return}if(file.size>4*1024*1024){toast('Choose a logo smaller than 4 MB.');input.value='';return}$('teamEdits').querySelectorAll('[data-team]').forEach(function(n,j){state.teams[j]=n.value.trim()||state.teams[j]});var reader=new FileReader();reader.onerror=function(){toast('Could not read that image. Please try another file.')};reader.onload=function(){compactLogo(reader.result,function(compact){if(!compact){toast('That image could not be processed. Try another logo.');return}if(!cloudClient||!judgeUser){toast('Sign in as the judge to upload shared logos.');return}toast('Uploading logo to shared storage…');uploadLogoData(compact,i).then(function(url){state.logos[i]=url;persist();openSettings();render();toast('Logo uploaded and shared with all devices.')}).catch(function(){toast('Logo upload failed. Check internet and judge sign-in.')})})};reader.readAsDataURL(file)})});document.querySelectorAll('[data-clear-logo]').forEach(function(b){b.addEventListener('click',function(){try{var i=Number(b.dataset.clearLogo);state.logos[i]='';persist();openSettings();render();toast('Team logo removed.')}catch(err){toast('Logo could not be removed.')}})});$('settingsModal').classList.add('open')}function closeSettings(){$('settingsModal').classList.remove('open')}
-function saveSettings(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');try{$('teamEdits').querySelectorAll('[data-team]').forEach(function(input,i){state.teams[i]=input.value.trim()||'Team '+(i+1)});$('roundEdits').querySelectorAll('[data-round]').forEach(function(input,i){state.rounds[i]=input.value.trim()||'Round '+(i+1)});state.correct=Math.max(0,Number($('correctPoints').value)||0);state.pouncePenalty=Math.max(0,Number($('pouncePenalty').value)||0);state.finalPenalty=Math.max(0,Number($('finalPenalty').value)||0);state.finalRound=Number($('finalRound').value)||0;persist();closeSettings();armedMark=null;render();toast('Quiz setup saved.')}catch(err){toast('Could not save quiz setup. Please try again.')}}function addTeam(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');var n=$('addTeamName').value.trim();if(!n)return toast('Enter a team name first.');if(state.teams.length>=16)return toast('You can add up to 16 teams.');state.teams.push(n);persist();openSettings();toast('Team added.')}
-function applyRemote(remote){if(!remote||!Array.isArray(remote.teams)||!Array.isArray(remote.rounds))return;applyingRemote=true;state=Object.assign({},defaults,remote,{teams:remote.teams,rounds:remote.rounds,entries:Array.isArray(remote.entries)?remote.entries:[],logos:Array.isArray(remote.logos)?remote.logos:[]});try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}applyTheme(state.theme);
+function openSettings(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');$('correctPoints').value=state.correct;$('pouncePenalty').value=state.pouncePenalty;$('finalPenalty').value=state.finalPenalty;$('finalRound').innerHTML=state.rounds.map(function(r,i){return '<option value="'+i+'">'+(i+1)+'. '+safe(r)+'</option>'}).join('');$('finalRound').value=state.finalRound;$('teamEdits').innerHTML=state.teams.map(function(t,i){var preview=state.logos[i]?'<img class="logo-preview" src="'+safe(state.logos[i])+'" alt="">':'<span class="logo-placeholder">＋</span>';var teamCol=getTeamColor(i);return '<div class="team-edit-row"><input data-team="'+i+'" aria-label="Team '+(i+1)+' name" value="'+safe(t)+'" maxlength="32"><div class="team-spectrum-picker" title="Assign team color via spectrum"><input type="color" class="team-color-input" id="teamColorInput_'+i+'" data-color-team="'+i+'" value="'+teamCol+'" aria-label="Assign color for '+safe(t)+'"><div class="team-color-swatch-btn"><span class="swatch-circle" style="background:'+teamCol+'; box-shadow: 0 0 10px '+teamCol+'99;"></span><span class="swatch-label">Color</span></div></div><button type="button" class="logo-control" data-upload="'+i+'">'+preview+'<span>'+(state.logos[i]?'Change logo':'Add logo')+'</span></button><input type="file" data-logo="'+i+'" accept="image/*" hidden aria-label="Upload logo for '+safe(t)+'"><button type="button" class="clear-logo" data-clear-logo="'+i+'" title="Remove logo">×</button></div>'}).join('');document.querySelectorAll('.team-color-input').forEach(function(inp){inp.addEventListener('input',function(){var circle=inp.parentElement.querySelector('.swatch-circle');if(circle){circle.style.background=inp.value;circle.style.boxShadow='0 0 12px '+inp.value}})});$('roundEdits').innerHTML=state.rounds.map(function(r,i){return '<div class="round-edit-row"><span>ROUND '+(i+1)+'</span><input data-round="'+i+'" value="'+safe(r)+'" maxlength="40"></div>'}).join('');document.querySelectorAll('[data-upload]').forEach(function(b){b.addEventListener('click',function(){var input=document.querySelector('[data-logo="'+b.dataset.upload+'"]');if(input)input.click()})});document.querySelectorAll('[data-logo]').forEach(function(input){input.addEventListener('change',function(){var file=input.files&&input.files[0],i=Number(input.dataset.logo);if(!file)return;if(!/^image\//.test(file.type)){toast('Choose an image file for the logo.');input.value='';return}if(file.size>4*1024*1024){toast('Choose a logo smaller than 4 MB.');input.value='';return}$('teamEdits').querySelectorAll('[data-team]').forEach(function(n,j){state.teams[j]=n.value.trim()||state.teams[j]});var reader=new FileReader();reader.onerror=function(){toast('Could not read that image. Please try another file.')};reader.onload=function(){compactLogo(reader.result,function(compact){if(!compact){toast('That image could not be processed. Try another logo.');return}if(!cloudClient||!judgeUser){toast('Sign in as the judge to upload shared logos.');return}toast('Uploading logo to shared storage…');uploadLogoData(compact,i).then(function(url){state.logos[i]=url;persist();openSettings();render();toast('Logo uploaded and shared with all devices.')}).catch(function(){toast('Logo upload failed. Check internet and judge sign-in.')})})};reader.readAsDataURL(file)})});document.querySelectorAll('[data-clear-logo]').forEach(function(b){b.addEventListener('click',function(){try{var i=Number(b.dataset.clearLogo);state.logos[i]='';persist();openSettings();render();toast('Team logo removed.')}catch(err){toast('Logo could not be removed.')}})});$('settingsModal').classList.add('open')}function closeSettings(){$('settingsModal').classList.remove('open')}
+function saveSettings(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');try{$('teamEdits').querySelectorAll('[data-team]').forEach(function(input,i){state.teams[i]=input.value.trim()||'Team '+(i+1)});if(!Array.isArray(state.colors))state.colors=[];$('teamEdits').querySelectorAll('.team-color-input').forEach(function(input,i){state.colors[i]=input.value||getTeamColor(i)});$('roundEdits').querySelectorAll('[data-round]').forEach(function(input,i){state.rounds[i]=input.value.trim()||'Round '+(i+1)});state.correct=Math.max(0,Number($('correctPoints').value)||0);state.pouncePenalty=Math.max(0,Number($('pouncePenalty').value)||0);state.finalPenalty=Math.max(0,Number($('finalPenalty').value)||0);state.finalRound=Number($('finalRound').value)||0;persist();closeSettings();armedMark=null;render();toast('Quiz setup saved.')}catch(err){toast('Could not save quiz setup. Please try again.')}}function addTeam(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');var n=$('addTeamName').value.trim();if(!n)return toast('Enter a team name first.');if(state.teams.length>=16)return toast('You can add up to 16 teams.');state.teams.push(n);if(!Array.isArray(state.colors))state.colors=[];state.colors.push(defaultTeamColors[state.teams.length%defaultTeamColors.length]);persist();openSettings();toast('Team added.')}
+function applyRemote(remote){if(!remote||!Array.isArray(remote.teams)||!Array.isArray(remote.rounds))return;applyingRemote=true;state=Object.assign({},defaults,remote,{teams:remote.teams,colors:Array.isArray(remote.colors)&&remote.colors.length?remote.colors:(Array.isArray(state.colors)?state.colors:defaults.colors.slice()),rounds:remote.rounds,entries:Array.isArray(remote.entries)?remote.entries:[],logos:Array.isArray(remote.logos)?remote.logos:[]});try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}applyTheme(state.theme);
   applySiteAnim(siteAnimMode);
   if ($('siteAnimSelect')) {
     $('siteAnimSelect').addEventListener('change', function() {
