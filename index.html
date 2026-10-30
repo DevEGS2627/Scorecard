@@ -1949,6 +1949,12 @@ body.pres-paddles-off .pres-operator-dock{transform:translate(-50%,125%);opacity
   grid-template-columns:repeat(4,minmax(0,1fr));
   gap:clamp(8px,1vw,12px);
 }
+.pres-dock-grid.final-dock{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+body.is-final-round #markDeck{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
 .pres-paddle-item{
   display:grid;
   grid-template-columns:clamp(40px,3.2vw,48px) 1fr auto;
@@ -5077,6 +5083,19 @@ body:not(.pres-paddles-off) .pres-track-row {
               <span>Toggle Scoring Dock</span>
             </button>
           </div>
+
+          <div class="site-menu-divider"></div>
+
+          <div class="site-menu-group">
+            <div class="site-menu-group-label">QUIZ MASTER RULES</div>
+            <button type="button" class="site-link-btn" id="siteMenuToggleMultiScore" style="justify-content: space-between; width: 100%;" title="Allow a team to be awarded marks multiple times for the same question">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="site-link-icon">🎯</span>
+                <span>Allow Multiple Scores</span>
+              </div>
+              <span class="site-toggle-pill" id="siteMultiScorePill" style="font-size: 9px; font-weight: 800; padding: 2px 7px; border-radius: 5px; background: rgba(255,255,255,0.1); color: #94a3b8;">OFF</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -5210,7 +5229,7 @@ body:not(.pres-paddles-off) .pres-track-row {
 </section>
 <button type="button" class="show-paddles visible" id="showPaddles">＋ Show score paddles</button>
 </main>
-<div class="modal-backdrop" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="modal"><div class="modal-head"><h2 id="settingsTitle">Quiz setup</h2><button class="close" id="closeSettings" aria-label="Close">×</button></div><div class="modal-body"><section class="settings-section"><h3>Scoring rules</h3><div class="settings-row"><label for="correctPoints">Correct answer</label><input id="correctPoints" type="number" min="0" max="1000"></div><div class="settings-row"><label for="pouncePenalty">Incorrect pounce (deduction)</label><input id="pouncePenalty" type="number" min="0" max="1000"></div><div class="settings-row"><label for="finalPenalty">Incorrect final answer (deduction)</label><input id="finalPenalty" type="number" min="0" max="1000"></div><div class="settings-row"><label for="finalRound">Final round</label><select id="finalRound"></select></div></section><section class="settings-section"><h3>Teams · names and school logos</h3><p class="settings-help">Upload a logo for each team or school. Use a square image for the cleanest fit.</p><div class="team-edit-list" id="teamEdits"></div><div class="settings-row"><label for="addTeamName">Add another team</label><div class="two-actions"><input id="addTeamName" placeholder="Team name"><button class="primary" id="addTeam">Add</button></div></div></section><section class="settings-section"><h3>Rounds · rename to match your event</h3><div class="round-edit-list" id="roundEdits"></div></section><div class="save-row"><button class="primary" id="saveSettings">Save setup</button></div></div></div></div>
+<div class="modal-backdrop" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="modal"><div class="modal-head"><h2 id="settingsTitle">Quiz setup</h2><button class="close" id="closeSettings" aria-label="Close">×</button></div><div class="modal-body"><section class="settings-section"><h3>Scoring rules</h3><div class="settings-row"><label for="correctPoints">Correct answer</label><input id="correctPoints" type="number" min="0" max="1000"></div><div class="settings-row"><label for="pouncePenalty">Incorrect pounce (deduction)</label><input id="pouncePenalty" type="number" min="0" max="1000"></div><div class="settings-row"><label for="finalPenalty">Incorrect final answer (deduction)</label><input id="finalPenalty" type="number" min="0" max="1000"></div><div class="settings-row"><label for="finalRound">Final round</label><select id="finalRound"></select></div><div class="settings-row"><label for="allowMultiScoresSetting">Team scoring per question</label><select id="allowMultiScoresSetting"><option value="false">Single score only (Strict)</option><option value="true">Allow multiple scores per team</option></select></div></section><section class="settings-section"><h3>Teams · names and school logos</h3><p class="settings-help">Upload a logo for each team or school. Use a square image for the cleanest fit.</p><div class="team-edit-list" id="teamEdits"></div><div class="settings-row"><label for="addTeamName">Add another team</label><div class="two-actions"><input id="addTeamName" placeholder="Team name"><button class="primary" id="addTeam">Add</button></div></div></section><section class="settings-section"><h3>Rounds · rename to match your event</h3><div class="round-edit-list" id="roundEdits"></div></section><div class="save-row"><button class="primary" id="saveSettings">Save setup</button></div></div></div></div>
 <div class="toast" id="toast"></div>
 <div class="modal-backdrop" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle"><div class="modal auth-modal"><div class="modal-head"><h2 id="authTitle">Judge sign in</h2><button class="close" id="closeAuth" aria-label="Close">×</button></div><form class="modal-body" id="authForm"><p class="settings-help">Sign in to record scores and edit quiz setup. Everyone else can view the live scoreboard.</p><div class="settings-row"><label for="judgeEmail">Email</label><input id="judgeEmail" type="email" autocomplete="username" required></div><div class="settings-row"><label for="judgePassword">Password</label><input id="judgePassword" type="password" autocomplete="current-password" required></div><div class="save-row"><button class="primary" id="signInSubmit" type="submit">Sign in</button></div></form></div></div>
 
@@ -5492,6 +5511,11 @@ body:not(.pres-paddles-off) .pres-track-row {
 
           <div class="pres-menu-section">
             <div class="pres-menu-label">STAGE CONTROLS</div>
+            <button type="button" class="pres-menu-row" id="presMultiScoreToggle" title="Allow a team to be awarded marks multiple times for the same question">
+              <span class="pres-row-icon">🎯</span>
+              <span class="pres-row-text">Allow Multiple Scores</span>
+              <span class="pres-row-state" id="presMultiScoreLabel">OFF</span>
+            </button>
             <button type="button" class="pres-menu-row" id="presAudioToggle">
               <span class="pres-row-icon" id="presAudioIcon">🔊</span>
               <span class="pres-row-text">Audio Chimes</span>
@@ -5589,9 +5613,9 @@ body:not(.pres-paddles-off) .pres-track-row {
 var KEY='egs-quiz-scoreboard-v1';
 var defaultTeamColors=['#f59e0b','#10b981','#f97316','#3b82f6','#8b5cf6','#06b6d4','#ec4899','#ef4444','#14b8a6','#84cc16','#eab308','#6366f1','#a855f7','#0284c7'];
 function getTeamColor(i){if(state&&Array.isArray(state.colors)&&state.colors[i])return state.colors[i];return defaultTeamColors[i%defaultTeamColors.length]}
-var defaults={teams:['Team 1','Team 2','Team 3','Team 4','Team 5','Team 6'],colors:['#f59e0b','#10b981','#f97316','#3b82f6','#8b5cf6','#06b6d4'],rounds:['Science','Sports','General Knowledge','History','Current Affairs','Music','Final Round'],finalRound:6,correct:10,pouncePenalty:5,finalPenalty:5,theme:'midnight',logos:[],entries:[]};
+var defaults={teams:['Team 1','Team 2','Team 3','Team 4','Team 5','Team 6'],colors:['#f59e0b','#10b981','#f97316','#3b82f6','#8b5cf6','#06b6d4'],rounds:['Science','Sports','General Knowledge','History','Current Affairs','Music','Final Round'],finalRound:6,correct:10,pouncePenalty:5,finalPenalty:5,allowMultipleScores:false,theme:'midnight',logos:[],entries:[]};
 var state=load(),armedMark=null,lastTeam=null,toastTimer,cloudClient=null,cloudEnabled=false,judgeUser=null,remoteTimer=null,applyingRemote=false;
-function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&Array.isArray(s.teams)&&Array.isArray(s.rounds)){var loaded=Object.assign({},defaults,s,{teams:s.teams.length?s.teams:defaults.teams,colors:Array.isArray(s.colors)&&s.colors.length?s.colors:defaults.colors.slice(),rounds:s.rounds.length?s.rounds:defaults.rounds,entries:Array.isArray(s.entries)?s.entries:[],logos:Array.isArray(s.logos)?s.logos:[]});if(loaded.rounds.length===6&&(Number(loaded.finalRound)===5||String(loaded.rounds[5]).toLowerCase()==="music")){loaded.rounds.push("Final Round");loaded.finalRound=6}return loaded}}catch(e){}return JSON.parse(JSON.stringify(defaults))}
+function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&Array.isArray(s.teams)&&Array.isArray(s.rounds)){var loaded=Object.assign({},defaults,s,{teams:s.teams.length?s.teams:defaults.teams,colors:Array.isArray(s.colors)&&s.colors.length?s.colors:defaults.colors.slice(),rounds:s.rounds.length?s.rounds:defaults.rounds,allowMultipleScores:!!s.allowMultipleScores,entries:Array.isArray(s.entries)?s.entries:[],logos:Array.isArray(s.logos)?s.logos:[]});if(loaded.rounds.length===6&&(Number(loaded.finalRound)===5||String(loaded.rounds[5]).toLowerCase()==="music")){loaded.rounds.push("Final Round");loaded.finalRound=6}return loaded}}catch(e){}return JSON.parse(JSON.stringify(defaults))}
 function persist(){var json=JSON.stringify(state),localSaved=true;try{localStorage.setItem(KEY,json)}catch(err){localSaved=false;setTimeout(function(){toast(cloudEnabled&&judgeUser?'Browser storage is full; changes will sync online.':'Browser storage is full; remove large logos or free browser space.')},80)}if(cloudEnabled&&judgeUser&&cloudClient&&!applyingRemote){clearTimeout(remoteTimer);remoteTimer=setTimeout(function(){cloudClient.from('quiz_state').upsert({id:'main',state:state,updated_at:new Date().toISOString()},{onConflict:'id'}).then(function(r){if(r.error){setStatus('Sync issue');toast('Could not sync scores. Check your connection.')}})},250)}return localSaved}function applyTheme(theme){var allowed=['midnight','school','slate','emerald','burgundy','indigo','aurora','sunset','electric','citrus','coral','candy','pearl','arctic','blush','crimson','glacier','midnight-champagne'];state.theme=allowed.indexOf(theme)>=0?theme:'midnight';document.body.dataset.palette=state.theme;if($('themeSelect'))$('themeSelect').value=state.theme;if(typeof updateSiteThemeMotion==='function')updateSiteThemeMotion();}
 function $(id){return document.getElementById(id)}
 function canEdit(){return !cloudEnabled||!!judgeUser}function setStatus(s){if($('syncStatus'))$('syncStatus').textContent=s}function accessUI(){document.body.classList.toggle('cloud-viewer',cloudEnabled&&!judgeUser);$('judgeAuthBtn').textContent=judgeUser?'Judge · sign out':'Judge sign in';$('settingsBtn').disabled=!canEdit();$('storageNote').textContent=cloudEnabled?'Shared live scoreboard · viewers can read; signed-in judge can edit.':'Scores are saved in this browser on this device.';if(cloudEnabled&&!judgeUser){$('markDock').classList.add('hidden');$('showPaddles').classList.remove('visible')}else if(cloudEnabled&&judgeUser){$('markDock').classList.remove('hidden')}}
@@ -5607,7 +5631,7 @@ function roundsUI(){var old=$('roundSelect').value;$('roundSelect').innerHTML=st
 function kinds(){var f=isFinal();return f?[{kind:'finalCorrect',name:'Final · correct',sub:'Award points to this team',points:state.correct,icon:'✦',tone:'gold'},{kind:'finalWrong',name:'Final · incorrect',sub:'Deduct from this team',points:-state.finalPenalty,icon:'−',tone:'red'}]:[{kind:'correct',name:'Correct answer',sub:'Award points to this team',points:state.correct,icon:'✓',tone:'green'},{kind:'wrong',name:'Wrong answer',sub:'No points awarded',points:0,icon:'×',tone:'neutral'},{kind:'pounceCorrect',name:'Pounce · correct',sub:'Award points to this team',points:state.correct,icon:'↗',tone:'blue'},{kind:'pounceWrong',name:'Pounce · incorrect',sub:'Deduct from this team',points:-state.pouncePenalty,icon:'−',tone:'red'}]}
 function kindLabel(k){return ({correct:'Correct answer',wrong:'Wrong answer',pounceCorrect:'Pounce · correct',pounceWrong:'Pounce · incorrect',finalCorrect:'Final · correct',finalWrong:'Final · incorrect'})[k]||k}
 function pointsLabel(n){return n>0?'+'+n:String(n)}
-function renderMarks(){var list=kinds();$('markDeck').innerHTML=list.map(function(m){var armed=armedMark&&armedMark.kind===m.kind;return '<button type="button" draggable="'+canEdit()+'" '+(!canEdit()?'disabled':'')+' class="mark-card '+m.tone+(armed?' armed':'')+'" data-kind="'+m.kind+'" data-points="'+m.points+'" aria-pressed="'+!!armed+'"><span class="mark-top"><span class="mark-icon">'+m.icon+'</span><span class="drag-hint">DRAG ↗</span></span><span class="mark-name">'+m.name+'</span><span class="mark-sub">'+m.sub+'</span><span class="mark-value">'+pointsLabel(m.points)+'</span></button>'}).join('');document.querySelectorAll('.mark-card').forEach(function(card){card.addEventListener('click',function(){if(!canEdit())return;if(armedMark&&armedMark.kind===card.dataset.kind){armedMark=null}else{armedMark={kind:card.dataset.kind,points:Number(card.dataset.points)};toast('Now drop or tap a team to record '+card.querySelector('.mark-name').textContent+'.')}renderMarks();renderBoard()});card.addEventListener('dragstart',function(e){if(!canEdit()){e.preventDefault();return}armedMark={kind:card.dataset.kind,points:Number(card.dataset.points)};card.classList.add('dragging');e.dataTransfer.effectAllowed='copy';e.dataTransfer.setData('text/plain',JSON.stringify(armedMark));$('markHint').textContent='Drop the mark on a team';document.querySelectorAll('.team-card').forEach(function(t){t.classList.add('armed-target');t.querySelector('.team-drop-hint').textContent='DROP TO AWARD '+pointsLabel(armedMark.points)})});card.addEventListener('dragend',function(){card.classList.remove('dragging');document.querySelectorAll('.team-card').forEach(function(t){t.classList.remove('drop-ready')})})})}
+function renderMarks(){document.body.classList.toggle('is-final-round',isFinal());var list=kinds();$('markDeck').innerHTML=list.map(function(m){var armed=armedMark&&armedMark.kind===m.kind;return '<button type="button" draggable="'+canEdit()+'" '+(!canEdit()?'disabled':'')+' class="mark-card '+m.tone+(armed?' armed':'')+'" data-kind="'+m.kind+'" data-points="'+m.points+'" aria-pressed="'+!!armed+'"><span class="mark-top"><span class="mark-icon">'+m.icon+'</span><span class="drag-hint">DRAG ↗</span></span><span class="mark-name">'+m.name+'</span><span class="mark-sub">'+m.sub+'</span><span class="mark-value">'+pointsLabel(m.points)+'</span></button>'}).join('');document.querySelectorAll('.mark-card').forEach(function(card){card.addEventListener('click',function(){if(!canEdit())return;if(armedMark&&armedMark.kind===card.dataset.kind){armedMark=null}else{armedMark={kind:card.dataset.kind,points:Number(card.dataset.points)};toast('Now drop or tap a team to record '+card.querySelector('.mark-name').textContent+'.')}renderMarks();renderBoard()});card.addEventListener('dragstart',function(e){if(!canEdit()){e.preventDefault();return}armedMark={kind:card.dataset.kind,points:Number(card.dataset.points)};card.classList.add('dragging');e.dataTransfer.effectAllowed='copy';e.dataTransfer.setData('text/plain',JSON.stringify(armedMark));$('markHint').textContent='Drop the mark on a team';document.querySelectorAll('.team-card').forEach(function(t){t.classList.add('armed-target');t.querySelector('.team-drop-hint').textContent='DROP TO AWARD '+pointsLabel(armedMark.points)})});card.addEventListener('dragend',function(){card.classList.remove('dragging');document.querySelectorAll('.team-card').forEach(function(t){t.classList.remove('drop-ready')})})})}
 function roundShort(name){
   var n=String(name).toLowerCase();
   if(n.indexOf('general')>=0)return 'GK';
@@ -5846,7 +5870,7 @@ function renderAnalytics(){
   }).join(''):'<div class="empty">Add teams in Quiz Setup to see analytics.</div>';
 }
 function renderHistory(){var rows=state.entries.slice().reverse();$('history').innerHTML=rows.length?rows.map(function(e){var d=new Date(e.time),logo=state.logos[e.team]?'<img alt="" src="'+safe(state.logos[e.team])+'">':safe(((state.teams[e.team]||'T').trim()[0]||'T').toUpperCase());return '<div class="log-item"><div class="log-team-avatar">'+logo+'</div><div class="log-copy"><div class="log-main">'+safe(state.teams[e.team]||'Team')+'<span class="transaction-kind">'+safe(e.kindLabel||kindLabel(e.kind))+'</span></div><div class="log-detail"><span>'+safe(state.rounds[e.round]||'Round')+'</span><i></i><span>'+d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</span></div></div><div class="transaction-change '+(e.points>0?'plus':e.points<0?'minus':'zero')+'">'+pointsLabel(e.points)+'<small>PTS</small></div><button class="undo" data-id="'+e.id+'" title="Undo this transaction">↶</button></div>'}).join(''):'<div class="empty">No score transactions yet. Each awarded paddle will appear here.</div>';document.querySelectorAll('.undo').forEach(function(b){b.addEventListener('click',function(){if(!canEdit())return;state.entries=state.entries.filter(function(e){return e.id!==b.dataset.id});persist();lastTeam=null;render();toast('Transaction reversed. Totals updated.')})})}
-function render(){roundsUI();renderMarks();renderBoard();renderMainStatsMatrix();renderDashStatsKpis();renderAnalytics();renderHistory();renderPresentation();}
+function render(){roundsUI();renderMarks();renderBoard();renderMainStatsMatrix();renderDashStatsKpis();renderAnalytics();renderHistory();updateMultiScoreUI();renderPresentation();}
 
 // --- Presentation Mode State & Audio Chimes ---
 // --- Presentation Mode State & Audio Chimes ---
@@ -6324,7 +6348,14 @@ function setPresAnimMode(mode) {
 function updateHotkeysHintUI() {
   var hint = $('presKeysHint');
   var btn = $('presHotkeysToggleBtn');
-  if (hint) hint.classList.toggle('hidden', !presState.hotkeysVisible);
+  if (hint) {
+    hint.classList.toggle('hidden', !presState.hotkeysVisible);
+    if (isFinal()) {
+      hint.innerHTML = '<b>C</b> +10 · <b>W/D</b> -5 · <b>V</b> Stats · <b>L</b> Layout · <b>Space/N</b> Next Q · (Pounce Off)';
+    } else {
+      hint.innerHTML = '<b>C</b> +10 · <b>W</b> 0 · <b>P</b> Pounce · <b>D</b> -5 · <b>V</b> Stats · <b>L</b> Layout · <b>Space/N</b> Next Q';
+    }
+  }
   if (btn) btn.classList.toggle('active', !!presState.hotkeysVisible);
 }
 
@@ -6575,12 +6606,15 @@ function renderPresentation() {
 
   if ($('presDockQNum')) $('presDockQNum').textContent = 'Q' + currQ + '/' + MAX_QUESTIONS_PER_ROUND;
   if ($('presDockFlowText')) {
-    if (selectedTeamScored) {
+    if (selectedTeamScored && !state.allowMultipleScores) {
       $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge locked">🔒 Done</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong>';
+    } else if (selectedTeamScored && state.allowMultipleScores) {
+      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge ready">⚡ Multi (' + pointsLabel(selectedTeamScored.points) + ')</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong>';
     } else if (presState.selectedTeam === directTeam) {
       $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge">Direct</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong>';
     } else {
-      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge pounce">Pounce</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong>';
+      var badgeName = isFinalRound ? 'Final' : 'Pounce';
+      $('presDockFlowText').innerHTML = '<span class="pres-dock-flow-badge ' + (isFinalRound ? 'final' : 'pounce') + '">' + badgeName + '</span> <strong id="presTargetName">' + safe(activeTeamName) + '</strong>';
     }
   }
 
@@ -6945,18 +6979,18 @@ function renderPresentation() {
     attachStageCardListeners(stageBody, directTeam);
   }
 
-  // Dedicated Operator Scoring Dock: All 4 Draggable & Clickable Paddles
+  // Dedicated Operator Scoring Dock: Final round has ONLY Correct (+10) and Wrong (-5)
   var actionList = isFinalRound ? [
-    { kind: 'finalCorrect', name: 'Final Correct', points: state.correct, tone: 'gold', hk: 'C' },
-    { kind: 'wrong', name: 'Direct Wrong', points: 0, tone: 'neutral', hk: 'W' },
-    { kind: 'pounceCorrect', name: 'Pounce Correct', points: state.correct, tone: 'blue', hk: 'P' },
-    { kind: 'finalWrong', name: 'Final Deduction', points: -state.finalPenalty, tone: 'red', hk: 'D' }
+    { kind: 'finalCorrect', name: 'Final Correct (+10)', points: state.correct, tone: 'gold', hk: 'C' },
+    { kind: 'finalWrong', name: 'Final Wrong (-5)', points: -state.finalPenalty, tone: 'red', hk: 'W / D' }
   ] : [
-    { kind: 'correct', name: 'Direct Correct', points: state.correct, tone: 'green', hk: 'C' },
-    { kind: 'wrong', name: 'Direct Wrong', points: 0, tone: 'neutral', hk: 'W' },
-    { kind: 'pounceCorrect', name: 'Pounce Correct', points: state.correct, tone: 'blue', hk: 'P' },
-    { kind: 'pounceWrong', name: 'Pounce Wrong', points: -state.pouncePenalty, tone: 'red', hk: 'D' }
+    { kind: 'correct', name: 'Direct Correct (+10)', points: state.correct, tone: 'green', hk: 'C' },
+    { kind: 'wrong', name: 'Direct Wrong (0)', points: 0, tone: 'neutral', hk: 'W' },
+    { kind: 'pounceCorrect', name: 'Pounce Correct (+10)', points: state.correct, tone: 'blue', hk: 'P' },
+    { kind: 'pounceWrong', name: 'Pounce Wrong (-5)', points: -state.pouncePenalty, tone: 'red', hk: 'D' }
   ];
+
+  $('presPaddleDeck').className = 'pres-dock-grid' + (isFinalRound ? ' final-dock' : '');
 
   $('presPaddleDeck').innerHTML = actionList.map(function(m){
     var armed = armedMark && armedMark.kind === m.kind;
@@ -6999,28 +7033,50 @@ function record(team,mark){
   var currR = roundIndex();
   var currQ = presState.currentQuestion;
   var directT = getDirectTeamForQuestion(currQ);
+  var inFinalRound = isFinal(currR);
 
-  // RULE 1: Each team can ONLY be scored once per question (be it direct or pounce)
-  var alreadyScored = state.entries.find(function(e){
-    return e.round === currR && e.question === currQ && e.team === team;
-  });
-  if (alreadyScored) {
-    toast(state.teams[team] + ' has already been scored for Question ' + currQ + ' (' + alreadyScored.kindLabel + ' ' + pointsLabel(alreadyScored.points) + ' pts). Press Undo (U) to change.');
-    return;
+  // FINAL ROUND RULE: Pounce is completely disabled in the final round
+  if (inFinalRound) {
+    if (mark.kind === 'pounceCorrect' || mark.kind === 'pounceWrong') {
+      toast('Pounce is disabled in the final round.');
+      return;
+    }
+    // FINAL ROUND RULE: Every wrong answer will attract a -5 deduction
+    if (mark.kind === 'wrong' || (mark.points === 0 && mark.kind !== 'bonus')) {
+      mark = { kind: 'finalWrong', points: -state.finalPenalty };
+    }
   }
 
-  // RULE 2: Pounce is DISABLED for the team for whom the question is for (direct team)
-  var isPounce = (mark.kind === 'pounceCorrect' || mark.kind === 'pounceWrong' || (mark.kind === 'finalWrong' && team !== directT));
-  if (team === directT && isPounce) {
-    toast(state.teams[team] + ' is the direct turn team and cannot pounce on their own question.');
-    return;
+  // RULE 1: Each team can ONLY be scored once per question (unless Quiz Master enables multiple scoring)
+  if (!state.allowMultipleScores) {
+    var alreadyScored = state.entries.find(function(e){
+      return e.round === currR && e.question === currQ && e.team === team;
+    });
+    if (alreadyScored) {
+      toast(state.teams[team] + ' has already been scored for Question ' + currQ + ' (' + alreadyScored.kindLabel + ' ' + pointsLabel(alreadyScored.points) + ' pts). Turn on "Allow Multiple Scores" in More options or press Undo (U).');
+      return;
+    }
   }
 
-  // RULE 3: Direct Correct is only for the direct team
-  var isDirectCorrect = (mark.kind === 'correct' || (mark.kind === 'finalCorrect' && team === directT));
-  if (team !== directT && isDirectCorrect && mark.kind !== 'bonus') {
-    // If targeted a non-direct team with direct mark, convert to pounce or block
-    mark = { kind: 'pounceCorrect', points: state.correct };
+  // RULE 2: In regular rounds, Pounce is DISABLED for direct team
+  if (!inFinalRound) {
+    var isPounce = (mark.kind === 'pounceCorrect' || mark.kind === 'pounceWrong');
+    if (team === directT && isPounce) {
+      toast(state.teams[team] + ' is the direct turn team and cannot pounce on their own question.');
+      return;
+    }
+
+    // RULE 3: Direct Correct is only for the direct team in regular rounds
+    var isDirectCorrect = (mark.kind === 'correct');
+    if (team !== directT && isDirectCorrect && mark.kind !== 'bonus') {
+      // If targeted a non-direct team with direct mark in regular rounds, convert to pounce
+      mark = { kind: 'pounceCorrect', points: state.correct };
+    }
+  } else {
+    // In Final Round:
+    if (mark.kind === 'correct') {
+      mark = { kind: 'finalCorrect', points: state.correct };
+    }
   }
 
   var pts = Number(mark.points);
@@ -7073,9 +7129,11 @@ function record(team,mark){
   }, 2000);
 }
 
-function openSettings(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');$('correctPoints').value=state.correct;$('pouncePenalty').value=state.pouncePenalty;$('finalPenalty').value=state.finalPenalty;$('finalRound').innerHTML=state.rounds.map(function(r,i){return '<option value="'+i+'">'+(i+1)+'. '+safe(r)+'</option>'}).join('');$('finalRound').value=state.finalRound;$('teamEdits').innerHTML=state.teams.map(function(t,i){var preview=state.logos[i]?'<img class="logo-preview" src="'+safe(state.logos[i])+'" alt="">':'<span class="logo-placeholder">＋</span>';var teamCol=getTeamColor(i);return '<div class="team-edit-row"><input data-team="'+i+'" aria-label="Team '+(i+1)+' name" value="'+safe(t)+'" maxlength="32"><div class="team-spectrum-picker" title="Assign team color via spectrum"><input type="color" class="team-color-input" id="teamColorInput_'+i+'" data-color-team="'+i+'" value="'+teamCol+'" aria-label="Assign color for '+safe(t)+'"><div class="team-color-swatch-btn"><span class="swatch-circle" style="background:'+teamCol+'; box-shadow: 0 0 10px '+teamCol+'99;"></span><span class="swatch-label">Color</span></div></div><button type="button" class="logo-control" data-upload="'+i+'">'+preview+'<span>'+(state.logos[i]?'Change logo':'Add logo')+'</span></button><input type="file" data-logo="'+i+'" accept="image/*" hidden aria-label="Upload logo for '+safe(t)+'"><button type="button" class="clear-logo" data-clear-logo="'+i+'" title="Remove logo">×</button></div>'}).join('');document.querySelectorAll('.team-color-input').forEach(function(inp){inp.addEventListener('input',function(){var circle=inp.parentElement.querySelector('.swatch-circle');if(circle){circle.style.background=inp.value;circle.style.boxShadow='0 0 12px '+inp.value}})});$('roundEdits').innerHTML=state.rounds.map(function(r,i){return '<div class="round-edit-row"><span>ROUND '+(i+1)+'</span><input data-round="'+i+'" value="'+safe(r)+'" maxlength="40"></div>'}).join('');document.querySelectorAll('[data-upload]').forEach(function(b){b.addEventListener('click',function(){var input=document.querySelector('[data-logo="'+b.dataset.upload+'"]');if(input)input.click()})});document.querySelectorAll('[data-logo]').forEach(function(input){input.addEventListener('change',function(){var file=input.files&&input.files[0],i=Number(input.dataset.logo);if(!file)return;if(!/^image\//.test(file.type)){toast('Choose an image file for the logo.');input.value='';return}if(file.size>4*1024*1024){toast('Choose a logo smaller than 4 MB.');input.value='';return}$('teamEdits').querySelectorAll('[data-team]').forEach(function(n,j){state.teams[j]=n.value.trim()||state.teams[j]});var reader=new FileReader();reader.onerror=function(){toast('Could not read that image. Please try another file.')};reader.onload=function(){compactLogo(reader.result,function(compact){if(!compact){toast('That image could not be processed. Try another logo.');return}if(!cloudClient||!judgeUser){toast('Sign in as the judge to upload shared logos.');return}toast('Uploading logo to shared storage…');uploadLogoData(compact,i).then(function(url){state.logos[i]=url;persist();openSettings();render();toast('Logo uploaded and shared with all devices.')}).catch(function(){toast('Logo upload failed. Check internet and judge sign-in.')})})};reader.readAsDataURL(file)})});document.querySelectorAll('[data-clear-logo]').forEach(function(b){b.addEventListener('click',function(){try{var i=Number(b.dataset.clearLogo);state.logos[i]='';persist();openSettings();render();toast('Team logo removed.')}catch(err){toast('Logo could not be removed.')}})});$('settingsModal').classList.add('open')}function closeSettings(){$('settingsModal').classList.remove('open')}
-function saveSettings(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');try{$('teamEdits').querySelectorAll('[data-team]').forEach(function(input,i){state.teams[i]=input.value.trim()||'Team '+(i+1)});if(!Array.isArray(state.colors))state.colors=[];$('teamEdits').querySelectorAll('.team-color-input').forEach(function(input,i){state.colors[i]=input.value||getTeamColor(i)});$('roundEdits').querySelectorAll('[data-round]').forEach(function(input,i){state.rounds[i]=input.value.trim()||'Round '+(i+1)});state.correct=Math.max(0,Number($('correctPoints').value)||0);state.pouncePenalty=Math.max(0,Number($('pouncePenalty').value)||0);state.finalPenalty=Math.max(0,Number($('finalPenalty').value)||0);state.finalRound=Number($('finalRound').value)||0;persist();closeSettings();armedMark=null;render();toast('Quiz setup saved.')}catch(err){toast('Could not save quiz setup. Please try again.')}}function addTeam(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');var n=$('addTeamName').value.trim();if(!n)return toast('Enter a team name first.');if(state.teams.length>=16)return toast('You can add up to 16 teams.');state.teams.push(n);if(!Array.isArray(state.colors))state.colors=[];state.colors.push(defaultTeamColors[state.teams.length%defaultTeamColors.length]);persist();openSettings();toast('Team added.')}
-function applyRemote(remote){if(!remote||!Array.isArray(remote.teams)||!Array.isArray(remote.rounds))return;applyingRemote=true;state=Object.assign({},defaults,remote,{teams:remote.teams,colors:Array.isArray(remote.colors)&&remote.colors.length?remote.colors:(Array.isArray(state.colors)?state.colors:defaults.colors.slice()),rounds:remote.rounds,entries:Array.isArray(remote.entries)?remote.entries:[],logos:Array.isArray(remote.logos)?remote.logos:[]});try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}applyTheme(state.theme);
+function openSettings(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');$('correctPoints').value=state.correct;$('pouncePenalty').value=state.pouncePenalty;$('finalPenalty').value=state.finalPenalty;$('finalRound').innerHTML=state.rounds.map(function(r,i){return '<option value="'+i+'">'+(i+1)+'. '+safe(r)+'</option>'}).join('');$('finalRound').value=state.finalRound;if($('allowMultiScoresSetting'))$('allowMultiScoresSetting').value=String(!!state.allowMultipleScores);$('teamEdits').innerHTML=state.teams.map(function(t,i){var preview=state.logos[i]?'<img class="logo-preview" src="'+safe(state.logos[i])+'" alt="">':'<span class="logo-placeholder">＋</span>';var teamCol=getTeamColor(i);return '<div class="team-edit-row"><input data-team="'+i+'" aria-label="Team '+(i+1)+' name" value="'+safe(t)+'" maxlength="32"><div class="team-spectrum-picker" title="Assign team color via spectrum"><input type="color" class="team-color-input" id="teamColorInput_'+i+'" data-color-team="'+i+'" value="'+teamCol+'" aria-label="Assign color for '+safe(t)+'"><div class="team-color-swatch-btn"><span class="swatch-circle" style="background:'+teamCol+'; box-shadow: 0 0 10px '+teamCol+'99;"></span><span class="swatch-label">Color</span></div></div><button type="button" class="logo-control" data-upload="'+i+'">'+preview+'<span>'+(state.logos[i]?'Change logo':'Add logo')+'</span></button><input type="file" data-logo="'+i+'" accept="image/*" hidden aria-label="Upload logo for '+safe(t)+'"><button type="button" class="clear-logo" data-clear-logo="'+i+'" title="Remove logo">×</button></div>'}).join('');document.querySelectorAll('.team-color-input').forEach(function(inp){inp.addEventListener('input',function(){var circle=inp.parentElement.querySelector('.swatch-circle');if(circle){circle.style.background=inp.value;circle.style.boxShadow='0 0 12px '+inp.value}})});$('roundEdits').innerHTML=state.rounds.map(function(r,i){return '<div class="round-edit-row"><span>ROUND '+(i+1)+'</span><input data-round="'+i+'" value="'+safe(r)+'" maxlength="40"></div>'}).join('');document.querySelectorAll('[data-upload]').forEach(function(b){b.addEventListener('click',function(){var input=document.querySelector('[data-logo="'+b.dataset.upload+'"]');if(input)input.click()})});document.querySelectorAll('[data-logo]').forEach(function(input){input.addEventListener('change',function(){var file=input.files&&input.files[0],i=Number(input.dataset.logo);if(!file)return;if(!/^image\//.test(file.type)){toast('Choose an image file for the logo.');input.value='';return}if(file.size>4*1024*1024){toast('Choose a logo smaller than 4 MB.');input.value='';return}$('teamEdits').querySelectorAll('[data-team]').forEach(function(n,j){state.teams[j]=n.value.trim()||state.teams[j]});var reader=new FileReader();reader.onerror=function(){toast('Could not read that image. Please try another file.')};reader.onload=function(){compactLogo(reader.result,function(compact){if(!compact){toast('That image could not be processed. Try another logo.');return}if(!cloudClient||!judgeUser){toast('Sign in as the judge to upload shared logos.');return}toast('Uploading logo to shared storage…');uploadLogoData(compact,i).then(function(url){state.logos[i]=url;persist();openSettings();render();toast('Logo uploaded and shared with all devices.')}).catch(function(){toast('Logo upload failed. Check internet and judge sign-in.')})})};reader.readAsDataURL(file)})});document.querySelectorAll('[data-clear-logo]').forEach(function(b){b.addEventListener('click',function(){try{var i=Number(b.dataset.clearLogo);state.logos[i]='';persist();openSettings();render();toast('Team logo removed.')}catch(err){toast('Logo could not be removed.')}})});$('settingsModal').classList.add('open')}function closeSettings(){$('settingsModal').classList.remove('open')}
+function saveSettings(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');try{$('teamEdits').querySelectorAll('[data-team]').forEach(function(input,i){state.teams[i]=input.value.trim()||'Team '+(i+1)});if(!Array.isArray(state.colors))state.colors=[];$('teamEdits').querySelectorAll('.team-color-input').forEach(function(input,i){state.colors[i]=input.value||getTeamColor(i)});$('roundEdits').querySelectorAll('[data-round]').forEach(function(input,i){state.rounds[i]=input.value.trim()||'Round '+(i+1)});state.correct=Math.max(0,Number($('correctPoints').value)||0);state.pouncePenalty=Math.max(0,Number($('pouncePenalty').value)||0);state.finalPenalty=Math.max(0,Number($('finalPenalty').value)||0);state.finalRound=Number($('finalRound').value)||0;if($('allowMultiScoresSetting'))state.allowMultipleScores=($('allowMultiScoresSetting').value==='true');updateMultiScoreUI();persist();closeSettings();armedMark=null;render();toast('Quiz setup saved.')}catch(err){toast('Could not save quiz setup. Please try again.')}}function addTeam(){if(!canEdit())return toast('Only the signed-in judge can edit quiz setup.');var n=$('addTeamName').value.trim();if(!n)return toast('Enter a team name first.');if(state.teams.length>=16)return toast('You can add up to 16 teams.');state.teams.push(n);if(!Array.isArray(state.colors))state.colors=[];state.colors.push(defaultTeamColors[state.teams.length%defaultTeamColors.length]);persist();openSettings();toast('Team added.')}
+function updateMultiScoreUI(){var on=!!(state&&state.allowMultipleScores);if($('presMultiScoreLabel')){ $('presMultiScoreLabel').textContent=on?'ON':'OFF'; $('presMultiScoreLabel').style.background=on?'rgba(34,197,94,0.25)':'rgba(255,255,255,0.1)'; $('presMultiScoreLabel').style.color=on?'#4ade80':'var(--pres-muted,#94a3b8)'; }if($('siteMultiScorePill')){ $('siteMultiScorePill').textContent=on?'ON':'OFF'; $('siteMultiScorePill').style.background=on?'rgba(34,197,94,0.25)':'rgba(255,255,255,0.1)'; $('siteMultiScorePill').style.color=on?'#4ade80':'#94a3b8'; }if($('allowMultiScoresSetting')){$('allowMultiScoresSetting').value=String(on);}}
+function toggleMultiScore(){if(!canEdit())return toast('Only the signed-in judge can change scoring rules.');state.allowMultipleScores=!state.allowMultipleScores;persist();updateMultiScoreUI();render();toast(state.allowMultipleScores?'Multiple scores allowed: Teams can be scored multiple times per question.':'Strict scoring: Teams can only be scored once per question.');}
+function applyRemote(remote){if(!remote||!Array.isArray(remote.teams)||!Array.isArray(remote.rounds))return;applyingRemote=true;state=Object.assign({},defaults,remote,{teams:remote.teams,colors:Array.isArray(remote.colors)&&remote.colors.length?remote.colors:(Array.isArray(state.colors)?state.colors:defaults.colors.slice()),rounds:remote.rounds,allowMultipleScores:(typeof remote.allowMultipleScores==='boolean')?remote.allowMultipleScores:(typeof state.allowMultipleScores==='boolean'?state.allowMultipleScores:false),entries:Array.isArray(remote.entries)?remote.entries:[],logos:Array.isArray(remote.logos)?remote.logos:[]});try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}applyTheme(state.theme);
   applySiteAnim(siteAnimMode);
   if ($('siteAnimSelect')) {
     $('siteAnimSelect').addEventListener('change', function() {
@@ -7171,6 +7229,8 @@ if ($('siteMenuTogglePaddles')) $('siteMenuTogglePaddles').addEventListener('cli
   document.body.classList.toggle('paddles-hidden', isHidden);
   toast(isHidden ? 'Scoring dock minimized.' : 'Scoring dock restored.');
 });
+if ($('siteMenuToggleMultiScore')) $('siteMenuToggleMultiScore').addEventListener('click', function(){ closeSiteMenu(); toggleMultiScore(); });
+if ($('presMultiScoreToggle')) $('presMultiScoreToggle').addEventListener('click', function(){ toggleMultiScore(); });
 
 // Close popover when clicking outside or pressing Escape
 document.addEventListener('click', function(e){
@@ -7327,18 +7387,22 @@ document.addEventListener('keydown', function(e){
       presState.selectedTeam = tIdx;
       var directT = getDirectTeamForQuestion(presState.currentQuestion);
       renderPresentation();
-      toast('Targeted ' + state.teams[tIdx] + (tIdx === directT ? ' (Direct Turn)' : ' (Pounce Candidate)'));
+      toast('Targeted ' + state.teams[tIdx] + (isFinal() ? ' (Final Round)' : (tIdx === directT ? ' (Direct Turn)' : ' (Pounce Candidate)')));
     }
   } else if (e.key === 'c' || e.key === 'C') {
     var dt = getDirectTeamForQuestion(presState.currentQuestion);
     var targetT = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : dt;
-    if (targetT !== dt) {
+    if (targetT !== dt && !isFinal()) {
       toast('Direct Correct is only for the direct turn team (' + state.teams[dt] + '). For pouncing teams, press P.');
       return;
     }
     var cMark = isFinal() ? { kind: 'finalCorrect', points: state.correct } : { kind: 'correct', points: state.correct };
     record(targetT, cMark);
   } else if (e.key === 'p' || e.key === 'P') {
+    if (isFinal()) {
+      toast('Pounce is disabled in the final round.');
+      return;
+    }
     var dtP = getDirectTeamForQuestion(presState.currentQuestion);
     var targetP = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : dtP;
     if (targetP === dtP) {
@@ -7348,17 +7412,25 @@ document.addEventListener('keydown', function(e){
     var pMark = { kind: 'pounceCorrect', points: state.correct };
     record(targetP, pMark);
   } else if (e.key === 'd' || e.key === 'D') {
+    var targetD = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : getDirectTeamForQuestion(presState.currentQuestion);
+    if (isFinal()) {
+      record(targetD, { kind: 'finalWrong', points: -state.finalPenalty });
+      return;
+    }
     var dtD = getDirectTeamForQuestion(presState.currentQuestion);
-    var targetD = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : dtD;
     if (targetD === dtD) {
       toast(state.teams[dtD] + ' is the direct turn team and cannot pounce.');
       return;
     }
-    var dMark = isFinal() ? { kind: 'finalWrong', points: -state.finalPenalty } : { kind: 'pounceWrong', points: -state.pouncePenalty };
+    var dMark = { kind: 'pounceWrong', points: -state.pouncePenalty };
     record(targetD, dMark);
   } else if (e.key === 'w' || e.key === 'W') {
     var targetW = (presState.selectedTeam !== null && state.teams[presState.selectedTeam]) ? presState.selectedTeam : getDirectTeamForQuestion(presState.currentQuestion);
-    record(targetW, { kind: 'wrong', points: 0 });
+    if (isFinal()) {
+      record(targetW, { kind: 'finalWrong', points: -state.finalPenalty });
+    } else {
+      record(targetW, { kind: 'wrong', points: 0 });
+    }
   }
 });
 
