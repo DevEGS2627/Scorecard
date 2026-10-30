@@ -3935,6 +3935,381 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 }
 
 /* ==========================================================================
+   RACE TRACK LEADERBOARD DISPLAY (Dynamic Progress Bars & Live Positions)
+   ========================================================================== */
+.pres-stage-body.track-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: clamp(8px, 1.4vh, 18px) clamp(16px, 3vw, 44px) clamp(8px, 1.2vh, 14px) !important;
+  overflow-y: auto !important;
+  height: calc(100vh - 66px - 130px) !important;
+  background: transparent !important;
+  width: 100% !important;
+  flex: 1 1 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.pres-paddles-off .pres-stage-body.track-layout {
+  height: calc(100vh - 66px - 14px) !important;
+}
+
+.pres-racetrack-wrap {
+  width: 100%;
+  max-width: 1360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto auto;
+  gap: clamp(8px, 1.2vh, 14px);
+  box-sizing: border-box;
+}
+
+.pres-racetrack-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px clamp(2px, 0.5vh, 6px);
+}
+.pres-racetrack-title {
+  font-family: 'Manrope', ui-monospace, monospace;
+  font-size: clamp(10px, 0.95vw, 12px);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f59e0b;
+}
+
+.pres-racetrack-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vh, 12px);
+  width: 100%;
+}
+
+/* Individual Race Track Row Card */
+.pres-track-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(140px, 190px) minmax(90px, 120px) 1fr auto;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 22px);
+  background: linear-gradient(90deg, rgba(13, 20, 36, 0.94) 0%, rgba(9, 14, 28, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  padding: clamp(8px, 1.2vh, 14px) clamp(14px, 1.6vw, 24px);
+  min-height: clamp(56px, 8.2vh, 72px);
+  box-sizing: border-box;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+.pres-track-row:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: linear-gradient(90deg, rgba(18, 28, 50, 0.96) 0%, rgba(13, 20, 40, 0.98) 100%);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.pres-track-row.is-active, .pres-track-row.active-target {
+  border: 2px solid #22d3ee !important;
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.45) !important;
+}
+.pres-track-row.direct-turn {
+  border: 1.5px solid rgba(245, 158, 11, 0.75) !important;
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.3) !important;
+}
+.pres-track-row.direct-turn.is-active {
+  border: 2px solid #22d3ee !important;
+  box-shadow: 0 0 32px rgba(34, 211, 238, 0.55), 0 0 12px rgba(245, 158, 11, 0.4) !important;
+}
+.pres-track-row.score-pulse {
+  animation: trackScoreFlash 1s ease-in-out;
+}
+@keyframes trackScoreFlash {
+  0% { transform: scale(1); filter: brightness(1); }
+  30% { transform: scale(1.02); filter: brightness(1.4); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* Left: Team Avatar & Name */
+.track-row-team {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1vw, 14px);
+  min-width: 0;
+}
+.track-avatar-wrap {
+  width: clamp(34px, 2.8vw, 42px);
+  height: clamp(34px, 2.8vw, 42px);
+  border-radius: 12px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  padding: 2px;
+  box-sizing: border-box;
+}
+.track-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.track-avatar-wrap span {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #0f172a;
+}
+.track-team-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.track-seat-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  margin-bottom: 2px;
+}
+.track-seat-tag.gold { color: #fbbf24; }
+.track-seat-tag.green { color: #34d399; }
+.track-seat-tag.orange { color: #fb923c; }
+
+.track-team-name {
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+  font-size: clamp(14px, 1.2vw, 17px);
+  font-weight: 850;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+/* Middle-Left: Big Score + Delta Chip */
+.track-row-score {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.track-score-val {
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+  font-size: clamp(26px, 2.2vw, 36px);
+  font-weight: 900;
+  line-height: 1;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.track-score-val.rank-1 { color: #fef08a; text-shadow: 0 0 16px rgba(254, 240, 138, 0.4); }
+.track-score-val.rank-2 { color: #6ee7b7; text-shadow: 0 0 16px rgba(110, 231, 183, 0.4); }
+.track-score-val.rank-3 { color: #fed7aa; text-shadow: 0 0 16px rgba(254, 215, 170, 0.4); }
+.track-score-val.rank-4 { color: #93c5fd; }
+.track-score-val.neg { color: #f87171; }
+
+.track-delta-chip {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  font-weight: 850;
+  padding: 2px 6px;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+.track-delta-chip.pos {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.4);
+}
+.track-delta-chip.zero {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+.track-delta-chip.neg {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+}
+
+/* Middle: Race Track Lane & Fill & Puck */
+.track-lane {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+.track-trough {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+.track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.track-fill.rank-1 {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.7);
+}
+.track-fill.rank-2 {
+  background: linear-gradient(90deg, #10b981, #34d399);
+  box-shadow: 0 0 14px rgba(52, 211, 153, 0.7);
+}
+.track-fill.rank-3 {
+  background: linear-gradient(90deg, #ea580c, #fb923c);
+  box-shadow: 0 0 14px rgba(251, 146, 60, 0.7);
+}
+.track-fill.rank-4 {
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  box-shadow: 0 0 14px rgba(96, 165, 250, 0.7);
+}
+.track-fill.rank-5 {
+  background: linear-gradient(90deg, #64748b, #94a3b8);
+}
+.track-fill.rank-6 {
+  background: linear-gradient(90deg, #0284c7, #38bdf8);
+}
+
+/* Animated Puck Racer on Track */
+.track-puck-wrap {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  transition: left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+.track-puck {
+  width: clamp(28px, 2.2vw, 34px);
+  height: clamp(28px, 2.2vw, 34px);
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  padding: 2px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.pres-track-row:hover .track-puck {
+  transform: scale(1.1);
+}
+.track-puck img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.track-puck span {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: #0f172a;
+}
+.track-puck.rank-1 {
+  border: 2.5px solid #fbbf24;
+  box-shadow: 0 0 18px rgba(251, 191, 36, 0.85), 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.track-puck.rank-2 {
+  border: 2.5px solid #34d399;
+  box-shadow: 0 0 18px rgba(52, 211, 153, 0.85), 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.track-puck.rank-3 {
+  border: 2.5px solid #fb923c;
+  box-shadow: 0 0 18px rgba(251, 146, 60, 0.85), 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.track-puck.rank-4 {
+  border: 2px solid #60a5fa;
+  box-shadow: 0 0 14px rgba(96, 165, 250, 0.7);
+}
+.track-puck.rank-5 {
+  border: 2px solid #94a3b8;
+}
+.track-puck.rank-6 {
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.6);
+}
+
+.track-pts-badge {
+  font-family: 'Manrope', sans-serif;
+  font-size: 8px;
+  font-weight: 850;
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1px 4px;
+  border-radius: 4px;
+  margin-left: 6px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Far Right: Rank Label */
+.track-row-rank {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(10px, 0.9vw, 11.5px);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  text-align: right;
+  color: #94a3b8;
+}
+.track-row-rank.rank-1 { color: #fbbf24; }
+.track-row-rank.rank-2 { color: #34d399; }
+.track-row-rank.rank-3 { color: #fb923c; }
+.track-row-rank.rank-4 { color: #60a5fa; }
+
+@media (max-width: 768px) {
+  .pres-track-row {
+    grid-template-columns: minmax(100px, 130px) minmax(60px, 80px) 1fr auto !important;
+    gap: 8px !important;
+    padding: 8px 10px !important;
+  }
+  .track-team-name {
+    font-size: 12px !important;
+  }
+  .track-score-val {
+    font-size: 20px !important;
+  }
+  .track-puck {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .track-pts-badge {
+    display: none !important;
+  }
+  .track-row-rank {
+    font-size: 9px !important;
+  }
+}
+
+/* ==========================================================================
    DESKTOP ZERO-SCROLL HOME PAGE (Fits 100vh perfectly without scrollbars)
    ========================================================================== */
 @media (min-width: 851px) {
@@ -4902,6 +5277,13 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
                   <div class="pres-layout-info">
                     <span class="pres-layout-title">Olympic Podium Arena</span>
                     <span class="pres-layout-sub">Top 3 Pedestals + Contender Cards (Screenshot Mode)</span>
+                  </div>
+                </button>
+                <button type="button" class="pres-layout-card" data-layout="track" id="layoutBtnTrack">
+                  <span class="pres-layout-icon">🏎</span>
+                  <div class="pres-layout-info">
+                    <span class="pres-layout-title">Race Track Leaderboard</span>
+                    <span class="pres-layout-sub">Dynamic Progress Bars &amp; Live Racer Positions</span>
                   </div>
                 </button>
                 <button type="button" class="pres-layout-card" data-layout="grid" id="layoutBtnGrid">
@@ -6054,23 +6436,26 @@ function renderPresStatsDrawer() {
 }
 
 function setPresStageLayout(layout, silent) {
-  if (layout !== 'podium' && layout !== 'grid') layout = 'podium';
+  if (layout !== 'podium' && layout !== 'track' && layout !== 'grid') layout = 'podium';
   presState.stageLayout = layout;
   localStorage.setItem(KEY + '-pres-layout', layout);
-  if ($('presLayoutLabel')) $('presLayoutLabel').textContent = (layout === 'podium' ? 'Podium' : '6 Cards');
-  if ($('presLayoutIcon')) $('presLayoutIcon').textContent = (layout === 'podium' ? '🏆' : '⊞');
-  if ($('presCurrentLayoutBadge')) $('presCurrentLayoutBadge').textContent = (layout === 'podium' ? 'Olympic Podium' : 'Classic Cards Grid');
+  var labelText = layout === 'podium' ? 'Podium' : (layout === 'track' ? 'Race Track' : '6 Cards');
+  var iconText = layout === 'podium' ? '🏆' : (layout === 'track' ? '🏎' : '⊞');
+  var badgeText = layout === 'podium' ? 'Olympic Podium' : (layout === 'track' ? 'Race Track Leaderboard' : 'Classic Cards Grid');
+  if ($('presLayoutLabel')) $('presLayoutLabel').textContent = labelText;
+  if ($('presLayoutIcon')) $('presLayoutIcon').textContent = iconText;
+  if ($('presCurrentLayoutBadge')) $('presCurrentLayoutBadge').textContent = badgeText;
   document.querySelectorAll('.pres-layout-card').forEach(function(card){
     card.classList.toggle('active', card.dataset.layout === layout);
   });
   if (!silent) {
     renderPresentation();
-    toast('Stage Appearance: ' + (layout === 'podium' ? 'Olympic Podium Arena' : 'Classic 6 Cards Grid'));
+    toast('Stage Appearance: ' + badgeText);
   }
 }
 
 function togglePresStageLayout() {
-  var next = presState.stageLayout === 'podium' ? 'grid' : 'podium';
+  var next = presState.stageLayout === 'podium' ? 'track' : (presState.stageLayout === 'track' ? 'grid' : 'podium');
   setPresStageLayout(next);
 }
 
@@ -6129,9 +6514,9 @@ function renderPresentation() {
   if ($('presDirectTeamName')) $('presDirectTeamName').textContent = state.teams[directTeam] || ('Team ' + (directTeam + 1));
   if ($('presOrderLabel')) $('presOrderLabel').textContent = presState.orderMode === 'seating' ? 'Seating (1-6)' : 'Live Standings';
   if ($('presOrderToggle')) $('presOrderToggle').classList.toggle('active', presState.orderMode === 'standings');
-  if ($('presLayoutLabel')) $('presLayoutLabel').textContent = presState.stageLayout === 'podium' ? 'Podium' : '6 Cards';
-  if ($('presLayoutIcon')) $('presLayoutIcon').textContent = presState.stageLayout === 'podium' ? '🏆' : '⊞';
-  if ($('presCurrentLayoutBadge')) $('presCurrentLayoutBadge').textContent = presState.stageLayout === 'podium' ? 'Olympic Podium' : 'Classic Cards Grid';
+  if ($('presLayoutLabel')) $('presLayoutLabel').textContent = presState.stageLayout === 'podium' ? 'Podium' : (presState.stageLayout === 'track' ? 'Race Track' : '6 Cards');
+  if ($('presLayoutIcon')) $('presLayoutIcon').textContent = presState.stageLayout === 'podium' ? '🏆' : (presState.stageLayout === 'track' ? '🏎' : '⊞');
+  if ($('presCurrentLayoutBadge')) $('presCurrentLayoutBadge').textContent = presState.stageLayout === 'podium' ? 'Olympic Podium' : (presState.stageLayout === 'track' ? 'Race Track Leaderboard' : 'Classic Cards Grid');
   
   updatePresStatsUI();
   if (presState.statsVisible) {
@@ -6336,7 +6721,101 @@ function renderPresentation() {
     stageBody.innerHTML = podHtml;
     attachStageCardListeners(stageBody, directTeam);
 
-  // MODE B: CLASSIC 6 CARDS GRID (Legacy Rectangle Grid)
+  // MODE B: RACE TRACK LEADERBOARD (Dynamic Progress Bars & Live Positions)
+  } else if (presState.stageLayout === 'track') {
+    stageBody.className = 'pres-stage-body track-layout';
+
+    var displayTeams = state.teams.map(function(name, i){
+      return {
+        name: name,
+        i: i,
+        total: scoreOf(i),
+        current: scoreOf(i, selected),
+        logo: state.logos[i] || '',
+        rank: rankMap[i]
+      };
+    });
+    if (presState.orderMode === 'standings') {
+      displayTeams.sort(function(a, b){ return a.rank - b.rank; });
+    } else {
+      displayTeams.sort(function(a, b){ return a.i - b.i; });
+    }
+
+    var highestScore = 0;
+    displayTeams.forEach(function(t){
+      if (t.total > highestScore) highestScore = t.total;
+    });
+    // Target maximum benchmark for the racetrack scale (at least 40 or 25% higher than leader)
+    var trackMax = Math.max(40, Math.ceil((highestScore * 1.25) / 10) * 10);
+
+    var trackHtml = '<div class="pres-racetrack-wrap">';
+    trackHtml += '  <div class="pres-racetrack-header">';
+    trackHtml += '    <span class="pres-racetrack-title">LEADERBOARD - ROUND ' + (selected + 1) + ' OF ' + state.rounds.length + '</span>';
+    trackHtml += '  </div>';
+    trackHtml += '  <div class="pres-racetrack-list">';
+
+    displayTeams.forEach(function(t, idx){
+      var isDirect = (t.i === directTeam);
+      var isActive = (presState.selectedTeam === t.i);
+      var isScored = (activeScoreEvent && activeScoreEvent.team === t.i);
+      var logoHtml = t.logo ? '<img src="' + safe(t.logo) + '" alt="">' : '<span>' + safe((t.name.trim()[0] || 'T').toUpperCase()) + '</span>';
+      var rankNum = t.rank + 1;
+      var rankFormatted = String(rankNum).padStart(2, '0');
+      var rankTierClass = rankNum === 1 ? 'rank-1' : (rankNum === 2 ? 'rank-2' : (rankNum === 3 ? 'rank-3' : (rankNum === 4 ? 'rank-4' : (rankNum === 5 ? 'rank-5' : 'rank-6'))));
+      var seatNum = String(t.i + 1).padStart(2, '0');
+
+      // Round delta sign
+      var deltaSign = t.current > 0 ? '+' + t.current : (t.current < 0 ? String(t.current) : '+0');
+      var deltaClass = t.current > 0 ? 'pos' : (t.current < 0 ? 'neg' : 'zero');
+      var scoreValClass = t.total < 0 ? 'neg' : rankTierClass;
+
+      // Calculate track progress percentage: min 3%, max 92% (leaves room for puck)
+      var pct = t.total > 0 ? Math.min(92, Math.max(3, (t.total / trackMax) * 92)) : 3;
+
+      trackHtml += '<div class="pres-track-row ' + (isDirect ? 'direct-turn ' : '') + (isActive ? 'is-active active-target ' : '') + (isScored ? 'score-pulse ' : '') + '" data-team="' + t.i + '" id="presCard_' + t.i + '" style="--i:' + idx + '">';
+      
+      // Identity
+      trackHtml += '  <div class="track-row-team">';
+      trackHtml += '    <div class="track-avatar-wrap">' + logoHtml + '</div>';
+      trackHtml += '    <div class="track-team-info">';
+      trackHtml += '      <span class="track-seat-tag ' + (rankNum === 1 ? 'gold' : (rankNum === 2 ? 'green' : (rankNum === 3 ? 'orange' : ''))) + '">#' + seatNum + '</span>';
+      trackHtml += '      <span class="track-team-name">' + safe(t.name) + '</span>';
+      trackHtml += '    </div>';
+      trackHtml += '  </div>';
+
+      // Score + Delta Chip
+      trackHtml += '  <div class="track-row-score">';
+      trackHtml += '    <span class="track-score-val ' + scoreValClass + ' ' + (isScored ? 'score-bloom' : '') + '">' + t.total + '</span>';
+      trackHtml += '    <span class="track-delta-chip ' + deltaClass + '">' + deltaSign + '</span>';
+      trackHtml += '  </div>';
+
+      // Race Track Lane
+      trackHtml += '  <div class="track-lane">';
+      trackHtml += '    <div class="track-trough">';
+      trackHtml += '      <div class="track-fill ' + rankTierClass + '" style="width:' + pct + '%;"></div>';
+      trackHtml += '      <div class="track-puck-wrap" style="left:' + pct + '%;">';
+      trackHtml += '        <div class="track-puck ' + rankTierClass + '">' + logoHtml + '</div>';
+      trackHtml += '        <span class="track-pts-badge">PTS</span>';
+      trackHtml += '      </div>';
+      trackHtml += '    </div>';
+      trackHtml += '  </div>';
+
+      // Rank Label
+      trackHtml += '  <div class="track-row-rank ' + rankTierClass + '">RANK #' + rankFormatted + '</div>';
+
+      // Floating Delta Animation
+      trackHtml += getFloatingDeltaHtml(t.i);
+
+      trackHtml += '</div>';
+    });
+
+    trackHtml += '  </div>'; // pres-racetrack-list
+    trackHtml += '</div>'; // pres-racetrack-wrap
+
+    stageBody.innerHTML = trackHtml;
+    attachStageCardListeners(stageBody, directTeam);
+
+  // MODE C: CLASSIC 6 CARDS GRID (Legacy Rectangle Grid)
   } else {
     stageBody.className = 'pres-stage-body';
 
