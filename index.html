@@ -2793,7 +2793,7 @@ body[data-palette="midnight-champagne"] .site-link-btn:hover {
 }
 
 /* ==========================================================================
-   MAIN STAGE LAYOUT & DEDICATED BROADCAST STATS VIEW (No Drawer Squeezing)
+   MAIN STAGE LAYOUT & SLIDING STATS DRAWER (Classic Right Drawer)
    ========================================================================== */
 .pres-main-layout {
   position: relative;
@@ -2802,288 +2802,235 @@ body[data-palette="midnight-champagne"] .site-link-btn:hover {
   min-height: 0;
   display: flex;
   overflow: hidden;
+  transition: padding-right 0.38s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
 }
-
-/* Full-Screen Presentation Tournament Stats View */
-#presentationOverlay.stats-view-active #presStageBody {
-  display: none !important;
+.pres-overlay.stats-open .pres-main-layout {
+  padding-right: 430px;
 }
-#presentationOverlay.stats-view-active #presStatsView {
-  display: flex !important;
-}
-
-.pres-stats-view {
-  width: 100% !important;
-  flex: 1 1 100% !important;
-  min-height: 0 !important;
-  height: calc(100vh - 66px - 14px) !important;
-  box-sizing: border-box !important;
-  padding: clamp(8px, 1.4vh, 18px) clamp(16px, 2.5vw, 40px) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  overflow: hidden !important;
-  animation: presStatsFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-}
-body.pres-paddles-off .pres-stats-view {
-  height: calc(100vh - 66px - 14px) !important;
-}
-@keyframes presStatsFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (max-width: 900px) {
+  .pres-overlay.stats-open .pres-main-layout {
+    padding-right: 0;
+  }
 }
 
-.pres-stats-view-inner {
-  width: 100% !important;
-  max-width: 1360px !important;
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: clamp(8px, 1.2vh, 14px) !important;
-  margin: 0 auto !important;
-  overflow: hidden !important;
+/* Sliding Stats Drawer from the Right */
+.pres-stats-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 430px;
+  max-width: calc(100vw - 20px);
+  background: rgba(8, 14, 26, 0.96);
+  backdrop-filter: blur(28px) saturate(180%);
+  border-left: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: -15px 0 45px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  z-index: 35;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  box-sizing: border-box;
+}
+.pres-overlay.stats-open .pres-stats-drawer {
+  transform: translateX(0);
+  pointer-events: auto;
 }
 
-.pres-stats-view-head {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 14px !important;
-  padding-bottom: clamp(6px, 1vh, 10px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  flex-shrink: 0 !important;
+/* Stats Drawer Header */
+.pres-stats-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: rgba(13, 22, 39, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
 }
-.pres-stats-view-title-group {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
+.pres-stats-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.pres-stats-view-badge {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.1em !important;
-  color: #38bdf8 !important;
-  background: rgba(56, 189, 248, 0.14) !important;
-  border: 1px solid rgba(56, 189, 248, 0.35) !important;
-  padding: 3px 9px !important;
-  border-radius: 999px !important;
+.pres-stats-icon {
+  font-size: 22px;
+  line-height: 1;
 }
-.pres-stats-view-heading {
-  font-family: 'Manrope', sans-serif !important;
-  font-size: clamp(18px, 1.6vw, 23px) !important;
-  font-weight: 900 !important;
-  color: #ffffff !important;
-  margin: 0 !important;
-  letter-spacing: -0.02em !important;
-}
-.pres-stats-back-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  color: #f1f5f9 !important;
-  font-family: 'Manrope', sans-serif !important;
-  font-size: 13px !important;
-  font-weight: 800 !important;
-  padding: 6px 14px !important;
-  border-radius: 9px !important;
-  cursor: pointer !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
-}
-.pres-stats-back-btn:hover {
-  background: rgba(56, 189, 248, 0.2) !important;
-  border-color: #38bdf8 !important;
-  color: #ffffff !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3) !important;
-}
-
-/* Tournament Matrix Table Card in Presentation - Zero Scroll, 100% Fit */
-.pres-matrix-card {
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  background: linear-gradient(145deg, rgba(16, 26, 48, 0.94) 0%, rgba(9, 15, 30, 0.98) 100%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.24) !important;
-  border-radius: 18px !important;
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(22px) !important;
-  overflow: hidden !important;
-}
-.pres-matrix-container {
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
-}
-.pres-matrix-table {
-  width: 100% !important;
-  height: 100% !important;
-  table-layout: fixed !important;
-  border-collapse: separate !important;
-  border-spacing: 0 !important;
-  text-align: left !important;
-}
-.pres-matrix-table th {
-  background: rgba(13, 22, 40, 0.95) !important;
-  font-family: 'Manrope', sans-serif !important;
-  font-size: 11px !important;
-  font-weight: 850 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
-  color: #94a3b8 !important;
-  padding: clamp(8px, 1.2vh, 12px) 8px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
-.pres-matrix-table th.center, .pres-matrix-table td.center {
-  text-align: center !important;
-}
-.pres-matrix-table th.right, .pres-matrix-table td.right {
-  text-align: right !important;
-}
-.pres-matrix-table th.cur-round-col {
-  color: #38bdf8 !important;
-  background: rgba(56, 189, 248, 0.12) !important;
-  border-bottom-color: #38bdf8 !important;
-}
-.pres-matrix-row {
-  transition: background 0.18s;
-}
-.pres-matrix-row:hover {
-  background: rgba(255, 255, 255, 0.04);
-}
-.pres-matrix-row.leader-row {
-  background: rgba(245, 158, 11, 0.06);
-}
-.pres-matrix-table td {
-  padding: clamp(8px, 1.4vh, 16px) 8px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
-  vertical-align: middle !important;
-  overflow: hidden !important;
-}
-.pres-matrix-row:last-child td {
-  border-bottom: 0 !important;
-}
-.pres-matrix-team-cell {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  min-width: 0 !important;
-}
-.pres-matrix-avatar {
-  width: clamp(26px, 2.2vw, 34px) !important;
-  height: clamp(26px, 2.2vw, 34px) !important;
-  border-radius: 9px !important;
-  background: #ffffff !important;
-  padding: 2px !important;
-  overflow: hidden !important;
-  flex-shrink: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
-}
-.pres-matrix-avatar img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-}
-.pres-matrix-avatar span {
-  font-family: 'Manrope', sans-serif !important;
-  font-weight: 900 !important;
-  font-size: 14px !important;
-  color: #0f172a !important;
-}
-.pres-matrix-team-name {
-  font-family: 'Manrope', sans-serif !important;
-  font-size: clamp(13px, 1.1vw, 16px) !important;
-  font-weight: 900 !important;
-  color: #ffffff !important;
-  letter-spacing: -0.01em !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
-.pres-matrix-rank-tag {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11.5px;
+.pres-stats-titles strong {
+  display: block;
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+  font-size: 13px;
   font-weight: 900;
-  padding: 3px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.04em;
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+.pres-stats-titles small {
+  display: block;
+  font-size: 11px;
   color: #94a3b8;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  margin-top: 1px;
 }
-.pres-matrix-rank-tag.rank-1 {
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.25), rgba(245, 158, 11, 0.35));
-  color: #fbbf24;
-  border-color: rgba(251, 191, 36, 0.6);
-}
-.pres-matrix-rank-tag.rank-2 {
-  background: rgba(203, 213, 225, 0.2);
-  color: #f1f5f9;
-  border-color: rgba(203, 213, 225, 0.5);
-}
-.pres-matrix-rank-tag.rank-3 {
-  background: rgba(251, 146, 60, 0.2);
-  color: #fdba74;
-  border-color: rgba(251, 146, 60, 0.5);
-}
-.pres-matrix-round-cell {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 13.5px;
-  font-weight: 850;
-  padding: 5px 10px;
+.pres-stats-close {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  width: 30px;
+  height: 30px;
   border-radius: 8px;
-  display: inline-block;
-  min-width: 44px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
 }
-.pres-matrix-round-cell.pos {
-  background: rgba(16, 185, 129, 0.18);
-  color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.35);
-}
-.pres-matrix-round-cell.neg {
-  background: rgba(239, 68, 68, 0.18);
+.pres-stats-close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
   color: #f87171;
-  border: 1px solid rgba(248, 113, 113, 0.35);
 }
-.pres-matrix-round-cell.zero {
-  color: #64748b;
+
+/* Stats Drawer Body */
+.pres-stats-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
-.pres-matrix-round-cell.current-highlight {
-  box-shadow: 0 0 0 1.5px #38bdf8;
+.pres-stats-team-card {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.2s;
 }
-.pres-matrix-total {
-  font-family: 'Manrope', sans-serif;
-  font-size: clamp(24px, 2vw, 32px);
+.pres-stats-team-card.leader {
+  border-color: rgba(245, 158, 11, 0.55);
+  background: rgba(22, 26, 42, 0.92);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.1);
+}
+.pres-stats-team-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pres-stats-team-info {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+.pres-stats-seat-tag {
+  background: #1e293b;
+  color: #38bdf8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+.pres-stats-team-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.pres-stats-team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.pres-stats-team-avatar span {
+  font-size: 13px;
   font-weight: 900;
+  color: #0f172a;
+}
+.pres-stats-team-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
   color: #f8fafc;
-  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pres-stats-total {
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: #ffffff;
   letter-spacing: -0.02em;
 }
-.pres-matrix-total.gold {
+.pres-stats-total.gold {
   color: #fbbf24;
-  text-shadow: 0 0 16px rgba(251, 191, 36, 0.35);
 }
+
+/* Round Breakdown Chips inside Stats Card - Single Row Across All Rounds */
+.pres-stats-rounds-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 5px;
+  width: 100%;
+}
+.pres-stats-round-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 41, 59, 0.65);
+  border: 1px solid rgba(51, 65, 85, 0.75);
+  border-radius: 8px;
+  padding: 5px 3px;
+  min-width: 0;
+  text-align: center;
+  transition: all 0.2s;
+}
+.pres-stats-round-chip.current-round {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: #22d3ee;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.25);
+}
+.pres-stats-round-chip small {
+  font-size: 9.5px;
+  color: #94a3b8;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}
+.pres-stats-round-chip.current-round small {
+  color: #22d3ee;
+}
+.pres-stats-round-chip b {
+  font-size: 13.5px;
+  font-weight: 900;
+  color: #ffffff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.pres-stats-round-chip b.pos { color: #34d399; }
+.pres-stats-round-chip b.neg { color: #f87171; }
+.pres-stats-round-chip b.zero { color: #94a3b8; }
 
 /* ==========================================================================
    DASHBOARD MULTI-PAGE NAVIGATION & STATS PAGE SYSTEM
@@ -3131,6 +3078,14 @@ body.pres-paddles-off .pres-stats-view {
 .dash-nav-icon {
   font-size: 14px;
   transition: transform 0.2s;
+}
+
+/* Strict Dashboard Page Isolation */
+body.stats-page-active #dashPageScoreboard {
+  display: none !important;
+}
+body:not(.stats-page-active) #dashPageStats {
+  display: none !important;
 }
 
 /* Page Transitions */
@@ -3996,7 +3951,7 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
-  #dashPageScoreboard {
+  body:not(.stats-page-active) #dashPageScoreboard {
     flex: 1 1 auto !important;
     min-height: 0 !important;
     display: flex !important;
@@ -4023,38 +3978,63 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   }
   #dashPageScoreboard .team-card {
     min-height: 0 !important;
-    padding: clamp(10px, 1.4vh, 16px) clamp(12px, 1.5vw, 18px) !important;
+    padding: clamp(12px, 1.5vh, 18px) clamp(14px, 1.6vw, 20px) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
+    border-radius: 18px !important;
   }
   #dashPageScoreboard .team-card-top {
     flex-shrink: 0 !important;
   }
   #dashPageScoreboard .team-score-pair {
-    flex: 1 1 auto !important;
-    margin-top: clamp(6px, 1vh, 12px) !important;
+    flex: 0 0 auto !important;
+    margin: clamp(8px, 1.3vh, 15px) 0 !important;
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    gap: clamp(6px, 0.8vw, 10px) !important;
+    gap: clamp(8px, 1vw, 12px) !important;
   }
   #dashPageScoreboard .score-current, 
   #dashPageScoreboard .score-total {
-    min-height: 0 !important;
-    height: 100% !important;
-    padding: clamp(8px, 1.2vh, 14px) clamp(10px, 1.2vw, 14px) !important;
+    min-height: clamp(66px, 8.5vh, 80px) !important;
+    height: auto !important;
+    padding: clamp(8px, 1.2vh, 12px) clamp(10px, 1.2vw, 14px) !important;
+    border-radius: 13px !important;
     display: grid !important;
     grid-template-columns: 1fr auto !important;
     grid-template-rows: auto 1fr !important;
     align-items: center !important;
   }
+  #dashPageScoreboard .score-current small, 
+  #dashPageScoreboard .score-total small {
+    grid-column: 1 / -1 !important;
+    font-size: 8.5px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin-bottom: 2px !important;
+  }
   #dashPageScoreboard .score-current strong, 
   #dashPageScoreboard .score-total strong {
-    font-size: clamp(26px, 2.2vw, 36px) !important;
-    line-height: 1 !important;
+    font-family: 'Manrope', 'DM Sans', sans-serif !important;
+    font-size: clamp(26px, 2.2vw, 32px) !important;
+    font-weight: 800 !important;
+    line-height: 1.05 !important;
+  }
+  #dashPageScoreboard .score-current span, 
+  #dashPageScoreboard .score-total span {
+    align-self: end !important;
+    font-size: 7.5px !important;
+    letter-spacing: 0.1em !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 2px !important;
   }
   #dashPageScoreboard .team-drop-hint {
-    margin-top: clamp(4px, 0.6vh, 8px) !important;
+    margin-top: 0 !important;
     padding-top: clamp(4px, 0.6vh, 6px) !important;
     flex-shrink: 0 !important;
   }
@@ -4495,53 +4475,36 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
     font-size: 15px !important;
   }
   
-  /* Presentation Stats Table on mobile */
-  .pres-stats-view {
-  #presentationOverlay.stats-view-active #presStageBody {
-    display: none !important;
+  /* Presentation Stats Drawer on mobile */
+  .pres-overlay.stats-open .pres-main-layout {
+    padding-right: 0 !important;
   }
-  #presentationOverlay.stats-view-active #presStatsView {
-    display: flex !important;
-  }
-  .pres-stats-view {
-    padding: 6px 8px !important;
-    height: calc(100vh - 56px - 10px) !important;
-    overflow: hidden !important;
-  }
-  .pres-stats-view-heading {
-    font-size: 14px !important;
-  }
-  .pres-stats-matrix-container {
-    overflow: hidden !important;
+  .pres-stats-drawer {
     width: 100% !important;
+    max-width: 100vw !important;
   }
-  .pres-matrix-table {
-    min-width: 0 !important;
-    width: 100% !important;
-    table-layout: fixed !important;
-    overflow: hidden !important;
+  .pres-stats-head {
+    padding: 12px 14px !important;
   }
-  .pres-matrix-table th, .pres-matrix-table td {
-    padding: 6px 3px !important;
-    font-size: 10px !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+  .pres-stats-body {
+    padding: 10px !important;
+    gap: 8px !important;
   }
-  .pres-matrix-avatar {
-    width: 20px !important;
-    height: 20px !important;
-    border-radius: 6px !important;
+  .pres-stats-team-card {
+    padding: 10px 12px !important;
+    gap: 8px !important;
   }
-  .pres-matrix-team-name {
-    font-size: 11px !important;
+  .pres-stats-team-name {
+    font-size: 12px !important;
   }
-  .pres-matrix-round-cell {
-    font-size: 10px !important;
-    min-width: 22px !important;
-    padding: 2px 2px !important;
+  .pres-stats-round-chip {
+    padding: 4px 2px !important;
   }
-  .pres-matrix-total {
-    font-size: 13px !important;
+  .pres-stats-round-chip small {
+    font-size: 8px !important;
+  }
+  .pres-stats-round-chip b {
+    font-size: 11.5px !important;
   }
 }
 
@@ -5167,22 +5130,20 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   <div class="pres-main-layout" id="presMainLayout">
     <main class="pres-stage-body podium-layout" id="presStageBody"></main>
 
-    <!-- Dedicated Full-Screen Tournament Stats View (Replaces Side Drawer) -->
-    <section class="pres-stats-view" id="presStatsView" aria-label="Round-by-round tournament statistics" style="display: none;">
-      <div class="pres-stats-view-inner">
-        <div class="pres-stats-view-head">
-          <div class="pres-stats-view-title-group">
-            <span class="pres-stats-view-badge">📊 STATS</span>
-            <h2 class="pres-stats-view-heading">Round-by-Round Breakdown</h2>
+    <!-- Sliding Stats Drawer from the Right -->
+    <aside class="pres-stats-drawer" id="presStatsDrawer" aria-label="Round-by-round team statistics" aria-hidden="true">
+      <div class="pres-stats-head">
+        <div class="pres-stats-title-group">
+          <span class="pres-stats-icon">📊</span>
+          <div class="pres-stats-titles">
+            <strong>ROUND SCORES BREAKDOWN</strong>
+            <small>Scores of every team across all rounds &amp; live totals</small>
           </div>
-          <button type="button" class="pres-stats-back-btn" id="presStatsBackBtn" title="Back to Main Scores (Esc / V)">
-            <span>← Back to Stage</span>
-            <span class="pres-kbd">V</span>
-          </button>
         </div>
-        <div class="pres-stats-matrix-container" id="presStatsMatrixContainer"></div>
+        <button type="button" class="pres-stats-close" id="presStatsCloseBtn" title="Close Stats Breakdown (V)">✕</button>
       </div>
-    </section>
+      <div class="pres-stats-body" id="presStatsBody"></div>
+    </aside>
   </div>
 
   <!-- Dedicated Operator Scoring Dock (The ONLY Single Location for Scoring Controls) -->
@@ -5338,8 +5299,14 @@ function setDashboardPage(page, silent) {
   document.body.classList.toggle('stats-page-active', page === 'stats');
 
   if (page === 'scoreboard') {
-    if (scoreboardPage) scoreboardPage.style.display = '';
-    if (statsPage) statsPage.style.display = 'none';
+    if (scoreboardPage) {
+      scoreboardPage.style.removeProperty('display');
+      scoreboardPage.classList.add('active');
+    }
+    if (statsPage) {
+      statsPage.style.setProperty('display', 'none', 'important');
+      statsPage.classList.remove('active');
+    }
     if (btnScoreboard) btnScoreboard.classList.add('active');
     if (btnStats) btnStats.classList.remove('active');
     if (!silent) {
@@ -5347,8 +5314,14 @@ function setDashboardPage(page, silent) {
     }
     window.scrollTo({ top: 0, behavior: 'instant' });
   } else {
-    if (scoreboardPage) scoreboardPage.style.display = 'none';
-    if (statsPage) statsPage.style.display = '';
+    if (scoreboardPage) {
+      scoreboardPage.style.setProperty('display', 'none', 'important');
+      scoreboardPage.classList.remove('active');
+    }
+    if (statsPage) {
+      statsPage.style.removeProperty('display');
+      statsPage.classList.add('active');
+    }
     if (btnScoreboard) btnScoreboard.classList.remove('active');
     if (btnStats) btnStats.classList.add('active');
     if (!silent) {
@@ -5854,6 +5827,9 @@ function openPresentation() {
   updatePresPaddlesUI();
   updatePresAudioUI();
   updatePresStatsUI();
+  if (presState.statsVisible) {
+    renderPresStatsDrawer();
+  }
   var dt = getDirectTeamForQuestion(presState.currentQuestion);
   if (presState.selectedTeam === null) presState.selectedTeam = dt;
   renderPresentation();
@@ -6005,39 +5981,15 @@ function undoLastTransaction() {
    ========================================================================== */
 function updatePresStatsUI() {
   var ov = $('presentationOverlay');
-  var stageBody = $('presStageBody');
-  var statsView = $('presStatsView');
+  var drawer = $('presStatsDrawer');
   var btn = $('presStatsToggle');
-  var label = $('presStatsLabel');
-  var isStatsActive = !!presState.statsVisible;
-
-  if (ov) ov.classList.toggle('stats-view-active', isStatsActive);
-
-  if (isStatsActive) {
-    if (stageBody) {
-      stageBody.style.setProperty('display', 'none', 'important');
-    }
-    if (statsView) {
-      statsView.style.setProperty('display', 'flex', 'important');
-      renderPresStatsView();
-    }
-    if (btn) {
-      btn.classList.add('active');
-      if (label) label.textContent = 'Main Scores';
-      btn.setAttribute('title', 'Return to Main Scores Stage (V / Esc)');
-    }
-  } else {
-    if (statsView) {
-      statsView.style.setProperty('display', 'none', 'important');
-    }
-    if (stageBody) {
-      stageBody.style.removeProperty('display');
-    }
-    if (btn) {
-      btn.classList.remove('active');
-      if (label) label.textContent = 'Stats';
-      btn.setAttribute('title', 'View Round-by-Round Tournament Breakdown (V)');
-    }
+  var isVis = !!presState.statsVisible;
+  if (ov) ov.classList.toggle('stats-open', isVis);
+  if (drawer) drawer.setAttribute('aria-hidden', isVis ? 'false' : 'true');
+  if (btn) {
+    btn.classList.toggle('active', isVis);
+    var label = $('presStatsLabel');
+    if (label) label.textContent = isVis ? 'Stats (On)' : 'Stats';
   }
 }
 
@@ -6045,14 +5997,14 @@ function togglePresStats() {
   presState.statsVisible = !presState.statsVisible;
   localStorage.setItem(KEY + '-pres-stats', presState.statsVisible);
   updatePresStatsUI();
-  if (!presState.statsVisible) {
-    renderPresentation();
+  if (presState.statsVisible) {
+    renderPresStatsDrawer();
   }
-  toast(presState.statsVisible ? 'Switched to Round Stats Breakdown' : 'Returned to Main Scores Stage');
+  toast(presState.statsVisible ? 'Round scores breakdown opened' : 'Round scores breakdown closed');
 }
 
-function renderPresStatsView() {
-  var container = $('presStatsMatrixContainer');
+function renderPresStatsDrawer() {
+  var container = $('presStatsBody');
   if (!container || !presState.active) return;
   var selected = roundIndex();
 
@@ -6066,57 +6018,38 @@ function renderPresStatsView() {
     };
   }).sort(function(a, b){ return b.total - a.total || a.i - b.i; });
 
-  var html = '<div class="pres-matrix-card">';
-  html += '<div class="pres-matrix-container"><table class="pres-matrix-table">';
-  html += '<colgroup>';
-  html += '<col style="width: 8%;">';
-  html += '<col style="width: 26%;">';
-  state.rounds.forEach(function(){ html += '<col style="width: 9%;">'; });
-  html += '<col style="width: 12%;">';
-  html += '</colgroup>';
-  html += '<thead><tr>';
-  html += '<th>Rank</th>';
-  html += '<th>Team</th>';
-  state.rounds.forEach(function(rName, rI){
-    var isCur = (rI === selected);
-    var shortLabel = roundShort(rName) || ('R' + (rI + 1));
-    html += '<th class="center' + (isCur ? ' cur-round-col' : '') + '" title="' + safe(rName) + '">' +
-      safe(shortLabel) + (isCur ? ' • NOW' : '') +
-    '</th>';
-  });
-  html += '<th class="right">Total Score</th>';
-  html += '</tr></thead>';
-  html += '<tbody>';
-
+  var html = '';
   ranked.forEach(function(t, rIdx){
     var isLeader = (rIdx === 0 && t.total > 0);
-    var rankTagCls = rIdx === 0 ? 'rank-1' : (rIdx === 1 ? 'rank-2' : (rIdx === 2 ? 'rank-3' : ''));
     var logoHtml = t.logo ? '<img src="' + safe(t.logo) + '" alt="">' : '<span>' + safe((t.name.trim()[0] || 'T').toUpperCase()) + '</span>';
 
-    html += '<tr class="pres-matrix-row' + (isLeader ? ' leader-row' : '') + '" style="--r-idx: ' + rIdx + ';">';
-    html += '<td><span class="pres-matrix-rank-tag ' + rankTagCls + '">' + (isLeader ? '👑 ' : '') + '#' + String(rIdx + 1).padStart(2, '0') + '</span></td>';
-    html += '<td><div class="pres-matrix-team-cell">';
-    html += '  <div class="pres-matrix-avatar">' + logoHtml + '</div>';
-    html += '  <span class="pres-matrix-team-name">' + safe(t.name) + '</span>';
-    html += '</div></td>';
-
-    state.rounds.forEach(function(rName, rI){
+    var roundChips = state.rounds.map(function(rName, rI){
       var rScore = scoreOf(t.i, rI);
       var isCur = (rI === selected);
-      var scoreCls = rScore > 0 ? 'pos' : (rScore < 0 ? 'neg' : 'zero');
-      var signStr = rScore > 0 ? '+' + rScore : rScore;
-      html += '<td class="center' + (isCur ? ' cur-round-col' : '') + '">';
-      html += '  <span class="pres-matrix-round-cell ' + scoreCls + (isCur ? ' current-highlight' : '') + '">' + signStr + '</span>';
-      html += '</td>';
-    });
+      var shortLabel = roundShort(rName) || ('R' + (rI + 1));
+      var scoreClass = (rScore > 0 ? 'pos' : (rScore < 0 ? 'neg' : 'zero'));
+      return '<div class="pres-stats-round-chip' + (isCur ? ' current-round' : '') + '" title="Round ' + (rI + 1) + ': ' + safe(rName) + ' (' + (rScore > 0 ? '+' + rScore : rScore) + ' pts)">' +
+        '<small>' + safe(shortLabel) + '</small>' +
+        '<b class="' + scoreClass + '">' + (rScore > 0 ? '+' + rScore : rScore) + '</b>' +
+      '</div>';
+    }).join('');
 
-    html += '<td class="right">';
-    html += '  <span class="pres-matrix-total' + (isLeader ? ' gold' : '') + '">' + t.total + ' <small style="font-size:11px;font-weight:700;color:#94a3b8;">PTS</small></span>';
-    html += '</td>';
-    html += '</tr>';
+    html += '<div class="pres-stats-team-card' + (isLeader ? ' leader' : '') + '">';
+    html += '  <div class="pres-stats-team-header">';
+    html += '    <div class="pres-stats-team-info">';
+    html += '      <span class="pres-stats-seat-tag">#' + (t.i + 1) + '</span>';
+    html += '      <div class="pres-stats-team-avatar">' + logoHtml + '</div>';
+    html += '      <span class="pres-stats-team-name">' + safe(t.name) + '</span>';
+    if (isLeader) {
+      html += '      <span style="font-size:12px;" title="Current Leader">👑</span>';
+    }
+    html += '    </div>';
+    html += '    <span class="pres-stats-total' + (isLeader ? ' gold' : '') + '">' + t.total + ' <small style="font-size:10px;font-weight:700;color:#94a3b8;">PTS</small></span>';
+    html += '  </div>';
+    html += '  <div class="pres-stats-rounds-row">' + roundChips + '</div>';
+    html += '</div>';
   });
 
-  html += '</tbody></table></div></div>';
   container.innerHTML = html;
 }
 
@@ -6201,6 +6134,9 @@ function renderPresentation() {
   if ($('presCurrentLayoutBadge')) $('presCurrentLayoutBadge').textContent = presState.stageLayout === 'podium' ? 'Olympic Podium' : 'Classic Cards Grid';
   
   updatePresStatsUI();
+  if (presState.statsVisible) {
+    renderPresStatsDrawer();
+  }
 
   // Question scoring status map for current round & question
   var currQ = presState.currentQuestion;
