@@ -2810,9 +2810,9 @@ body[data-palette="midnight-champagne"] .site-link-btn:hover {
   width: 100%;
   flex: 1 1 100%;
   min-height: 0;
-  height: calc(100vh - 66px - 130px);
+  height: calc(100vh - 66px - 14px);
   box-sizing: border-box;
-  padding: clamp(10px, 1.8vh, 22px) clamp(16px, 2.5vw, 42px);
+  padding: clamp(8px, 1.4vh, 18px) clamp(14px, 2.2vw, 36px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2830,10 +2830,11 @@ body.pres-paddles-off .pres-stats-view {
 
 .pres-stats-view-inner {
   width: 100%;
-  max-width: 1360px;
+  max-width: 1440px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.8vh, 20px);
+  gap: clamp(8px, 1.2vh, 16px);
   margin: 0 auto;
 }
 
@@ -2841,15 +2842,20 @@ body.pres-paddles-off .pres-stats-view {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 12px;
+  gap: 14px;
+  padding-bottom: clamp(6px, 1vh, 10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.pres-stats-view-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .pres-stats-view-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 11px;
   font-weight: 800;
@@ -2859,20 +2865,14 @@ body.pres-paddles-off .pres-stats-view {
   border: 1px solid rgba(56, 189, 248, 0.35);
   padding: 3px 10px;
   border-radius: 999px;
-  margin-bottom: 4px;
 }
 .pres-stats-view-heading {
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(20px, 1.8vw, 26px);
+  font-size: clamp(19px, 1.7vw, 25px);
   font-weight: 900;
   color: #ffffff;
   margin: 0;
   letter-spacing: -0.02em;
-}
-.pres-stats-view-sub {
-  font-size: clamp(11px, 1vw, 13px);
-  color: #94a3b8;
-  margin: 3px 0 0;
 }
 .pres-stats-back-btn {
   display: inline-flex;
@@ -2884,7 +2884,7 @@ body.pres-paddles-off .pres-stats-view {
   font-family: 'Manrope', sans-serif;
   font-size: 13px;
   font-weight: 800;
-  padding: 8px 16px;
+  padding: 7px 15px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2898,18 +2898,91 @@ body.pres-paddles-off .pres-stats-view {
   box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
 }
 
+/* 4-KPI Tournament Stats Strip in Presentation Mode */
+.pres-stats-kpi-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 14px);
+  width: 100%;
+  flex-shrink: 0;
+}
+.pres-kpi-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(145deg, rgba(16, 26, 48, 0.88) 0%, rgba(9, 15, 30, 0.94) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 13px;
+  padding: clamp(7px, 1vh, 11px) clamp(10px, 1vw, 15px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  min-width: 0;
+}
+.pres-kpi-pill.gold {
+  border-color: rgba(251, 191, 36, 0.5);
+  background: linear-gradient(145deg, rgba(38, 28, 12, 0.9) 0%, rgba(18, 14, 26, 0.95) 100%);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), 0 0 18px rgba(245, 158, 11, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.pres-kpi-pill-icon {
+  font-size: clamp(16px, 1.4vw, 21px);
+  flex-shrink: 0;
+}
+.pres-kpi-pill-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+.pres-kpi-pill-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.pres-kpi-pill.gold .pres-kpi-pill-label {
+  color: #fbbf24;
+}
+.pres-kpi-pill-val {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(12.5px, 1.05vw, 15px);
+  font-weight: 850;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+.pres-kpi-pill.gold .pres-kpi-pill-val {
+  color: #ffe09a;
+}
+
 /* Tournament Matrix Table Grid in Presentation */
 .pres-matrix-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(145deg, rgba(16, 26, 48, 0.94) 0%, rgba(9, 15, 30, 0.98) 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-top: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 20px;
+  border-radius: 18px;
   box-shadow: 0 16px 42px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(22px);
   overflow: hidden;
 }
+.pres-matrix-container {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
 .pres-matrix-table {
   width: 100%;
+  height: 100%;
   border-collapse: separate;
   border-spacing: 0;
   text-align: left;
@@ -2922,7 +2995,7 @@ body.pres-paddles-off .pres-stats-view {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #94a3b8;
-  padding: 14px 16px;
+  padding: clamp(9px, 1.3vh, 14px) 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   white-space: nowrap;
 }
@@ -2947,7 +3020,7 @@ body.pres-paddles-off .pres-stats-view {
   background: rgba(245, 158, 11, 0.06);
 }
 .pres-matrix-table td {
-  padding: 12px 16px;
+  padding: clamp(12px, 2.1vh, 22px) 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   vertical-align: middle;
 }
@@ -2960,11 +3033,11 @@ body.pres-paddles-off .pres-stats-view {
   gap: 12px;
 }
 .pres-matrix-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: clamp(36px, 2.8vw, 44px);
+  height: clamp(36px, 2.8vw, 44px);
+  border-radius: 12px;
   background: #ffffff;
-  padding: 2px;
+  padding: 3px;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
@@ -2980,12 +3053,12 @@ body.pres-paddles-off .pres-stats-view {
 .pres-matrix-avatar span {
   font-family: 'Manrope', sans-serif;
   font-weight: 900;
-  font-size: 16px;
+  font-size: 18px;
   color: #0f172a;
 }
 .pres-matrix-team-name {
   font-family: 'Manrope', sans-serif;
-  font-size: 15px;
+  font-size: clamp(16px, 1.35vw, 21px);
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.01em;
@@ -3045,7 +3118,7 @@ body.pres-paddles-off .pres-stats-view {
 }
 .pres-matrix-total {
   font-family: 'Manrope', sans-serif;
-  font-size: 24px;
+  font-size: clamp(24px, 2vw, 32px);
   font-weight: 900;
   color: #f8fafc;
   font-variant-numeric: tabular-nums;
@@ -3999,6 +4072,40 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
     flex-direction: column !important;
     justify-content: space-between !important;
   }
+  #dashPageScoreboard .team-card-top {
+    flex-shrink: 0 !important;
+  }
+  #dashPageScoreboard .team-score-pair {
+    flex: 1 1 auto !important;
+    margin-top: clamp(6px, 1vh, 12px) !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: clamp(6px, 0.8vw, 10px) !important;
+  }
+  #dashPageScoreboard .score-current, 
+  #dashPageScoreboard .score-total {
+    min-height: 0 !important;
+    height: 100% !important;
+    padding: clamp(8px, 1.2vh, 14px) clamp(10px, 1.2vw, 14px) !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: auto 1fr !important;
+    align-items: center !important;
+  }
+  #dashPageScoreboard .score-current strong, 
+  #dashPageScoreboard .score-total strong {
+    font-size: clamp(26px, 2.2vw, 36px) !important;
+    line-height: 1 !important;
+  }
+  #dashPageScoreboard .team-round-strip {
+    margin-top: clamp(6px, 0.8vh, 10px) !important;
+    flex-shrink: 0 !important;
+  }
+  #dashPageScoreboard .team-drop-hint {
+    margin-top: clamp(4px, 0.6vh, 8px) !important;
+    padding-top: clamp(4px, 0.6vh, 6px) !important;
+    flex-shrink: 0 !important;
+  }
   #dashPageScoreboard .board-footer {
     margin-top: clamp(4px, 0.6vh, 8px) !important;
     flex-shrink: 0 !important;
@@ -4444,6 +4551,23 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   .pres-stats-view-heading {
     font-size: 16px !important;
   }
+  .pres-stats-kpi-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+  .pres-kpi-pill {
+    padding: 6px 8px !important;
+    gap: 6px !important;
+  }
+  .pres-kpi-pill-icon {
+    font-size: 14px !important;
+  }
+  .pres-kpi-pill-label {
+    font-size: 7.5px !important;
+  }
+  .pres-kpi-pill-val {
+    font-size: 11px !important;
+  }
   .pres-stats-matrix-container {
     overflow-x: auto !important;
     width: 100% !important;
@@ -4511,16 +4635,6 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
       <strong class="brand-title">QUIZ ARENA</strong>
     </div>
   </div>
-  <nav class="dash-page-nav" id="dashPageNav" aria-label="Dashboard page navigation">
-    <button type="button" class="dash-nav-pill active" id="dashNavScoreboard" data-dash-page="scoreboard" title="Live Scoreboard &amp; Direct Scoring">
-      <span class="dash-nav-icon">🏆</span>
-      <span class="dash-nav-text">Scoreboard</span>
-    </button>
-    <button type="button" class="dash-nav-pill" id="dashNavStats" data-dash-page="stats" title="Round-by-Round Breakdown &amp; Quiz Analytics">
-      <span class="dash-nav-icon">📊</span>
-      <span class="dash-nav-text">Stats &amp; Breakdown</span>
-    </button>
-  </nav>
   <div class="top-actions">
     <span class="live" id="syncStatus">Local scores</span>
     <button type="button" class="iconbtn pres-trigger-btn" id="launchPresBtn" title="Launch Presentation Mode (P)">
@@ -4612,8 +4726,12 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 
           <div class="site-menu-group site-menu-quick-links">
             <div class="site-menu-group-label">QUICK ACTIONS</div>
-            <button type="button" class="site-link-btn" id="siteMenuExportScores">
+            <button type="button" class="site-link-btn" id="siteMenuGoToStats">
               <span class="site-link-icon">📊</span>
+              <span>Tournament Stats &amp; Breakdown</span>
+            </button>
+            <button type="button" class="site-link-btn" id="siteMenuExportScores">
+              <span class="site-link-icon">📈</span>
               <span>Download Scores (CSV)</span>
             </button>
             <button type="button" class="site-link-btn" id="siteMenuExportHistory">
@@ -5091,15 +5209,15 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
       <div class="pres-stats-view-inner">
         <div class="pres-stats-view-head">
           <div class="pres-stats-view-title-group">
-            <span class="pres-stats-view-badge">📊 STATS BREAKDOWN</span>
-            <h2 class="pres-stats-view-heading">Round-by-Round Tournament Breakdown</h2>
-            <p class="pres-stats-view-sub">Complete score matrix of all teams across all rounds &amp; running championship standings</p>
+            <span class="pres-stats-view-badge">📊 STATS</span>
+            <h2 class="pres-stats-view-heading">Round-by-Round Breakdown</h2>
           </div>
           <button type="button" class="pres-stats-back-btn" id="presStatsBackBtn" title="Back to Main Scores (Esc / V)">
-            <span>← Back to Main Scores</span>
+            <span>← Back to Stage</span>
             <span class="pres-kbd">V</span>
           </button>
         </div>
+        <div class="pres-stats-kpi-bar" id="presStatsKpiBar"></div>
         <div class="pres-stats-matrix-container" id="presStatsMatrixContainer"></div>
       </div>
     </section>
@@ -5163,14 +5281,18 @@ function renderBoard(){
   }).sort(function(a,b){return b.total-a.total||a.i-b.i});
   $('teamsBoard').innerHTML=teams.map(function(t,rank){
     var badge=t.logo?'<img class="team-logo" alt="" src="'+safe(t.logo)+'">':safe((t.name.trim()[0]||'T').toUpperCase());
+    var chips=state.rounds.map(function(r,ri){
+      return '<span class="round-chip-mini '+(ri===selected?'selected':'')+'" title="'+safe(r)+' · '+scoreOf(t.i,ri)+' points"><small>'+roundShort(r)+'</small><b>'+scoreOf(t.i,ri)+'</b></span>';
+    }).join('');
     var cls='team-card'+(armedMark?' armed-target':'')+(oldFlash===t.i?' flash':'');
     var hint=armedMark?'TAP TO AWARD '+pointsLabel(armedMark.points):'DROP A PADDLE HERE';
     var html='<div role="button" tabindex="0" class="'+cls+'" data-team="'+t.i+'" style="--i:'+rank+'" aria-label="Drop mark on '+safe(t.name)+' to score">';
     html+='<div class="team-card-top"><div class="rank '+(rank===0&&t.total>0?'first':'')+'">'+String(rank+1).padStart(2,'0')+'</div>';
     html+='<div class="team-badge">'+badge+'</div><div class="team-title"><div class="team-name">'+safe(t.name)+'</div>';
-    html+='<span class="team-sub">'+t.count+' '+(t.count===1?'transaction':'transactions')+'</span></div><div class="drop-arrow">↙</div></div>';
+    html+='<span class="team-sub">'+t.count+' '+(t.count===1?'transaction':'transactions')+'</span></div><div class="drop-arrow" title="Score this team">↙</div></div>';
     html+='<div class="team-score-pair"><div class="score-current"><small>'+safe(roundName)+'</small><strong>'+t.current+'</strong><span>MARKS</span></div>';
     html+='<div class="score-total"><small>TOTAL SCORE</small><strong>'+t.total+'</strong><span>ALL ROUNDS</span></div></div>';
+    html+='<div class="team-round-strip"><span class="strip-label">ROUND BREAKDOWN</span>'+chips+'</div>';
     html+='<div class="team-drop-hint">'+hint+'</div></div>';
     return html;
   }).join('');
@@ -5192,7 +5314,7 @@ function renderBoard(){
       if(m)record(Number(team.dataset.team),m);
     });
   });
-  $('roundSummary').textContent='Each card highlights '+roundName+' marks and running totals. Switch to the Stats page for complete round-by-round breakdown.';
+  $('roundSummary').textContent='Each card highlights '+roundName+' and cumulative total score.';
   $('resultCount').textContent=state.entries.length+' '+(state.entries.length===1?'transaction':'transactions')+' recorded';
   renderMainStatsMatrix();
 }
@@ -5982,11 +6104,73 @@ function renderPresStatsView() {
     };
   }).sort(function(a, b){ return b.total - a.total || a.i - b.i; });
 
+  // Render Added Stats KPI Bar (utilizing space with rich tournament metrics)
+  var kpiBar = $('presStatsKpiBar');
+  if (kpiBar) {
+    var leader = ranked[0] || { name: 'None', total: 0 };
+    var runnerUp = ranked[1] || { name: 'None', total: 0 };
+    var leadMargin = Math.max(0, leader.total - runnerUp.total);
+    var totalTournamentPoints = state.entries.reduce(function(sum, e){ return sum + (Number(e.points) || 0); }, 0);
+    
+    var topRoundScore = 0;
+    var topRoundTeam = '';
+    var topRoundName = '';
+    state.teams.forEach(function(teamName, tIdx){
+      state.rounds.forEach(function(rndName, rIdx){
+        var sc = scoreOf(tIdx, rIdx);
+        if (sc > topRoundScore) {
+          topRoundScore = sc;
+          topRoundTeam = teamName;
+          topRoundName = roundShort(rndName) || ('R' + (rIdx + 1));
+        }
+      });
+    });
+
+    var kpiHtml = '';
+    // KPI 1: Leader
+    kpiHtml += '<div class="pres-kpi-pill gold">';
+    kpiHtml += '  <span class="pres-kpi-pill-icon">👑</span>';
+    kpiHtml += '  <div class="pres-kpi-pill-content">';
+    kpiHtml += '    <span class="pres-kpi-pill-label">CURRENT LEADER</span>';
+    kpiHtml += '    <strong class="pres-kpi-pill-val">' + safe(leader.name) + ' · ' + leader.total + ' PTS</strong>';
+    kpiHtml += '  </div>';
+    kpiHtml += '</div>';
+
+    // KPI 2: Highest Round Score
+    kpiHtml += '<div class="pres-kpi-pill">';
+    kpiHtml += '  <span class="pres-kpi-pill-icon">⚡</span>';
+    kpiHtml += '  <div class="pres-kpi-pill-content">';
+    kpiHtml += '    <span class="pres-kpi-pill-label">TOP ROUND SCORE</span>';
+    kpiHtml += '    <strong class="pres-kpi-pill-val">' + (topRoundScore > 0 ? safe(topRoundTeam) + ' (+' + topRoundScore + ' in ' + safe(topRoundName) + ')' : '0 PTS recorded') + '</strong>';
+    kpiHtml += '  </div>';
+    kpiHtml += '</div>';
+
+    // KPI 3: Total Tournament Marks
+    kpiHtml += '<div class="pres-kpi-pill">';
+    kpiHtml += '  <span class="pres-kpi-pill-icon">🎯</span>';
+    kpiHtml += '  <div class="pres-kpi-pill-content">';
+    kpiHtml += '    <span class="pres-kpi-pill-label">TOTAL MARKS AWARDED</span>';
+    kpiHtml += '    <strong class="pres-kpi-pill-val">' + totalTournamentPoints + ' PTS ACROSS QUIZ</strong>';
+    kpiHtml += '  </div>';
+    kpiHtml += '</div>';
+
+    // KPI 4: Lead Gap
+    kpiHtml += '<div class="pres-kpi-pill">';
+    kpiHtml += '  <span class="pres-kpi-pill-icon">🔥</span>';
+    kpiHtml += '  <div class="pres-kpi-pill-content">';
+    kpiHtml += '    <span class="pres-kpi-pill-label">LEAD GAP (#1 VS #2)</span>';
+    kpiHtml += '    <strong class="pres-kpi-pill-val">' + (leadMargin > 0 ? '+' + leadMargin + ' PTS AHEAD' : (leader.total > 0 ? 'TIED FOR FIRST' : 'EVEN TIED')) + '</strong>';
+    kpiHtml += '  </div>';
+    kpiHtml += '</div>';
+
+    kpiBar.innerHTML = kpiHtml;
+  }
+
   var html = '<div class="pres-matrix-card">';
-  html += '<table class="pres-matrix-table">';
+  html += '<div class="pres-matrix-container"><table class="pres-matrix-table">';
   html += '<thead><tr>';
-  html += '<th style="width:70px;">Rank</th>';
-  html += '<th style="width:240px;">Team</th>';
+  html += '<th style="width:75px;">Rank</th>';
+  html += '<th style="width:260px;">Team</th>';
   state.rounds.forEach(function(rName, rI){
     var isCur = (rI === selected);
     var shortLabel = roundShort(rName) || ('R' + (rI + 1));
@@ -5994,7 +6178,7 @@ function renderPresStatsView() {
       safe(shortLabel) + (isCur ? ' • NOW' : '') +
     '</th>';
   });
-  html += '<th class="right" style="width:140px;">Total Score</th>';
+  html += '<th class="right" style="width:160px;">Total Score</th>';
   html += '</tr></thead>';
   html += '<tbody>';
 
@@ -6021,12 +6205,12 @@ function renderPresStatsView() {
     });
 
     html += '<td class="right">';
-    html += '  <span class="pres-matrix-total' + (isLeader ? ' gold' : '') + '">' + t.total + ' <small style="font-size:11px;font-weight:700;color:#94a3b8;">PTS</small></span>';
+    html += '  <span class="pres-matrix-total' + (isLeader ? ' gold' : '') + '">' + t.total + ' <small style="font-size:12px;font-weight:700;color:#94a3b8;">PTS</small></span>';
     html += '</td>';
     html += '</tr>';
   });
 
-  html += '</tbody></table></div>';
+  html += '</tbody></table></div></div>';
   container.innerHTML = html;
 }
 
@@ -6616,6 +6800,7 @@ function closeSiteMenu() {
 
 if ($('siteMenuBtn')) $('siteMenuBtn').addEventListener('click', toggleSiteMenu);
 if ($('siteMenuCloseBtn')) $('siteMenuCloseBtn').addEventListener('click', closeSiteMenu);
+if ($('siteMenuGoToStats')) $('siteMenuGoToStats').addEventListener('click', function(){ closeSiteMenu(); setDashboardPage('stats'); });
 if ($('siteMenuExportScores')) $('siteMenuExportScores').addEventListener('click', function(){ closeSiteMenu(); exportScoreboard(); });
 if ($('siteMenuExportHistory')) $('siteMenuExportHistory').addEventListener('click', function(){ closeSiteMenu(); exportTransactions(); });
 if ($('siteMenuTogglePaddles')) $('siteMenuTogglePaddles').addEventListener('click', function(){
