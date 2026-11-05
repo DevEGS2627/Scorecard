@@ -5632,6 +5632,903 @@ body:not(.pres-paddles-off) .pres-track-row {
   }
 }
 
+
+/* ==========================================================================
+   EGS QUIZ ARENA 2.0: MASTER DESIGN TOKEN SYSTEM & 6 COMPLETE THEMES
+   ========================================================================== */
+
+/* THEME 1: IVORY & VERMILION (Default Championship Theme) */
+:root,
+body,
+body[data-palette="ivory-vermilion"] {
+  --app-bg: #fbf9f4;
+  --app-bg-secondary: #f3ede2;
+  --app-surface: #ffffff;
+  --app-surface-subtle: #f8f6f0;
+  --app-surface-elevated: #ffffff;
+  --app-text-primary: #1c1917;
+  --app-text-secondary: #57534e;
+  --app-text-muted: #78716c;
+  --app-text-inverse: #ffffff;
+  --app-primary: #e0532b;
+  --app-primary-hover: #c2410c;
+  --app-secondary: #d97706;
+  --app-accent: #e0532b;
+  --app-gold: #b45309;
+  --app-success: #15803d;
+  --app-success-bg: #dcfce7;
+  --app-warning: #b45309;
+  --app-warning-bg: #fef3c7;
+  --app-error: #b91c1c;
+  --app-error-bg: #fee2e2;
+  --app-info: #0284c7;
+  --app-info-bg: #e0f2fe;
+  --app-border: #e2ded4;
+  --app-border-strong: #a8a29e;
+  --app-shadow-card: 0 4px 18px rgba(41, 37, 36, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --app-shadow-hover: 0 12px 30px rgba(41, 37, 36, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --app-shadow-popover: 0 20px 50px rgba(41, 37, 36, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  --app-radius-sm: 8px;
+  --app-radius-md: 14px;
+  --app-radius-lg: 20px;
+  --app-radius-xl: 26px;
+  --app-transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --app-transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* THEME 2: SAGE & CREAM (Botanical Academic Prestige) */
+body[data-palette="sage-cream"] {
+  --app-bg: #fafaf7;
+  --app-bg-secondary: #f0f2ed;
+  --app-surface: #ffffff;
+  --app-surface-subtle: #f4f6f1;
+  --app-surface-elevated: #ffffff;
+  --app-text-primary: #132a13;
+  --app-text-secondary: #4a5759;
+  --app-text-muted: #6b7c77;
+  --app-text-inverse: #ffffff;
+  --app-primary: #2d6a4f;
+  --app-primary-hover: #1b4332;
+  --app-secondary: #b45309;
+  --app-accent: #2d6a4f;
+  --app-gold: #92400e;
+  --app-success: #15803d;
+  --app-success-bg: #dcfce7;
+  --app-warning: #b45309;
+  --app-warning-bg: #fef3c7;
+  --app-error: #b91c1c;
+  --app-error-bg: #fee2e2;
+  --app-info: #0284c7;
+  --app-info-bg: #e0f2fe;
+  --app-border: #d1dcd4;
+  --app-border-strong: #8da194;
+  --app-shadow-card: 0 4px 18px rgba(27, 67, 50, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --app-shadow-hover: 0 12px 30px rgba(27, 67, 50, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --app-shadow-popover: 0 20px 50px rgba(27, 67, 50, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* THEME 3: LAVENDER & CORAL (Creative Design Forum) */
+body[data-palette="lavender-coral"] {
+  --app-bg: #f8f7fc;
+  --app-bg-secondary: #eeeaf8;
+  --app-surface: #ffffff;
+  --app-surface-subtle: #f3f0fb;
+  --app-surface-elevated: #ffffff;
+  --app-text-primary: #1e1b4b;
+  --app-text-secondary: #64748b;
+  --app-text-muted: #8b5cf6;
+  --app-text-inverse: #ffffff;
+  --app-primary: #6366f1;
+  --app-primary-hover: #4f46e5;
+  --app-secondary: #f43f5e;
+  --app-accent: #6366f1;
+  --app-gold: #d97706;
+  --app-success: #15803d;
+  --app-success-bg: #dcfce7;
+  --app-warning: #d97706;
+  --app-warning-bg: #fef3c7;
+  --app-error: #e11d48;
+  --app-error-bg: #ffe4e6;
+  --app-info: #6366f1;
+  --app-info-bg: #ede9fe;
+  --app-border: #ddd6fe;
+  --app-border-strong: #a78bfa;
+  --app-shadow-card: 0 4px 18px rgba(79, 70, 229, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --app-shadow-hover: 0 12px 30px rgba(79, 70, 229, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --app-shadow-popover: 0 20px 50px rgba(79, 70, 229, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* THEME 4: CHAMPAGNE & BURGUNDY (Regal Luxury Gala) */
+body[data-palette="champagne-burgundy"] {
+  --app-bg: #fdfbf7;
+  --app-bg-secondary: #f5efe4;
+  --app-surface: #ffffff;
+  --app-surface-subtle: #f7f1e6;
+  --app-surface-elevated: #ffffff;
+  --app-text-primary: #1a0a10;
+  --app-text-secondary: #705058;
+  --app-text-muted: #8c6b74;
+  --app-text-inverse: #ffffff;
+  --app-primary: #881337;
+  --app-primary-hover: #9f1239;
+  --app-secondary: #ca8a04;
+  --app-accent: #881337;
+  --app-gold: #b45309;
+  --app-success: #15803d;
+  --app-success-bg: #dcfce7;
+  --app-warning: #b45309;
+  --app-warning-bg: #fef3c7;
+  --app-error: #9f1239;
+  --app-error-bg: #ffe4e6;
+  --app-info: #0284c7;
+  --app-info-bg: #e0f2fe;
+  --app-border: #e7dec8;
+  --app-border-strong: #b5a88c;
+  --app-shadow-card: 0 4px 18px rgba(136, 19, 55, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --app-shadow-hover: 0 12px 30px rgba(136, 19, 55, 0.13), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --app-shadow-popover: 0 20px 50px rgba(136, 19, 55, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* THEME 5: MODERN POP (Dynamic Sports Broadcasting) */
+body[data-palette="modern-pop"] {
+  --app-bg: #ffffff;
+  --app-bg-secondary: #f1f5f9;
+  --app-surface: #ffffff;
+  --app-surface-subtle: #f8fafc;
+  --app-surface-elevated: #ffffff;
+  --app-text-primary: #0f172a;
+  --app-text-secondary: #475569;
+  --app-text-muted: #64748b;
+  --app-text-inverse: #ffffff;
+  --app-primary: #2563eb;
+  --app-primary-hover: #1d4ed8;
+  --app-secondary: #f97316;
+  --app-accent: #2563eb;
+  --app-gold: #f59e0b;
+  --app-success: #16a34a;
+  --app-success-bg: #dcfce7;
+  --app-warning: #f59e0b;
+  --app-warning-bg: #fef3c7;
+  --app-error: #dc2626;
+  --app-error-bg: #fee2e2;
+  --app-info: #0284c7;
+  --app-info-bg: #e0f2fe;
+  --app-border: #cbd5e1;
+  --app-border-strong: #64748b;
+  --app-shadow-card: 0 4px 18px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --app-shadow-hover: 0 12px 30px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --app-shadow-popover: 0 20px 50px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* THEME 6: MIDNIGHT PRO (Optional Auditorium Dark Theme) */
+body[data-palette="midnight-pro"],
+body[data-palette="midnight"] {
+  --app-bg: #0b1329;
+  --app-bg-secondary: #111c36;
+  --app-surface: #172440;
+  --app-surface-subtle: #121e38;
+  --app-surface-elevated: #1f3156;
+  --app-text-primary: #f8fafc;
+  --app-text-secondary: #cbd5e1;
+  --app-text-muted: #94a3b8;
+  --app-text-inverse: #0f172a;
+  --app-primary: #38bdf8;
+  --app-primary-hover: #0284c7;
+  --app-secondary: #fbbf24;
+  --app-accent: #38bdf8;
+  --app-gold: #fbbf24;
+  --app-success: #22c55e;
+  --app-success-bg: rgba(34, 197, 94, 0.18);
+  --app-warning: #fbbf24;
+  --app-warning-bg: rgba(251, 191, 36, 0.18);
+  --app-error: #ef4444;
+  --app-error-bg: rgba(239, 68, 68, 0.18);
+  --app-info: #38bdf8;
+  --app-info-bg: rgba(56, 189, 248, 0.18);
+  --app-border: #293956;
+  --app-border-strong: #38bdf8;
+  --app-shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --app-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.65), 0 2px 6px rgba(0, 0, 0, 0.4);
+  --app-shadow-popover: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   GLOBAL COMPONENT RESKINNING USING DESIGN TOKENS
+   ========================================================================== */
+body {
+  background: var(--app-bg) !important;
+  color: var(--app-text-primary) !important;
+  transition: background 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s;
+}
+
+/* Top Navigation Bar */
+.topbar {
+  background: var(--app-surface) !important;
+  border-bottom: 2px solid var(--app-border) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+}
+.brand-name {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+}
+.brand-sub {
+  color: var(--app-text-muted) !important;
+}
+
+/* Page Navigation Segmented Controls */
+.dash-page-nav {
+  background: var(--app-bg-secondary) !important;
+  border: 1.5px solid var(--app-border) !important;
+  border-radius: 9999px !important;
+  padding: 4px !important;
+  gap: 4px !important;
+}
+.dash-nav-pill {
+  background: transparent !important;
+  color: var(--app-text-secondary) !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 6px 16px !important;
+  font-weight: 800 !important;
+  font-size: 12px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.dash-nav-pill:hover {
+  color: var(--app-text-primary) !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+.dash-nav-pill.active {
+  background: var(--app-primary) !important;
+  color: var(--app-text-inverse) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14) !important;
+}
+
+/* Top Actions & Buttons */
+.live#syncStatus {
+  background: var(--app-surface-subtle) !important;
+  border: 1.5px solid var(--app-border) !important;
+  color: var(--app-text-primary) !important;
+  font-weight: 800 !important;
+}
+.iconbtn,
+.pres-trigger-btn,
+.theme-gallery-btn,
+.site-menu-btn {
+  background: var(--app-surface) !important;
+  border: 1.5px solid var(--app-border) !important;
+  color: var(--app-text-primary) !important;
+  font-weight: 800 !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.iconbtn:hover,
+.pres-trigger-btn:hover,
+.theme-gallery-btn:hover,
+.site-menu-btn:hover {
+  background: var(--app-surface-subtle) !important;
+  border-color: var(--app-primary) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+.theme-gallery-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 0 12px !important;
+  height: 38px !important;
+  border-radius: 9999px !important;
+}
+.pres-trigger-btn {
+  background: var(--app-primary) !important;
+  border-color: var(--app-primary) !important;
+  color: var(--app-text-inverse) !important;
+}
+.pres-trigger-btn:hover {
+  background: var(--app-primary-hover) !important;
+  border-color: var(--app-primary-hover) !important;
+  color: var(--app-text-inverse) !important;
+}
+
+/* Hero Section (Question & Round Header) */
+.hero {
+  background: var(--app-surface) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-lg) !important;
+  box-shadow: var(--app-shadow-card) !important;
+}
+.hero h1 {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+}
+.hero p, .hero-sub {
+  color: var(--app-text-secondary) !important;
+}
+.eyebrow {
+  color: var(--app-primary) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em !important;
+}
+.round-picker select {
+  background: var(--app-surface-subtle) !important;
+  border: 1.5px solid var(--app-border) !important;
+  color: var(--app-text-primary) !important;
+  font-weight: 800 !important;
+}
+
+/* Team Scorecards Grid */
+.team-card {
+  background: var(--app-surface) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-lg) !important;
+  box-shadow: var(--app-shadow-card) !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.team-card:hover {
+  border-color: var(--app-border-strong) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--app-shadow-hover) !important;
+}
+.team-card.direct-turn,
+.team-card.is-active {
+  border: 2.5px solid var(--app-primary) !important;
+  box-shadow: 0 0 0 3px rgba(224, 83, 43, 0.18), var(--app-shadow-hover) !important;
+}
+.team-name {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+  font-size: 18px !important;
+}
+.team-sub {
+  color: var(--app-text-muted) !important;
+}
+.team-rank-badge {
+  background: var(--app-primary) !important;
+  color: var(--app-text-inverse) !important;
+  font-weight: 900 !important;
+}
+.score-current {
+  background: var(--app-surface-subtle) !important;
+  border: 1.5px solid var(--app-border) !important;
+  border-radius: var(--app-radius-md) !important;
+}
+.score-current small {
+  color: var(--app-text-secondary) !important;
+  font-weight: 800 !important;
+}
+.score-current strong {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+.score-total {
+  background: var(--app-bg-secondary) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-md) !important;
+}
+.score-total small {
+  color: var(--app-text-secondary) !important;
+  font-weight: 800 !important;
+}
+.score-total strong {
+  color: var(--app-primary) !important;
+  font-weight: 900 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* Floating Mark Dock (The Scoring Paddles) */
+.mark-dock {
+  background: var(--app-surface) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-xl) !important;
+  box-shadow: var(--app-shadow-popover) !important;
+  backdrop-filter: blur(20px) !important;
+}
+.mark-dock .section-title h2 {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+}
+.mark-dock .section-title span {
+  color: var(--app-text-secondary) !important;
+  font-weight: 700 !important;
+}
+.mark-dock .mark-card {
+  background: var(--app-surface-subtle) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-md) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.mark-dock .mark-card .mark-name {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+}
+.mark-dock .mark-card .mark-sub {
+  color: var(--app-text-secondary) !important;
+}
+.mark-dock .mark-card .mark-value {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+}
+.mark-dock .mark-card.green {
+  background: var(--app-success-bg) !important;
+  border-color: var(--app-success) !important;
+}
+.mark-dock .mark-card.green .mark-name,
+.mark-dock .mark-card.green .mark-value {
+  color: var(--app-success) !important;
+}
+.mark-dock .mark-card.red {
+  background: var(--app-error-bg) !important;
+  border-color: var(--app-error) !important;
+}
+.mark-dock .mark-card.red .mark-name,
+.mark-dock .mark-card.red .mark-value {
+  color: var(--app-error) !important;
+}
+.mark-dock .mark-card.gold,
+.mark-dock .mark-card.neutral {
+  background: var(--app-info-bg) !important;
+  border-color: var(--app-info) !important;
+}
+.mark-dock .mark-card.gold .mark-name,
+.mark-dock .mark-card.gold .mark-value,
+.mark-dock .mark-card.neutral .mark-name,
+.mark-dock .mark-card.neutral .mark-value {
+  color: var(--app-info) !important;
+}
+.mark-dock .mark-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Analytics Dashboard (#dashPageStats) */
+.analytics-head h2 {
+  color: var(--app-text-primary) !important;
+}
+.analytics-head p {
+  color: var(--app-text-secondary) !important;
+}
+.analytics-kpi {
+  background: var(--app-surface) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-md) !important;
+  box-shadow: var(--app-shadow-card) !important;
+}
+.analytics-kpi span {
+  color: var(--app-text-secondary) !important;
+  font-weight: 800 !important;
+}
+.analytics-kpi strong {
+  color: var(--app-primary) !important;
+  font-weight: 900 !important;
+}
+.analytics-block {
+  background: var(--app-surface) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-lg) !important;
+  box-shadow: var(--app-shadow-card) !important;
+}
+.analytics-block h3 {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+}
+.team-analytic {
+  background: var(--app-surface-subtle) !important;
+  border: 1.5px solid var(--app-border) !important;
+  border-radius: var(--app-radius-md) !important;
+}
+.ta-top strong {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+}
+.ta-top b {
+  color: var(--app-primary) !important;
+  font-weight: 900 !important;
+}
+.ta-rounds span {
+  background: var(--app-surface) !important;
+  border: 1px solid var(--app-border) !important;
+}
+.ta-rounds small {
+  color: var(--app-text-secondary) !important;
+}
+.ta-rounds b {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+}
+
+/* Modals (Settings, Auth, Theme Gallery) */
+.modal-backdrop {
+  background: rgba(15, 23, 42, 0.55) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+}
+.modal {
+  background: var(--app-surface) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-xl) !important;
+  box-shadow: var(--app-shadow-popover) !important;
+  color: var(--app-text-primary) !important;
+}
+.modal-head {
+  background: var(--app-surface-subtle) !important;
+  border-bottom: 2px solid var(--app-border) !important;
+}
+.modal-head h2 {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+}
+.modal-head .close {
+  color: var(--app-text-secondary) !important;
+  background: var(--app-surface) !important;
+  border: 1px solid var(--app-border) !important;
+}
+.modal-body {
+  color: var(--app-text-primary) !important;
+}
+.settings-section h3 {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+}
+.settings-row label {
+  color: var(--app-text-primary) !important;
+  font-weight: 800 !important;
+}
+.settings-row input,
+.settings-row select {
+  background: var(--app-surface) !important;
+  border: 1.5px solid var(--app-border) !important;
+  color: var(--app-text-primary) !important;
+  border-radius: var(--app-radius-sm) !important;
+}
+.save-row {
+  background: var(--app-surface-subtle) !important;
+  border-top: 2px solid var(--app-border) !important;
+}
+.save-row .primary,
+.save-row button.primary {
+  background: var(--app-primary) !important;
+  color: var(--app-text-inverse) !important;
+  border: none !important;
+  font-weight: 900 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14) !important;
+}
+
+/* More Popover Menu */
+.site-menu-popover {
+  background: var(--app-surface) !important;
+  border: 2px solid var(--app-border) !important;
+  box-shadow: var(--app-shadow-popover) !important;
+  border-radius: var(--app-radius-xl) !important;
+}
+.site-menu-head {
+  background: var(--app-surface-subtle) !important;
+  border-bottom: 1.5px solid var(--app-border) !important;
+}
+.site-menu-title {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+}
+.site-menu-sub {
+  color: var(--app-text-muted) !important;
+}
+.site-field-meta strong {
+  color: var(--app-text-primary) !important;
+}
+.site-field-meta small {
+  color: var(--app-text-muted) !important;
+}
+.site-menu-select {
+  background: var(--app-surface-subtle) !important;
+  border: 1.5px solid var(--app-border) !important;
+  color: var(--app-text-primary) !important;
+  font-weight: 800 !important;
+}
+.site-link-btn {
+  background: var(--app-surface) !important;
+  border: 1.5px solid var(--app-border) !important;
+  color: var(--app-text-primary) !important;
+  font-weight: 800 !important;
+}
+.site-link-btn:hover {
+  background: var(--app-surface-subtle) !important;
+  border-color: var(--app-primary) !important;
+}
+
+/* ==========================================================================
+   INTERACTIVE VISUAL THEME SELECTOR MODAL STYLING
+   ========================================================================== */
+.theme-gallery-modal {
+  width: min(940px, 94vw) !important;
+  max-height: 90vh !important;
+}
+.theme-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 16px;
+  padding: 8px 0;
+}
+.theme-card-preview {
+  position: relative;
+  background: var(--card-bg, #ffffff);
+  border: 2.5px solid var(--card-border, #e2ded4);
+  border-radius: 18px;
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  user-select: none;
+}
+.theme-card-preview:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  border-color: var(--card-primary, #e0532b);
+}
+.theme-card-preview.active {
+  border-color: var(--card-primary, #e0532b) !important;
+  box-shadow: 0 0 0 3px rgba(224, 83, 43, 0.25), 0 12px 28px rgba(0, 0, 0, 0.14) !important;
+}
+.theme-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.theme-card-title-group {
+  display: flex;
+  flex-direction: column;
+}
+.theme-card-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--card-text, #1c1917);
+  letter-spacing: -0.01em;
+}
+.theme-card-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--card-primary, #e0532b);
+}
+.theme-active-indicator {
+  display: none;
+  background: var(--card-primary, #e0532b);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+}
+.theme-card-preview.active .theme-active-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Swatches Row */
+.theme-swatches-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-swatch-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+/* Interactive Mini Component Box */
+.theme-mini-demo {
+  background: var(--card-bg-sec, #f8f6f0);
+  border: 1.5px solid var(--card-border, #e2ded4);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.theme-mini-left {
+  display: flex;
+  flex-direction: column;
+}
+.theme-mini-name {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--card-text, #1c1917);
+}
+.theme-mini-badge {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--card-primary, #e0532b);
+}
+.theme-mini-score {
+  font-family: 'Manrope', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--card-text, #1c1917);
+  font-variant-numeric: tabular-nums;
+}
+.theme-mini-btn {
+  background: var(--card-primary, #e0532b);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+/* ==========================================================================
+   PRESENTATION MODE 6 THEME VARIABLES & MULTI-LAYOUT INTEGRATION
+   ========================================================================== */
+.pres-overlay[data-pres-theme="ivory-vermilion"] {
+  --pres-bg: radial-gradient(circle at 50% -10%, #fefcf9 0%, #fbf9f4 45%, #f3ede2 100%);
+  --pres-header-bg: rgba(255, 255, 255, 0.96);
+  --pres-header-border: #e2ded4;
+  --pres-card-bg: #ffffff;
+  --pres-card-border: #e2ded4;
+  --pres-card-hover: #e0532b;
+  --pres-ink: #1c1917;
+  --pres-muted: #57534e;
+  --pres-score-hero: #1c1917;
+  --pres-accent: #e0532b;
+  --pres-accent-secondary: #d97706;
+  --pres-rank1-gold: #d97706;
+  --pres-dock-bg: rgba(255, 255, 255, 0.98);
+  --pres-popover-bg: rgba(255, 255, 255, 0.99);
+}
+.pres-overlay[data-pres-theme="sage-cream"] {
+  --pres-bg: radial-gradient(circle at 50% -10%, #ffffff 0%, #fafaf7 45%, #f0f2ed 100%);
+  --pres-header-bg: rgba(255, 255, 255, 0.96);
+  --pres-header-border: #d1dcd4;
+  --pres-card-bg: #ffffff;
+  --pres-card-border: #d1dcd4;
+  --pres-card-hover: #2d6a4f;
+  --pres-ink: #132a13;
+  --pres-muted: #4a5759;
+  --pres-score-hero: #132a13;
+  --pres-accent: #2d6a4f;
+  --pres-accent-secondary: #b45309;
+  --pres-rank1-gold: #b45309;
+  --pres-dock-bg: rgba(255, 255, 255, 0.98);
+  --pres-popover-bg: rgba(255, 255, 255, 0.99);
+}
+.pres-overlay[data-pres-theme="lavender-coral"] {
+  --pres-bg: radial-gradient(circle at 50% -10%, #ffffff 0%, #f8f7fc 45%, #eeeaf8 100%);
+  --pres-header-bg: rgba(255, 255, 255, 0.96);
+  --pres-header-border: #ddd6fe;
+  --pres-card-bg: #ffffff;
+  --pres-card-border: #ddd6fe;
+  --pres-card-hover: #6366f1;
+  --pres-ink: #1e1b4b;
+  --pres-muted: #64748b;
+  --pres-score-hero: #1e1b4b;
+  --pres-accent: #6366f1;
+  --pres-accent-secondary: #f43f5e;
+  --pres-rank1-gold: #d97706;
+  --pres-dock-bg: rgba(255, 255, 255, 0.98);
+  --pres-popover-bg: rgba(255, 255, 255, 0.99);
+}
+.pres-overlay[data-pres-theme="champagne-burgundy"] {
+  --pres-bg: radial-gradient(circle at 50% -10%, #ffffff 0%, #fdfbf7 45%, #f5efe4 100%);
+  --pres-header-bg: rgba(255, 255, 255, 0.96);
+  --pres-header-border: #e7dec8;
+  --pres-card-bg: #ffffff;
+  --pres-card-border: #e7dec8;
+  --pres-card-hover: #881337;
+  --pres-ink: #1a0a10;
+  --pres-muted: #705058;
+  --pres-score-hero: #1a0a10;
+  --pres-accent: #881337;
+  --pres-accent-secondary: #ca8a04;
+  --pres-rank1-gold: #b45309;
+  --pres-dock-bg: rgba(255, 255, 255, 0.98);
+  --pres-popover-bg: rgba(255, 255, 255, 0.99);
+}
+.pres-overlay[data-pres-theme="modern-pop"] {
+  --pres-bg: radial-gradient(circle at 50% -10%, #ffffff 0%, #f8fafc 45%, #f1f5f9 100%);
+  --pres-header-bg: rgba(255, 255, 255, 0.96);
+  --pres-header-border: #cbd5e1;
+  --pres-card-bg: #ffffff;
+  --pres-card-border: #cbd5e1;
+  --pres-card-hover: #2563eb;
+  --pres-ink: #0f172a;
+  --pres-muted: #475569;
+  --pres-score-hero: #0f172a;
+  --pres-accent: #2563eb;
+  --pres-accent-secondary: #f97316;
+  --pres-rank1-gold: #f59e0b;
+  --pres-dock-bg: rgba(255, 255, 255, 0.98);
+  --pres-popover-bg: rgba(255, 255, 255, 0.99);
+}
+
+/* Connect new 5 themes to Olympic Podium Arena Light Theme High-Contrast Rules */
+.pres-overlay[data-pres-theme="ivory-vermilion"] .pres-sub-round-banner .podium-stage-round-pill,
+.pres-overlay[data-pres-theme="sage-cream"] .pres-sub-round-banner .podium-stage-round-pill,
+.pres-overlay[data-pres-theme="lavender-coral"] .pres-sub-round-banner .podium-stage-round-pill,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .pres-sub-round-banner .podium-stage-round-pill,
+.pres-overlay[data-pres-theme="modern-pop"] .pres-sub-round-banner .podium-stage-round-pill {
+  background: #ffffff !important;
+  border: 2.5px solid #334155 !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16) !important;
+}
+.pres-overlay[data-pres-theme="ivory-vermilion"] .arena-remaining-pill,
+.pres-overlay[data-pres-theme="sage-cream"] .arena-remaining-pill,
+.pres-overlay[data-pres-theme="lavender-coral"] .arena-remaining-pill,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .arena-remaining-pill,
+.pres-overlay[data-pres-theme="modern-pop"] .arena-remaining-pill {
+  background: #ffffff !important;
+  border: 2.5px solid #334155 !important;
+  border-top: 5px solid #e0532b !important;
+  border-radius: 22px !important;
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.16) !important;
+}
+.pres-overlay[data-pres-theme="sage-cream"] .arena-remaining-pill { border-top-color: #2d6a4f !important; }
+.pres-overlay[data-pres-theme="lavender-coral"] .arena-remaining-pill { border-top-color: #6366f1 !important; }
+.pres-overlay[data-pres-theme="champagne-burgundy"] .arena-remaining-pill { border-top-color: #881337 !important; }
+.pres-overlay[data-pres-theme="modern-pop"] .arena-remaining-pill { border-top-color: #2563eb !important; }
+
+.pres-overlay[data-pres-theme="ivory-vermilion"] .remaining-total-score,
+.pres-overlay[data-pres-theme="sage-cream"] .remaining-total-score,
+.pres-overlay[data-pres-theme="lavender-coral"] .remaining-total-score,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .remaining-total-score,
+.pres-overlay[data-pres-theme="modern-pop"] .remaining-total-score {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+.pres-overlay[data-pres-theme="ivory-vermilion"] .podium-team-score,
+.pres-overlay[data-pres-theme="sage-cream"] .podium-team-score,
+.pres-overlay[data-pres-theme="lavender-coral"] .podium-team-score,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .podium-team-score,
+.pres-overlay[data-pres-theme="modern-pop"] .podium-team-score {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+}
+.pres-overlay[data-pres-theme="ivory-vermilion"] .pres-stats-drawer,
+.pres-overlay[data-pres-theme="sage-cream"] .pres-stats-drawer,
+.pres-overlay[data-pres-theme="lavender-coral"] .pres-stats-drawer,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .pres-stats-drawer,
+.pres-overlay[data-pres-theme="modern-pop"] .pres-stats-drawer {
+  background: #ffffff !important;
+  border-left: 2.5px solid #94a3b8 !important;
+  box-shadow: -15px 0 45px rgba(15, 23, 42, 0.16) !important;
+}
+.pres-overlay[data-pres-theme="ivory-vermilion"] .pres-stats-head,
+.pres-overlay[data-pres-theme="sage-cream"] .pres-stats-head,
+.pres-overlay[data-pres-theme="lavender-coral"] .pres-stats-head,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .pres-stats-head,
+.pres-overlay[data-pres-theme="modern-pop"] .pres-stats-head {
+  background: #f8fafc !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+}
+.pres-overlay[data-pres-theme="ivory-vermilion"] .pres-stats-team-card,
+.pres-overlay[data-pres-theme="sage-cream"] .pres-stats-team-card,
+.pres-overlay[data-pres-theme="lavender-coral"] .pres-stats-team-card,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .pres-stats-team-card,
+.pres-overlay[data-pres-theme="modern-pop"] .pres-stats-team-card {
+  background: #ffffff !important;
+  border: 2px solid #cbd5e1 !important;
+}
+.pres-overlay[data-pres-theme="ivory-vermilion"] .pres-stats-total,
+.pres-overlay[data-pres-theme="sage-cream"] .pres-stats-total,
+.pres-overlay[data-pres-theme="lavender-coral"] .pres-stats-total,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .pres-stats-total,
+.pres-overlay[data-pres-theme="modern-pop"] .pres-stats-total {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
 </style></head>
 <body class="paddles-hidden">
 <div class="site-ambient-aurora" id="siteAmbientAurora" aria-hidden="true">
@@ -5667,6 +6564,10 @@ body:not(.pres-paddles-off) .pres-track-row {
     <button type="button" class="iconbtn pres-trigger-btn" id="launchPresBtn" title="Launch Presentation Mode (P)">
       <span class="pres-btn-icon">📺</span>
       <span class="pres-btn-text">Presentation Mode</span>
+    </button>
+    <button type="button" class="iconbtn theme-gallery-btn" id="openThemeGalleryBtn" title="Choose Championship Theme (T)">
+      <span class="theme-btn-icon">🎨</span>
+      <span class="theme-btn-text">Themes</span>
     </button>
     <div class="site-menu-container">
       <button type="button" class="iconbtn site-menu-btn" id="siteMenuBtn" aria-label="Open controls &amp; themes menu" aria-expanded="false" title="Themes, animations &amp; settings">
@@ -5916,6 +6817,180 @@ body:not(.pres-paddles-off) .pres-track-row {
 </section>
 <button type="button" class="show-paddles visible" id="showPaddles">＋ Show score paddles</button>
 </main>
+
+<!-- ==========================================================================
+     INTERACTIVE VISUAL THEME SELECTOR MODAL (6 Bespoke Championship Themes)
+     ========================================================================== -->
+<div class="modal-backdrop" id="themeGalleryModal" role="dialog" aria-modal="true" aria-labelledby="themeGalleryTitle" style="display:none;">
+  <div class="modal theme-gallery-modal">
+    <div class="modal-head">
+      <div>
+        <h2 id="themeGalleryTitle" style="margin:0;font-size:18px;font-weight:900;letter-spacing:-0.01em;">CHAMPIONSHIP VISUAL THEMES</h2>
+        <p style="margin:3px 0 0;font-size:12px;color:var(--app-text-secondary);font-weight:700;">Select an art-directed light theme or auditorium dark mode for EGS Quiz Arena 2.0</p>
+      </div>
+      <button class="close" id="closeThemeGallery" aria-label="Close theme gallery">×</button>
+    </div>
+    <div class="modal-body theme-gallery-body" style="padding:16px 20px 24px;">
+      <div class="theme-gallery-grid" id="themeGalleryGrid">
+        <!-- 1. Ivory & Vermilion (Default) -->
+        <div class="theme-card-preview" data-theme-id="ivory-vermilion" style="--card-bg:#ffffff;--card-border:#e2ded4;--card-primary:#e0532b;--card-text:#1c1917;--card-bg-sec:#f8f6f0;">
+          <div class="theme-card-header">
+            <div class="theme-card-title-group">
+              <span class="theme-card-title">Ivory &amp; Vermilion</span>
+              <span class="theme-card-tag">Default Championship</span>
+            </div>
+            <span class="theme-active-indicator">✓ ACTIVE</span>
+          </div>
+          <div class="theme-swatches-row">
+            <span class="theme-swatch-circle" style="background:#fbf9f4;" title="Canvas: Warm Ivory"></span>
+            <span class="theme-swatch-circle" style="background:#ffffff;" title="Card Surface: Pure Linen"></span>
+            <span class="theme-swatch-circle" style="background:#e0532b;" title="Primary: Vermilion"></span>
+            <span class="theme-swatch-circle" style="background:#d97706;" title="Secondary: Solar Gold"></span>
+            <span class="theme-swatch-circle" style="background:#1c1917;" title="Ink: Charcoal Slate"></span>
+          </div>
+          <div class="theme-mini-demo">
+            <div class="theme-mini-left">
+              <span class="theme-mini-name">Oxford Arena</span>
+              <span class="theme-mini-badge">#1 Champion</span>
+            </div>
+            <span class="theme-mini-score">85</span>
+            <span class="theme-mini-btn">+10</span>
+          </div>
+        </div>
+
+        <!-- 2. Sage & Cream -->
+        <div class="theme-card-preview" data-theme-id="sage-cream" style="--card-bg:#ffffff;--card-border:#d1dcd4;--card-primary:#2d6a4f;--card-text:#132a13;--card-bg-sec:#f4f6f1;">
+          <div class="theme-card-header">
+            <div class="theme-card-title-group">
+              <span class="theme-card-title">Sage &amp; Cream</span>
+              <span class="theme-card-tag">Botanical Prestige</span>
+            </div>
+            <span class="theme-active-indicator">✓ ACTIVE</span>
+          </div>
+          <div class="theme-swatches-row">
+            <span class="theme-swatch-circle" style="background:#fafaf7;" title="Canvas: Soft Cream"></span>
+            <span class="theme-swatch-circle" style="background:#ffffff;" title="Card Surface: Crisp White"></span>
+            <span class="theme-swatch-circle" style="background:#2d6a4f;" title="Primary: Deep Sage"></span>
+            <span class="theme-swatch-circle" style="background:#b45309;" title="Secondary: Antique Bronze"></span>
+            <span class="theme-swatch-circle" style="background:#132a13;" title="Ink: Forest Obsidian"></span>
+          </div>
+          <div class="theme-mini-demo">
+            <div class="theme-mini-left">
+              <span class="theme-mini-name">Cambridge Hall</span>
+              <span class="theme-mini-badge">#1 Champion</span>
+            </div>
+            <span class="theme-mini-score">80</span>
+            <span class="theme-mini-btn" style="background:#2d6a4f;">+10</span>
+          </div>
+        </div>
+
+        <!-- 3. Lavender & Coral -->
+        <div class="theme-card-preview" data-theme-id="lavender-coral" style="--card-bg:#ffffff;--card-border:#ddd6fe;--card-primary:#6366f1;--card-text:#1e1b4b;--card-bg-sec:#f3f0fb;">
+          <div class="theme-card-header">
+            <div class="theme-card-title-group">
+              <span class="theme-card-title">Lavender &amp; Coral</span>
+              <span class="theme-card-tag">Creative Forum</span>
+            </div>
+            <span class="theme-active-indicator">✓ ACTIVE</span>
+          </div>
+          <div class="theme-swatches-row">
+            <span class="theme-swatch-circle" style="background:#f8f7fc;" title="Canvas: Lilac Mist"></span>
+            <span class="theme-swatch-circle" style="background:#ffffff;" title="Card Surface: Pure White"></span>
+            <span class="theme-swatch-circle" style="background:#6366f1;" title="Primary: Royal Violet"></span>
+            <span class="theme-swatch-circle" style="background:#f43f5e;" title="Secondary: Coral Rose"></span>
+            <span class="theme-swatch-circle" style="background:#1e1b4b;" title="Ink: Deep Graphite"></span>
+          </div>
+          <div class="theme-mini-demo">
+            <div class="theme-mini-left">
+              <span class="theme-mini-name">Summit Stage</span>
+              <span class="theme-mini-badge" style="color:#6366f1;">#1 Champion</span>
+            </div>
+            <span class="theme-mini-score">90</span>
+            <span class="theme-mini-btn" style="background:#6366f1;">+10</span>
+          </div>
+        </div>
+
+        <!-- 4. Champagne & Burgundy -->
+        <div class="theme-card-preview" data-theme-id="champagne-burgundy" style="--card-bg:#ffffff;--card-border:#e7dec8;--card-primary:#881337;--card-text:#1a0a10;--card-bg-sec:#f7f1e6;">
+          <div class="theme-card-header">
+            <div class="theme-card-title-group">
+              <span class="theme-card-title">Champagne &amp; Burgundy</span>
+              <span class="theme-card-tag">Regal Gala</span>
+            </div>
+            <span class="theme-active-indicator">✓ ACTIVE</span>
+          </div>
+          <div class="theme-swatches-row">
+            <span class="theme-swatch-circle" style="background:#fdfbf7;" title="Canvas: Champagne Linen"></span>
+            <span class="theme-swatch-circle" style="background:#ffffff;" title="Card Surface: Crisp White"></span>
+            <span class="theme-swatch-circle" style="background:#881337;" title="Primary: Velvet Burgundy"></span>
+            <span class="theme-swatch-circle" style="background:#ca8a04;" title="Secondary: Roman Gold"></span>
+            <span class="theme-swatch-circle" style="background:#1a0a10;" title="Ink: Espresso Black"></span>
+          </div>
+          <div class="theme-mini-demo">
+            <div class="theme-mini-left">
+              <span class="theme-mini-name">Imperial Award</span>
+              <span class="theme-mini-badge" style="color:#881337;">#1 Champion</span>
+            </div>
+            <span class="theme-mini-score">95</span>
+            <span class="theme-mini-btn" style="background:#881337;">+10</span>
+          </div>
+        </div>
+
+        <!-- 5. Modern Pop -->
+        <div class="theme-card-preview" data-theme-id="modern-pop" style="--card-bg:#ffffff;--card-border:#cbd5e1;--card-primary:#2563eb;--card-text:#0f172a;--card-bg-sec:#f8fafc;">
+          <div class="theme-card-header">
+            <div class="theme-card-title-group">
+              <span class="theme-card-title">Modern Pop</span>
+              <span class="theme-card-tag">Broadcast Arena</span>
+            </div>
+            <span class="theme-active-indicator">✓ ACTIVE</span>
+          </div>
+          <div class="theme-swatches-row">
+            <span class="theme-swatch-circle" style="background:#ffffff;" title="Canvas: Ultra White"></span>
+            <span class="theme-swatch-circle" style="background:#2563eb;" title="Primary: Radiant Cobalt"></span>
+            <span class="theme-swatch-circle" style="background:#f97316;" title="Secondary: Racing Orange"></span>
+            <span class="theme-swatch-circle" style="background:#f59e0b;" title="Highlight: Amber Gold"></span>
+            <span class="theme-swatch-circle" style="background:#0f172a;" title="Ink: Slate Graphite"></span>
+          </div>
+          <div class="theme-mini-demo">
+            <div class="theme-mini-left">
+              <span class="theme-mini-name">Stadium Live</span>
+              <span class="theme-mini-badge" style="color:#2563eb;">#1 Champion</span>
+            </div>
+            <span class="theme-mini-score">100</span>
+            <span class="theme-mini-btn" style="background:#2563eb;">+10</span>
+          </div>
+        </div>
+
+        <!-- 6. Midnight Pro (Dark Theme) -->
+        <div class="theme-card-preview" data-theme-id="midnight-pro" style="--card-bg:#172440;--card-border:#293956;--card-primary:#38bdf8;--card-text:#f8fafc;--card-bg-sec:#121e38;">
+          <div class="theme-card-header">
+            <div class="theme-card-title-group">
+              <span class="theme-card-title" style="color:#f8fafc;">Midnight Pro</span>
+              <span class="theme-card-tag" style="color:#38bdf8;">Auditorium Dark</span>
+            </div>
+            <span class="theme-active-indicator">✓ ACTIVE</span>
+          </div>
+          <div class="theme-swatches-row">
+            <span class="theme-swatch-circle" style="background:#0b1329;" title="Canvas: Deep Midnight"></span>
+            <span class="theme-swatch-circle" style="background:#172440;" title="Card Surface: Slate Navy"></span>
+            <span class="theme-swatch-circle" style="background:#38bdf8;" title="Primary: Electric Cyan"></span>
+            <span class="theme-swatch-circle" style="background:#fbbf24;" title="Secondary: Solar Gold"></span>
+            <span class="theme-swatch-circle" style="background:#f8fafc;" title="Ink: Pure White"></span>
+          </div>
+          <div class="theme-mini-demo" style="background:#121e38;border-color:#293956;">
+            <div class="theme-mini-left">
+              <span class="theme-mini-name" style="color:#f8fafc;">Night Arena</span>
+              <span class="theme-mini-badge" style="color:#38bdf8;">#1 Champion</span>
+            </div>
+            <span class="theme-mini-score" style="color:#fbbf24;">110</span>
+            <span class="theme-mini-btn" style="background:#38bdf8;color:#0b1329;">+10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal-backdrop" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="modal"><div class="modal-head"><h2 id="settingsTitle">Quiz setup</h2><button class="close" id="closeSettings" aria-label="Close">×</button></div><div class="modal-body"><section class="settings-section"><h3>Scoring rules</h3><div class="settings-row"><label for="correctPoints">Correct answer</label><input id="correctPoints" type="number" min="0" max="1000"></div><div class="settings-row"><label for="pouncePenalty">Incorrect pounce (deduction)</label><input id="pouncePenalty" type="number" min="0" max="1000"></div><div class="settings-row"><label for="finalPenalty">Incorrect final answer (deduction)</label><input id="finalPenalty" type="number" min="0" max="1000"></div><div class="settings-row"><label for="finalRound">Final round</label><select id="finalRound"></select></div><div class="settings-row"><label for="allowMultiScoresSetting">Team scoring per question</label><select id="allowMultiScoresSetting"><option value="false">Single score only (Strict)</option><option value="true">Allow multiple scores per team</option></select></div></section><section class="settings-section"><h3>Teams · names and school logos</h3><p class="settings-help">Upload a logo for each team or school. Use a square image for the cleanest fit.</p><div class="team-edit-list" id="teamEdits"></div><div class="settings-row"><label for="addTeamName">Add another team</label><div class="two-actions"><input id="addTeamName" placeholder="Team name"><button class="primary" id="addTeam">Add</button></div></div></section><section class="settings-section"><h3>Rounds · rename to match your event</h3><div class="round-edit-list" id="roundEdits"></div></section><div class="save-row"><button class="primary" id="saveSettings">Save setup</button></div></div></div></div>
 <div class="toast" id="toast"></div>
 <div class="modal-backdrop" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle"><div class="modal auth-modal"><div class="modal-head"><h2 id="authTitle">Judge sign in</h2><button class="close" id="closeAuth" aria-label="Close">×</button></div><form class="modal-body" id="authForm"><p class="settings-help">Sign in to record scores and edit quiz setup. Everyone else can view the live scoreboard.</p><div class="settings-row"><label for="judgeEmail">Email</label><input id="judgeEmail" type="email" autocomplete="username" required></div><div class="settings-row"><label for="judgePassword">Password</label><input id="judgePassword" type="password" autocomplete="current-password" required></div><div class="save-row"><button class="primary" id="signInSubmit" type="submit">Sign in</button></div></form></div></div>
@@ -6300,10 +7375,43 @@ body:not(.pres-paddles-off) .pres-track-row {
 var KEY='egs-quiz-scoreboard-v1';
 var defaultTeamColors=['#f59e0b','#10b981','#f97316','#3b82f6','#8b5cf6','#06b6d4','#ec4899','#ef4444','#14b8a6','#84cc16','#eab308','#6366f1','#a855f7','#0284c7'];
 function getTeamColor(i){if(state&&Array.isArray(state.colors)&&state.colors[i])return state.colors[i];return defaultTeamColors[i%defaultTeamColors.length]}
-var defaults={teams:['Team 1','Team 2','Team 3','Team 4','Team 5','Team 6'],colors:['#f59e0b','#10b981','#f97316','#3b82f6','#8b5cf6','#06b6d4'],rounds:['Science','Sports','General Knowledge','History','Current Affairs','Music','Final Round'],finalRound:6,correct:10,pouncePenalty:5,finalPenalty:5,allowMultipleScores:false,theme:'midnight',logos:[],entries:[]};
+var defaults={teams:['Team 1','Team 2','Team 3','Team 4','Team 5','Team 6'],colors:['#f59e0b','#10b981','#f97316','#3b82f6','#8b5cf6','#06b6d4'],rounds:['Science','Sports','General Knowledge','History','Current Affairs','Music','Final Round'],finalRound:6,correct:10,pouncePenalty:5,finalPenalty:5,allowMultipleScores:false,theme:'ivory-vermilion',logos:[],entries:[]};
 var state=load(),armedMark=null,lastTeam=null,toastTimer,cloudClient=null,cloudEnabled=false,judgeUser=null,remoteTimer=null,applyingRemote=false;
 function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&Array.isArray(s.teams)&&Array.isArray(s.rounds)){var loaded=Object.assign({},defaults,s,{teams:s.teams.length?s.teams:defaults.teams,colors:Array.isArray(s.colors)&&s.colors.length?s.colors:defaults.colors.slice(),rounds:s.rounds.length?s.rounds:defaults.rounds,allowMultipleScores:!!s.allowMultipleScores,entries:Array.isArray(s.entries)?s.entries:[],logos:Array.isArray(s.logos)?s.logos:[]});if(loaded.rounds.length===6&&(Number(loaded.finalRound)===5||String(loaded.rounds[5]).toLowerCase()==="music")){loaded.rounds.push("Final Round");loaded.finalRound=6}return loaded}}catch(e){}return JSON.parse(JSON.stringify(defaults))}
-function persist(){var json=JSON.stringify(state),localSaved=true;try{localStorage.setItem(KEY,json)}catch(err){localSaved=false;setTimeout(function(){toast(cloudEnabled&&judgeUser?'Browser storage is full; changes will sync online.':'Browser storage is full; remove large logos or free browser space.')},80)}if(cloudEnabled&&judgeUser&&cloudClient&&!applyingRemote){clearTimeout(remoteTimer);remoteTimer=setTimeout(function(){cloudClient.from('quiz_state').upsert({id:'main',state:state,updated_at:new Date().toISOString()},{onConflict:'id'}).then(function(r){if(r.error){setStatus('Sync issue');toast('Could not sync scores. Check your connection.')}})},250)}return localSaved}function applyTheme(theme){var allowed=['midnight','school','slate','emerald','burgundy','indigo','aurora','sunset','electric','citrus','coral','candy','pearl','arctic','blush','crimson','glacier','midnight-champagne'];state.theme=allowed.indexOf(theme)>=0?theme:'midnight';document.body.dataset.palette=state.theme;if($('themeSelect'))$('themeSelect').value=state.theme;if(typeof updateSiteThemeMotion==='function')updateSiteThemeMotion();}
+function persist(){var json=JSON.stringify(state),localSaved=true;try{localStorage.setItem(KEY,json)}catch(err){localSaved=false;setTimeout(function(){toast(cloudEnabled&&judgeUser?'Browser storage is full; changes will sync online.':'Browser storage is full; remove large logos or free browser space.')},80)}if(cloudEnabled&&judgeUser&&cloudClient&&!applyingRemote){clearTimeout(remoteTimer);remoteTimer=setTimeout(function(){cloudClient.from('quiz_state').upsert({id:'main',state:state,updated_at:new Date().toISOString()},{onConflict:'id'}).then(function(r){if(r.error){setStatus('Sync issue');toast('Could not sync scores. Check your connection.')}})},250)}return localSaved}function applyTheme(theme) {
+  var allowed = [
+    'ivory-vermilion', 'sage-cream', 'lavender-coral', 'champagne-burgundy', 'modern-pop', 'midnight-pro',
+    'nordic-slate', 'warm-alabaster', 'midnight-champagne', 'sage-sand', 'carbon-lilac', 'cobalt-sun',
+    'emerald-stadium', 'ruby-gold', 'sapphire-aqua', 'stage-daylight', 'airbnb-warm', 'daylight-azure',
+    'midnight', 'school', 'slate', 'emerald', 'burgundy', 'indigo', 'aurora', 'sunset', 'electric',
+    'citrus', 'coral', 'candy', 'pearl', 'arctic', 'blush', 'crimson', 'glacier'
+  ];
+  state.theme = (allowed.indexOf(theme) >= 0) ? theme : 'ivory-vermilion';
+  document.body.dataset.palette = state.theme;
+  localStorage.setItem(KEY + '-theme', state.theme);
+  
+  // Synchronize Presentation Mode Theme seamlessly
+  presState.theme = state.theme;
+  localStorage.setItem(KEY + '-pres-theme', state.theme);
+  var ov = $('presentationOverlay');
+  if (ov) ov.dataset.presTheme = state.theme;
+
+  // Update themeSelect dropdown if present
+  if ($('themeSelect')) $('themeSelect').value = state.theme;
+  
+  // Update Visual Theme Gallery active preview states
+  document.querySelectorAll('.theme-card-preview').forEach(function(card){
+    var isA = (card.dataset.themeId === state.theme);
+    card.classList.toggle('active', isA);
+  });
+
+  // Update presentation popover theme cards
+  document.querySelectorAll('.pres-theme-card').forEach(function(card){
+    card.classList.toggle('active', card.dataset.theme === state.theme);
+  });
+
+  if (typeof updateSiteThemeMotion === 'function') updateSiteThemeMotion();
+}
 function $(id){return document.getElementById(id)}
 function canEdit(){return !cloudEnabled||!!judgeUser}function setStatus(s){if($('syncStatus'))$('syncStatus').textContent=s}function accessUI(){document.body.classList.toggle('cloud-viewer',cloudEnabled&&!judgeUser);$('judgeAuthBtn').textContent=judgeUser?'Judge · sign out':'Judge sign in';$('settingsBtn').disabled=!canEdit();$('storageNote').textContent=cloudEnabled?'Shared live scoreboard · viewers can read; signed-in judge can edit.':'Scores are saved in this browser on this device.';if(cloudEnabled&&!judgeUser){$('markDock').classList.add('hidden');$('showPaddles').classList.remove('visible')}else if(cloudEnabled&&judgeUser){$('markDock').classList.remove('hidden')}}
 function safe(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -6562,6 +7670,12 @@ function render(){roundsUI();renderMarks();renderBoard();renderMainStatsMatrix()
 // --- Presentation Mode State & Audio Chimes ---
 // --- Presentation Mode State & Audio Chimes ---
 var presThemes = [
+  'ivory-vermilion',
+  'sage-cream',
+  'lavender-coral',
+  'champagne-burgundy',
+  'modern-pop',
+  'midnight-pro',
   'nordic-slate',
   'warm-alabaster',
   'midnight-champagne',
@@ -6578,7 +7692,7 @@ var presThemes = [
 ];
 var presState = {
   active: false,
-  theme: localStorage.getItem(KEY + '-pres-theme') || 'nordic-slate',
+  theme: localStorage.getItem(KEY + '-pres-theme') || 'ivory-vermilion',
   animationMode: localStorage.getItem(KEY + '-pres-anim-mode') || 'gentle',
   hotkeysVisible: localStorage.getItem(KEY + '-pres-hotkeys') === 'true',
   paddlesVisible: localStorage.getItem(KEY + '-pres-paddles') !== 'false',
