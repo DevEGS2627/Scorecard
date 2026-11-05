@@ -2825,7 +2825,22 @@ body[data-palette="midnight-champagne"] .site-link-btn:hover {
   box-sizing: border-box;
 }
 .pres-overlay.stats-open .pres-main-layout {
-  padding-right: 430px;
+  padding-right: clamp(340px, 26vw, 410px);
+}
+.pres-overlay.stats-open .arena-podium-wrap {
+  transform: scale(0.82);
+  transform-origin: center center;
+}
+.pres-overlay.stats-open .pres-sub-round-banner {
+  transform: scale(0.88);
+  transform-origin: center center;
+}
+.pres-overlay.stats-open .arena-remaining-row,
+.pres-overlay.stats-open .arena-podium-cols {
+  gap: clamp(10px, 1.3vw, 18px);
+}
+.pres-overlay.stats-open .arena-remaining-pill {
+  padding: clamp(16px, 2.2vh, 24px) clamp(14px, 1.4vw, 22px);
 }
 @media (max-width: 900px) {
   .pres-overlay.stats-open .pres-main-layout {
@@ -2839,7 +2854,7 @@ body[data-palette="midnight-champagne"] .site-link-btn:hover {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 430px;
+  width: clamp(340px, 26vw, 400px);
   max-width: calc(100vw - 20px);
   background: rgba(8, 14, 26, 0.96);
   backdrop-filter: blur(28px) saturate(180%);
@@ -3525,8 +3540,8 @@ body:not(.stats-page-active) #dashPageStats {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  justify-content: center !important;
-  padding: clamp(8px, 1.4vh, 16px) clamp(14px, 2.2vw, 36px) clamp(8px, 1.2vh, 14px) !important;
+  justify-content: flex-start !important;
+  padding: clamp(6px, 1vh, 12px) clamp(14px, 2.2vw, 36px) clamp(12px, 1.8vh, 22px) !important;
   overflow-y: auto !important;
   height: calc(100vh - 66px - 130px) !important;
   background: transparent !important;
@@ -3548,17 +3563,22 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   align-items: center;
   justify-content: center;
   margin: auto auto;
-  gap: clamp(14px, 2.2vh, 26px);
+  gap: clamp(16px, 2.4vh, 28px);
   box-sizing: border-box;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Excess space on top of the podium: Round Number & Name Banner */
-.podium-stage-round-header {
+/* Round Number & Name Banner placed directly underneath top header */
+.pres-sub-round-banner {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   user-select: none;
-  margin-bottom: clamp(2px, 0.8vh, 8px);
+  padding: clamp(6px, 1vh, 12px) 0 clamp(4px, 0.6vh, 8px) 0;
+  flex-shrink: 0;
+  z-index: 10;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .podium-stage-round-pill {
   display: inline-flex;
@@ -3568,7 +3588,7 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-top: 1.5px solid rgba(56, 189, 248, 0.45);
   border-radius: 9999px;
-  padding: clamp(7px, 1vh, 11px) clamp(20px, 2vw, 30px);
+  padding: clamp(7px, 1vh, 11px) clamp(22px, 2vw, 32px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
 }
@@ -3860,13 +3880,13 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(14px, 1.5vw, 22px);
+  gap: clamp(14px, 1.6vw, 24px);
   background: linear-gradient(145deg, rgba(16, 26, 48, 0.94) 0%, rgba(9, 15, 30, 0.98) 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-top: 1.5px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  padding: clamp(20px, 2.5vh, 28px) clamp(20px, 1.8vw, 28px);
-  min-height: clamp(122px, 14.5vh, 146px);
+  border-radius: 22px;
+  padding: clamp(22px, 2.8vh, 34px) clamp(22px, 2vw, 32px);
+  min-height: clamp(152px, 18.5vh, 188px);
   box-sizing: border-box;
   cursor: pointer;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
@@ -3893,7 +3913,7 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 .remaining-left {
   display: flex;
   align-items: center;
-  gap: clamp(12px, 1.3vw, 18px);
+  gap: clamp(12px, 1.4vw, 18px);
   min-width: 0;
   flex: 1;
 }
@@ -3902,10 +3922,10 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   color: #94a3b8;
   border: 1px solid rgba(255, 255, 255, 0.16);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: clamp(12.5px, 1vw, 14px);
+  font-size: clamp(13px, 1.1vw, 15px);
   font-weight: 900;
-  padding: clamp(4px, 0.6vh, 6px) clamp(8px, 0.9vw, 11px);
-  border-radius: 8px;
+  padding: clamp(5px, 0.7vh, 8px) clamp(9px, 0.9vw, 13px);
+  border-radius: 9px;
   flex-shrink: 0;
   letter-spacing: 0.04em;
 }
@@ -3920,17 +3940,17 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   border-color: rgba(148, 163, 184, 0.28);
 }
 .remaining-avatar-wrap {
-  width: clamp(52px, 4.2vw, 62px);
-  height: clamp(52px, 4.2vw, 62px);
-  border-radius: 14px;
+  width: clamp(64px, 5vw, 80px);
+  height: clamp(64px, 5vw, 80px);
+  border-radius: 18px;
   background: #ffffff;
-  padding: 3px;
+  padding: 4px;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.38);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
 }
 .remaining-avatar-wrap img {
@@ -3941,35 +3961,38 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 .remaining-avatar-wrap span {
   font-family: 'Manrope', sans-serif;
   font-weight: 900;
-  font-size: clamp(24px, 2vw, 30px);
+  font-size: clamp(28px, 2.4vw, 36px);
   color: #0f172a;
   line-height: 1;
 }
 .remaining-info-col {
   display: flex;
-  align-items: center;
-  gap: clamp(8px, 1vw, 14px);
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
   min-width: 0;
-  flex-wrap: nowrap;
+  flex: 1;
 }
 .remaining-team-name {
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(18px, 1.5vw, 24px);
+  font-size: clamp(22px, 1.8vw, 28px);
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
 }
 .remaining-rnd-badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: clamp(11.5px, 0.95vw, 13px);
+  font-size: clamp(12px, 1vw, 14px);
   font-weight: 800;
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 7px;
   letter-spacing: 0.03em;
   white-space: nowrap;
@@ -3992,15 +4015,16 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 }
 .remaining-score-col {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
   position: relative;
   flex-shrink: 0;
   margin-left: auto;
 }
 .remaining-total-score {
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(42px, 4.2vw, 56px);
+  font-size: clamp(48px, 4.6vw, 66px);
   font-weight: 900;
   color: #ffffff;
   line-height: 1;
@@ -6764,17 +6788,18 @@ function renderPresentation() {
     var bronzeDiff = (bronzePts - goldPts);
     var bronzeDiffStr = (bronzeDiff === 0 ? 'TIED' : bronzeDiff + ' PTS') + ' • ' + (bronzeRnd >= 0 ? '+' + bronzeRnd : bronzeRnd) + ' IN R' + (selected + 1);
 
-    var podHtml = '<div class="arena-podium-wrap">';
-    podHtml += '  <div class="podium-stage-round-header">';
-    podHtml += '    <div class="podium-stage-round-pill">';
-    podHtml += '      <span class="podium-stage-round-num">ROUND ' + (selected + 1) + '</span>';
-    podHtml += '      <span class="podium-stage-round-divider">·</span>';
-    podHtml += '      <span class="podium-stage-round-name">' + safe(roundName) + '</span>';
+    var podHtml = '<div class="pres-sub-round-banner">';
+    podHtml += '  <div class="podium-stage-round-pill">';
+    podHtml += '    <span class="podium-stage-round-num">ROUND ' + (selected + 1) + '</span>';
+    podHtml += '    <span class="podium-stage-round-divider">·</span>';
+    podHtml += '    <span class="podium-stage-round-name">' + safe(roundName) + '</span>';
     if (isFinalRound) {
-      podHtml += '      <span class="podium-stage-round-final">FINAL ROUND</span>';
+      podHtml += '    <span class="podium-stage-round-final">FINAL ROUND</span>';
     }
-    podHtml += '    </div>';
     podHtml += '  </div>';
+    podHtml += '</div>';
+
+    podHtml += '<div class="arena-podium-wrap">';
     podHtml += '  <div class="arena-podium-cols">';
 
     // Silver (#2) - Left Column
