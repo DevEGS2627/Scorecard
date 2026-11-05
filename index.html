@@ -6529,6 +6529,574 @@ body {
   color: #0f172a !important;
   font-weight: 900 !important;
 }
+
+/* ==========================================================================
+   PRODUCTION READINESS: LIGHT THEMES FOR STATS & ANALYTICS (#dashPageStats)
+   Eliminates all dark navy / pitch-black panels in light themes
+   ========================================================================== */
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-panel,
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .analytics-panel,
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .history-panel,
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .panel {
+  background: var(--app-surface) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-lg) !important;
+  box-shadow: var(--app-shadow-card) !important;
+  color: var(--app-text-primary) !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-head h2,
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .analytics-head h2,
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .history-panel .panel-head h2 {
+  color: var(--app-text-primary) !important;
+  font-weight: 900 !important;
+  font-size: 22px !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-head p,
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .analytics-head p,
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .history-panel .panel-head p {
+  color: var(--app-text-secondary) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-matrix-wrap {
+  background: var(--app-surface-subtle) !important;
+  border: 1.5px solid var(--app-border) !important;
+  border-radius: var(--app-radius-md) !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-table th {
+  background: var(--app-bg-secondary) !important;
+  color: var(--app-text-secondary) !important;
+  font-weight: 850 !important;
+  border-bottom: 2px solid var(--app-border) !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-table th.cur-round-col {
+  background: rgba(224, 83, 43, 0.12) !important;
+  color: var(--app-primary) !important;
+  border-bottom: 2px solid var(--app-primary) !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-table td {
+  border-bottom: 1px solid var(--app-border) !important;
+  color: var(--app-text-primary) !important;
+  font-weight: 600 !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-table tr:hover td {
+  background: var(--app-surface-subtle) !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-team-name {
+  color: var(--app-text-primary) !important;
+  font-weight: 850 !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .main-stats-total-cell {
+  color: var(--app-primary) !important;
+  font-weight: 900 !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .export-btn {
+  background: var(--app-primary) !important;
+  color: var(--app-text-inverse) !important;
+  border: 1.5px solid var(--app-primary-hover) !important;
+  font-weight: 800 !important;
+  border-radius: var(--app-radius-pill) !important;
+  box-shadow: 0 4px 14px rgba(224, 83, 43, 0.25) !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .export-btn.secondary {
+  background: var(--app-surface) !important;
+  color: var(--app-text-primary) !important;
+  border: 1.5px solid var(--app-border) !important;
+  box-shadow: var(--app-shadow-card) !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .export-btn.secondary:hover {
+  background: var(--app-surface-subtle) !important;
+  border-color: var(--app-primary) !important;
+  color: var(--app-primary) !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .sorttag {
+  background: var(--app-surface-subtle) !important;
+  color: var(--app-primary) !important;
+  border: 1.5px solid var(--app-border) !important;
+  font-weight: 900 !important;
+}
+
+/* ==========================================================================
+   PRODUCTION READINESS: SCOREBOARD HEADINGS & ROUND PICKER
+   ========================================================================== */
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .team-head h2 {
+  color: var(--app-text-primary) !important;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.01em !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .team-head p {
+  color: var(--app-text-secondary) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .round-picker {
+  background: var(--app-surface) !important;
+  border: 2px solid var(--app-border) !important;
+  border-radius: var(--app-radius-md) !important;
+  box-shadow: var(--app-shadow-card) !important;
+  padding: 10px 16px !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .round-picker label {
+  color: var(--app-text-secondary) !important;
+  font-weight: 850 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.08em !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .round-picker select {
+  background: var(--app-surface-subtle) !important;
+  border: 1.5px solid var(--app-border) !important;
+  color: var(--app-text-primary) !important;
+  font-weight: 850 !important;
+  font-size: 15px !important;
+  border-radius: 8px !important;
+  padding: 6px 10px !important;
+}
+
+body:not([data-palette="midnight-pro"]):not([data-palette="midnight"]) .round-picker select option {
+  background: var(--app-surface) !important;
+  color: var(--app-text-primary) !important;
+}
+
+/* ==========================================================================
+   PRODUCTION READINESS: ATHLETIC TEAM CARDS PROPORTIONS
+   Eliminates giant empty voids, amplifies score typography
+   ========================================================================== */
+.team-card {
+  padding: clamp(14px, 1.8vh, 20px) clamp(16px, 1.8vw, 22px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: clamp(10px, 1.4vh, 16px) !important;
+  border-radius: 20px !important;
+}
+
+.team-card-top {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+.team-card-top .rank {
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  padding: 4px 10px !important;
+  border-radius: 9999px !important;
+  background: var(--app-bg-secondary) !important;
+  color: var(--app-text-secondary) !important;
+  border: 1.5px solid var(--app-border) !important;
+}
+
+.team-card-top .rank.first {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #b45309 !important;
+  border-color: rgba(245, 158, 11, 0.45) !important;
+}
+
+.team-badge {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 14px !important;
+  border: 2px solid var(--app-border) !important;
+  background: var(--app-surface) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.team-name {
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  color: var(--app-text-primary) !important;
+  letter-spacing: -0.01em !important;
+}
+
+.team-sub {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--app-text-muted) !important;
+}
+
+.team-score-pair {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.score-current, .score-total {
+  padding: clamp(10px, 1.4vh, 14px) clamp(12px, 1.4vw, 16px) !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-height: clamp(68px, 8.5vh, 82px) !important;
+}
+
+.score-current small, .score-total small {
+  font-size: 10px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 4px !important;
+}
+
+.score-current strong {
+  font-size: clamp(28px, 2.4vw, 36px) !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  color: var(--app-text-primary) !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.score-total strong {
+  font-size: clamp(32px, 2.8vw, 42px) !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  color: var(--app-primary) !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.team-drop-hint {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 8px 12px !important;
+  background: var(--app-surface-subtle) !important;
+  border: 1.5px dashed var(--app-border) !important;
+  border-radius: 10px !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  color: var(--app-text-secondary) !important;
+  margin-top: 2px !important;
+  transition: all 0.2s ease !important;
+}
+
+.team-card:hover .team-drop-hint {
+  background: rgba(224, 83, 43, 0.08) !important;
+  border-color: var(--app-primary) !important;
+  color: var(--app-primary) !important;
+}
+
+/* ==========================================================================
+   PRODUCTION READINESS: STATS DRAWER & RESPONSIVE ARENA
+   Ensures card F (rightmost bottom card) is NEVER clipped or covered!
+   ========================================================================== */
+.pres-main-layout {
+  position: relative !important;
+  width: 100% !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  transition: padding-right 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.pres-overlay.stats-open .pres-main-layout {
+  padding-right: clamp(280px, 24vw, 360px) !important;
+}
+
+.pres-stats-drawer {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: clamp(280px, 24vw, 360px) !important;
+  max-width: 100vw !important;
+  z-index: 35 !important;
+  transform: translateX(100%) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-sizing: border-box !important;
+}
+
+.pres-overlay.stats-open .pres-stats-drawer {
+  transform: translateX(0) !important;
+}
+
+.pres-stage-body.podium-layout {
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+.arena-podium-wrap {
+  width: 100% !important;
+  max-width: 1360px !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.arena-podium-cols {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr) minmax(0, 1fr) !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  gap: clamp(10px, 1.5vw, 24px) !important;
+}
+
+.arena-pedestal {
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.podium-card {
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.podium-team-name {
+  min-width: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.arena-remaining-row {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  gap: clamp(10px, 1.5vw, 24px) !important;
+}
+
+.arena-remaining-pill {
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: clamp(8px, 1vw, 16px) !important;
+  padding: clamp(14px, 2vh, 26px) clamp(14px, 1.5vw, 24px) !important;
+  min-height: clamp(110px, 14vh, 150px) !important;
+}
+
+.remaining-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: clamp(8px, 1vw, 14px) !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  overflow: hidden !important;
+}
+
+.remaining-info-col {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.remaining-team-name {
+  min-width: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-size: clamp(16px, 1.4vw, 22px) !important;
+  font-weight: 900 !important;
+}
+
+.remaining-rnd-badge {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.remaining-score-col {
+  flex-shrink: 0 !important;
+}
+
+.remaining-total-score {
+  flex-shrink: 0 !important;
+  font-variant-numeric: tabular-nums !important;
+  font-size: clamp(34px, 3.4vw, 50px) !important;
+  font-weight: 900 !important;
+}
+
+/* Specific scaling when stats drawer is open */
+.pres-overlay.stats-open .arena-podium-wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: auto !important;
+  gap: clamp(8px, 1.2vh, 16px) !important;
+}
+
+.pres-overlay.stats-open .arena-podium-cols,
+.pres-overlay.stats-open .arena-remaining-row {
+  gap: clamp(6px, 0.9vw, 14px) !important;
+}
+
+.pres-overlay.stats-open .arena-remaining-pill {
+  padding: clamp(10px, 1.3vh, 16px) clamp(8px, 0.9vw, 14px) !important;
+  min-height: clamp(85px, 11vh, 115px) !important;
+  gap: clamp(6px, 0.7vw, 10px) !important;
+}
+
+.pres-overlay.stats-open .remaining-avatar-wrap {
+  width: clamp(36px, 3vw, 48px) !important;
+  height: clamp(36px, 3vw, 48px) !important;
+  flex-shrink: 0 !important;
+}
+
+.pres-overlay.stats-open .remaining-total-score {
+  font-size: clamp(26px, 2.6vw, 38px) !important;
+}
+
+.pres-overlay.stats-open .remaining-team-name {
+  font-size: clamp(13px, 1.1vw, 17px) !important;
+}
+
+.pres-overlay.stats-open .podium-card {
+  padding: clamp(10px, 1.3vh, 16px) clamp(8px, 0.8vw, 12px) !important;
+}
+
+.pres-overlay.stats-open .podium-team-score {
+  font-size: clamp(28px, 2.8vw, 40px) !important;
+}
+
+.pres-overlay.stats-open .podium-team-score.gold {
+  font-size: clamp(34px, 3.4vw, 48px) !important;
+}
+
+.pres-overlay.stats-open .podium-block.silver {
+  height: clamp(55px, 7vh, 80px) !important;
+}
+
+.pres-overlay.stats-open .podium-block.gold {
+  height: clamp(80px, 10vh, 110px) !important;
+}
+
+.pres-overlay.stats-open .podium-block.bronze {
+  height: clamp(40px, 5vh, 60px) !important;
+}
+
+/* ==========================================================================
+   PRODUCTION READINESS: LIGHT THEMES PODIUM CARDS HIGH CONTRAST
+   Ensures podium cards are clean white cards with crisp borders and dark text
+   ========================================================================== */
+.pres-overlay[data-pres-theme="ivory-vermilion"] .podium-card,
+.pres-overlay[data-pres-theme="sage-cream"] .podium-card,
+.pres-overlay[data-pres-theme="lavender-coral"] .podium-card,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .podium-card,
+.pres-overlay[data-pres-theme="modern-pop"] .podium-card {
+  background: #ffffff !important;
+  border: 2px solid #cbd5e1 !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12) !important;
+}
+
+.pres-overlay[data-pres-theme="ivory-vermilion"] .podium-card.champion,
+.pres-overlay[data-pres-theme="ivory-vermilion"] .podium-card.gold {
+  border: 2.5px solid #e0532b !important;
+  border-bottom: 0 !important;
+  background: #ffffff !important;
+  box-shadow: 0 14px 36px rgba(224, 83, 43, 0.18) !important;
+}
+
+.pres-overlay[data-pres-theme="sage-cream"] .podium-card.champion,
+.pres-overlay[data-pres-theme="sage-cream"] .podium-card.gold {
+  border: 2.5px solid #2d6a4f !important;
+  border-bottom: 0 !important;
+}
+
+.pres-overlay[data-pres-theme="lavender-coral"] .podium-card.champion,
+.pres-overlay[data-pres-theme="lavender-coral"] .podium-card.gold {
+  border: 2.5px solid #6366f1 !important;
+  border-bottom: 0 !important;
+}
+
+.pres-overlay[data-pres-theme="champagne-burgundy"] .podium-card.champion,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .podium-card.gold {
+  border: 2.5px solid #881337 !important;
+  border-bottom: 0 !important;
+}
+
+.pres-overlay[data-pres-theme="modern-pop"] .podium-card.champion,
+.pres-overlay[data-pres-theme="modern-pop"] .podium-card.gold {
+  border: 2.5px solid #2563eb !important;
+  border-bottom: 0 !important;
+}
+
+.pres-overlay[data-pres-theme="ivory-vermilion"] .podium-team-name,
+.pres-overlay[data-pres-theme="sage-cream"] .podium-team-name,
+.pres-overlay[data-pres-theme="lavender-coral"] .podium-team-name,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .podium-team-name,
+.pres-overlay[data-pres-theme="modern-pop"] .podium-team-name {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+
+.pres-overlay[data-pres-theme="ivory-vermilion"] .podium-team-diff,
+.pres-overlay[data-pres-theme="sage-cream"] .podium-team-diff,
+.pres-overlay[data-pres-theme="lavender-coral"] .podium-team-diff,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .podium-team-diff,
+.pres-overlay[data-pres-theme="modern-pop"] .podium-team-diff {
+  color: #475569 !important;
+  font-weight: 750 !important;
+}
+
+.pres-overlay[data-pres-theme="ivory-vermilion"] .podium-rank-label,
+.pres-overlay[data-pres-theme="sage-cream"] .podium-rank-label,
+.pres-overlay[data-pres-theme="lavender-coral"] .podium-rank-label,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .podium-rank-label,
+.pres-overlay[data-pres-theme="modern-pop"] .podium-rank-label {
+  color: #334155 !important;
+  font-weight: 900 !important;
+}
+
+.pres-overlay[data-pres-theme="ivory-vermilion"] .podium-rank-label.gold,
+.pres-overlay[data-pres-theme="ivory-vermilion"] .podium-rank-label.champion {
+  color: #c2410c !important;
+}
+
+.pres-overlay[data-pres-theme="sage-cream"] .podium-rank-label.gold,
+.pres-overlay[data-pres-theme="sage-cream"] .podium-rank-label.champion {
+  color: #1b4332 !important;
+}
+
+.pres-overlay[data-pres-theme="lavender-coral"] .podium-rank-label.gold,
+.pres-overlay[data-pres-theme="lavender-coral"] .podium-rank-label.champion {
+  color: #4338ca !important;
+}
+
+.pres-overlay[data-pres-theme="champagne-burgundy"] .podium-rank-label.gold,
+.pres-overlay[data-pres-theme="champagne-burgundy"] .podium-rank-label.champion {
+  color: #881337 !important;
+}
+
+.pres-overlay[data-pres-theme="modern-pop"] .podium-rank-label.gold,
+.pres-overlay[data-pres-theme="modern-pop"] .podium-rank-label.champion {
+  color: #1d4ed8 !important;
+}
+
 </style></head>
 <body class="paddles-hidden">
 <div class="site-ambient-aurora" id="siteAmbientAurora" aria-hidden="true">
@@ -6589,30 +7157,18 @@ body {
               <div class="site-field-header">
                 <span class="site-field-icon">🎨</span>
                 <div class="site-field-meta">
-                  <strong>STAGE PALETTE</strong>
-                  <small>18 tailored school &amp; dark themes</small>
+                  <strong>CHAMPIONSHIP THEME</strong>
+                  <small>6 bespoke visual themes</small>
                 </div>
               </div>
               <div class="site-select-wrapper">
-                <select id="themeSelect" class="site-menu-select" aria-label="Choose display colors">
-                  <option value="midnight">Midnight · Classic Navy</option>
-                  <option value="midnight-champagne">Midnight Champagne · OLED Gold</option>
-                  <option value="school">School blue</option>
-                  <option value="slate">Slate blue</option>
-                  <option value="emerald">Emerald</option>
-                  <option value="burgundy">Burgundy</option>
-                  <option value="indigo">Indigo</option>
-                  <option value="aurora">Aurora</option>
-                  <option value="sunset">Sunset</option>
-                  <option value="electric">Electric</option>
-                  <option value="citrus">Citrus pop</option>
-                  <option value="coral">Coral pop</option>
-                  <option value="candy">Candy pop</option>
-                  <option value="pearl">Pearl · solid light</option>
-                  <option value="arctic">Arctic · ice gradient</option>
-                  <option value="blush">Blush · soft gradient</option>
-                  <option value="crimson">Crimson &amp; black</option>
-                  <option value="glacier">Glacier · soft blue gradient</option>
+                <select id="themeSelect" class="site-menu-select" aria-label="Choose visual theme">
+                  <option value="ivory-vermilion">Ivory &amp; Vermilion (Default Championship)</option>
+                  <option value="sage-cream">Sage &amp; Cream (Botanical Elegance)</option>
+                  <option value="lavender-coral">Lavender &amp; Coral (Contemporary Forum)</option>
+                  <option value="champagne-burgundy">Champagne &amp; Burgundy (Luxury Gala)</option>
+                  <option value="modern-pop">Modern Pop (Dynamic Sports)</option>
+                  <option value="midnight-pro">Midnight Pro (OLED Dark Stage)</option>
                 </select>
               </div>
             </label>
@@ -7675,20 +8231,7 @@ var presThemes = [
   'lavender-coral',
   'champagne-burgundy',
   'modern-pop',
-  'midnight-pro',
-  'nordic-slate',
-  'warm-alabaster',
-  'midnight-champagne',
-  'sage-sand',
-  'carbon-lilac',
-  'cobalt-sun',
-  'midnight-pro',
-  'emerald-stadium',
-  'ruby-gold',
-  'sapphire-aqua',
-  'stage-daylight',
-  'airbnb-warm',
-  'daylight-azure'
+  'midnight-pro'
 ];
 var presState = {
   active: false,
@@ -8287,7 +8830,7 @@ function renderPresStatsDrawer() {
     html += '<div class="pres-stats-team-card' + (isLeader ? ' leader' : '') + '">';
     html += '  <div class="pres-stats-team-header">';
     html += '    <div class="pres-stats-team-info">';
-    html += '      <span class="pres-stats-seat-tag">#' + (t.i + 1) + '</span>';
+    html += '      <span class="pres-stats-seat-tag">#' + (rIdx + 1) + '</span>';
     html += '      <div class="pres-stats-team-avatar">' + logoHtml + '</div>';
     html += '      <span class="pres-stats-team-name">' + safe(t.name) + '</span>';
     if (isLeader) {
@@ -8522,7 +9065,7 @@ function renderPresentation() {
     podHtml += '      <div class="podium-rank-label silver">#2 SILVER' + (isSilverDirect ? ' · DIRECT' : (isSilverActive ? ' · TARGET' : '')) + '</div>';
     podHtml += '      <div class="podium-card silver' + (isSilverDirect ? ' direct-turn' : (isSilverActive ? ' is-active active-target' : '')) + '">';
     podHtml += '        <div class="podium-card-top">';
-    podHtml += '          <span class="podium-seat-tag">#' + (silver.i + 1) + '</span>';
+    podHtml += '          <span class="podium-seat-tag">#2</span>';
     podHtml += '          <div class="podium-avatar-wrap">' + silverLogo + '</div>';
     podHtml += '          <div class="podium-team-name">' + safe(silver.name) + '</div>';
     podHtml += '        </div>';
@@ -8538,7 +9081,7 @@ function renderPresentation() {
     podHtml += '      <div class="podium-rank-label gold champion">👑 #1 CHAMPION' + (isGoldDirect ? ' · DIRECT' : (isGoldActive ? ' · TARGET' : '')) + '</div>';
     podHtml += '      <div class="podium-card champion gold' + (isGoldDirect ? ' direct-turn' : (isGoldActive ? ' is-active active-target' : '')) + '">';
     podHtml += '        <div class="podium-card-top">';
-    podHtml += '          <span class="podium-seat-tag gold">#' + (gold.i + 1) + '</span>';
+    podHtml += '          <span class="podium-seat-tag gold">#1</span>';
     podHtml += '          <div class="podium-avatar-wrap gold">' + goldLogo + '</div>';
     podHtml += '          <div class="podium-team-name">' + safe(gold.name) + '</div>';
     podHtml += '        </div>';
@@ -8554,7 +9097,7 @@ function renderPresentation() {
     podHtml += '      <div class="podium-rank-label bronze">#3 BRONZE' + (isBronzeDirect ? ' · DIRECT' : (isBronzeActive ? ' · TARGET' : '')) + '</div>';
     podHtml += '      <div class="podium-card bronze' + (isBronzeDirect ? ' direct-turn' : (isBronzeActive ? ' is-active active-target' : '')) + '">';
     podHtml += '        <div class="podium-card-top">';
-    podHtml += '          <span class="podium-seat-tag">#' + (bronze.i + 1) + '</span>';
+    podHtml += '          <span class="podium-seat-tag">#3</span>';
     podHtml += '          <div class="podium-avatar-wrap">' + bronzeLogo + '</div>';
     podHtml += '          <div class="podium-team-name">' + safe(bronze.name) + '</div>';
     podHtml += '        </div>';
@@ -8583,7 +9126,7 @@ function renderPresentation() {
 
         podHtml += '<div class="arena-remaining-pill' + (isRemDirect ? ' direct-turn' : (isRemActive ? ' is-active active-target' : '')) + (isRemScored ? ' score-pulse' : '') + '" data-team="' + rem.i + '" id="presCard_' + rem.i + '">';
         podHtml += '  <div class="remaining-left">';
-        podHtml += '    <span class="remaining-seat-badge ' + seatBadgeClass + '">#' + (rem.i + 1) + '</span>';
+        podHtml += '    <span class="remaining-seat-badge ' + seatBadgeClass + '">#' + (remIdx + 4) + '</span>';
         podHtml += '    <div class="remaining-avatar-wrap">' + remLogo + '</div>';
         podHtml += '    <div class="remaining-info-col">';
         podHtml += '      <span class="remaining-team-name">' + safe(rem.name) + '</span>';
@@ -8664,7 +9207,7 @@ function renderPresentation() {
       trackHtml += '  <div class="track-row-team">';
       trackHtml += '    <div class="track-avatar-wrap">' + logoHtml + '</div>';
       trackHtml += '    <div class="track-team-info">';
-      trackHtml += '      <span class="track-seat-tag" style="color:' + teamCol + ';">#' + seatNum + '</span>';
+      trackHtml += '      <span class="track-seat-tag" style="color:' + teamCol + ';">Seat ' + seatNum + '</span>';
       trackHtml += '      <span class="track-team-name">' + safe(t.name) + '</span>';
       trackHtml += '    </div>';
       trackHtml += '  </div>';
@@ -8760,7 +9303,7 @@ function renderPresentation() {
         '" data-team="' + t.i + '" id="presCard_' + t.i + '">' +
         '<div class="pres-card-head">' +
           '<div class="pres-rank-pill ' + rankClass + '">' +
-            (t.rank === 0 && t.total > 0 ? '👑 ' : '') + '#' + String(t.i + 1).padStart(2, '0') +
+            (t.rank === 0 && t.total > 0 ? '👑 ' : '') + '#' + String(t.rank + 1).padStart(2, '0') +
           '</div>' +
           statusTag +
         '</div>' +
