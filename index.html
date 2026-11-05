@@ -2825,23 +2825,61 @@ body[data-palette="midnight-champagne"] .site-link-btn:hover {
   box-sizing: border-box;
 }
 .pres-overlay.stats-open .pres-main-layout {
-  padding-right: clamp(340px, 26vw, 390px);
+  padding-right: clamp(320px, 25vw, 380px);
 }
 .pres-overlay.stats-open .arena-podium-wrap {
-  max-width: clamp(820px, 62vw, 1060px);
-  gap: clamp(12px, 1.8vh, 22px);
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: auto !important;
+  gap: clamp(10px, 1.6vh, 20px) !important;
+  transform: none !important;
 }
 .pres-overlay.stats-open .arena-podium-cols,
 .pres-overlay.stats-open .arena-remaining-row {
-  gap: clamp(10px, 1.3vw, 18px);
+  gap: clamp(8px, 1.1vw, 16px) !important;
 }
 .pres-overlay.stats-open .arena-remaining-pill {
-  padding: clamp(18px, 2.2vh, 26px) clamp(16px, 1.4vw, 22px);
-  min-height: clamp(135px, 16vh, 162px);
+  padding: clamp(14px, 1.8vh, 22px) clamp(12px, 1.2vw, 18px) !important;
+  min-height: clamp(120px, 14vh, 150px) !important;
+  gap: clamp(8px, 1vw, 14px) !important;
+}
+.pres-overlay.stats-open .remaining-avatar-wrap {
+  width: clamp(50px, 4vw, 66px) !important;
+  height: clamp(50px, 4vw, 66px) !important;
+}
+.pres-overlay.stats-open .remaining-total-score {
+  font-size: clamp(38px, 3.8vw, 54px) !important;
+}
+.pres-overlay.stats-open .remaining-team-name {
+  font-size: clamp(18px, 1.5vw, 24px) !important;
+}
+.pres-overlay.stats-open .podium-card {
+  padding: clamp(12px, 1.6vh, 20px) clamp(10px, 1vw, 16px) !important;
+}
+.pres-overlay.stats-open .podium-team-score {
+  font-size: clamp(34px, 3.4vw, 48px) !important;
+}
+.pres-overlay.stats-open .podium-team-score.gold {
+  font-size: clamp(40px, 4vw, 56px) !important;
+}
+.pres-overlay.stats-open .podium-block.silver {
+  height: clamp(75px, 9vh, 100px) !important;
+}
+.pres-overlay.stats-open .podium-block.gold {
+  height: clamp(105px, 13vh, 140px) !important;
+}
+.pres-overlay.stats-open .podium-block.bronze {
+  height: clamp(55px, 6.5vh, 75px) !important;
+}
+.pres-overlay.stats-open .podium-number {
+  font-size: clamp(30px, 3vw, 42px) !important;
+}
+.pres-overlay.stats-open .podium-block.gold .podium-number {
+  font-size: clamp(40px, 4vw, 58px) !important;
 }
 @media (max-width: 900px) {
   .pres-overlay.stats-open .pres-main-layout {
-    padding-right: 0;
+    padding-right: 0 !important;
   }
 }
 
@@ -2851,7 +2889,7 @@ body[data-palette="midnight-champagne"] .site-link-btn:hover {
   top: 0;
   right: 0;
   bottom: 0;
-  width: clamp(340px, 26vw, 400px);
+  width: clamp(320px, 25vw, 380px);
   max-width: calc(100vw - 20px);
   background: rgba(8, 14, 26, 0.96);
   backdrop-filter: blur(28px) saturate(180%);
@@ -4032,64 +4070,177 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 
 /* ==========================================================================
    OLYMPIC PODIUM ARENA: HIGH-CONTRAST LIGHT THEMES (Bold, Razor-Sharp & Editorial)
+   Applies to: stage-daylight, airbnb-warm, daylight-azure, warm-alabaster
    ========================================================================== */
+
+/* Top Header & HUD Contrast Enhancement */
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-header,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-header,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-header,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-header {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 2px solid #cbd5e1 !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08) !important;
+}
+
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-brand-pill,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-brand-pill,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-brand-pill,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-brand-pill {
+  background: #ffffff !important;
+  border: 1.5px solid #94a3b8 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+}
+
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-question-hud,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-question-hud,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-question-hud,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-question-hud {
+  background: #ffffff !important;
+  border: 2px solid #94a3b8 !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.1) !important;
+}
+
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-round-title-text,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-round-title-text,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-round-title-text,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-round-title-text {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-q-badge,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-q-badge,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-q-badge,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-q-badge {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border: 1px solid #0284c7 !important;
+  font-weight: 900 !important;
+}
+
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-turn-badge,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-turn-badge,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-turn-badge,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-turn-badge {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border: 1.5px solid #64748b !important;
+  font-weight: 900 !important;
+}
+
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-pill-btn,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-pill-btn,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-pill-btn,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-pill-btn {
+  background: #ffffff !important;
+  border: 1.5px solid #94a3b8 !important;
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
+}
+
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-pill-btn:hover,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-pill-btn:hover,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-pill-btn:hover,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-pill-btn:hover {
+  background: #f1f5f9 !important;
+  border-color: #334155 !important;
+  color: #0f172a !important;
+}
+
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-pill-btn.active,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-pill-btn.active,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-pill-btn.active,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-pill-btn.active {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35) !important;
+}
+
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-icon-btn,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-icon-btn,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-icon-btn,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-icon-btn {
+  background: #ffffff !important;
+  border: 1.5px solid #94a3b8 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Sub-Round Banner Pill */
 .pres-overlay[data-pres-theme="stage-daylight"] .pres-sub-round-banner .podium-stage-round-pill,
 .pres-overlay[data-pres-theme="airbnb-warm"] .pres-sub-round-banner .podium-stage-round-pill,
 .pres-overlay[data-pres-theme="daylight-azure"] .pres-sub-round-banner .podium-stage-round-pill,
 .pres-overlay[data-pres-theme="warm-alabaster"] .pres-sub-round-banner .podium-stage-round-pill {
-  background: #ffffff;
-  border: 2px solid #64748b;
-  border-top: 3px solid #0284c7;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);
+  background: #ffffff !important;
+  border: 2.5px solid #334155 !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-stage-round-num,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-stage-round-num,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-stage-round-num,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-stage-round-num {
-  background: #0284c7;
-  color: #ffffff;
-  border: 1px solid #0284c7;
-  font-weight: 900;
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border: 1px solid #0284c7 !important;
+  font-weight: 900 !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-stage-round-name,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-stage-round-name,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-stage-round-name,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-stage-round-name {
-  color: #0f172a;
-  font-weight: 900;
+  color: #0f172a !important;
+  font-weight: 900 !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-stage-round-divider,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-stage-round-divider,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-stage-round-divider,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-stage-round-divider {
-  color: #64748b;
-  font-weight: 900;
+  color: #475569 !important;
+  font-weight: 900 !important;
 }
 
-/* Rank Labels above Pedestals in Light Mode */
+/* Rank Badges above Pedestals in Light Mode */
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-rank-label.silver,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-rank-label.silver,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-rank-label.silver,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-rank-label.silver {
-  color: #0f172a;
-  font-weight: 900;
-  letter-spacing: 0.16em;
+  background: linear-gradient(135deg, #475569 0%, #1e293b 100%) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em !important;
+  padding: 4px 14px !important;
+  border-radius: 9999px !important;
+  border: 1.5px solid #94a3b8 !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.22) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-rank-label.gold,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-rank-label.gold,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-rank-label.gold,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-rank-label.gold {
-  color: #92400e;
-  font-weight: 900;
-  letter-spacing: 0.16em;
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em !important;
+  padding: 5px 18px !important;
+  border-radius: 9999px !important;
+  border: 1.5px solid #fde047 !important;
+  box-shadow: 0 6px 18px rgba(180, 83, 9, 0.35) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-rank-label.bronze,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-rank-label.bronze,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-rank-label.bronze,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-rank-label.bronze {
-  color: #9a3412;
-  font-weight: 900;
-  letter-spacing: 0.16em;
+  background: linear-gradient(135deg, #ea580c 0%, #9a3412 100%) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em !important;
+  padding: 4px 14px !important;
+  border-radius: 9999px !important;
+  border: 1.5px solid #fdba74 !important;
+  box-shadow: 0 4px 12px rgba(154, 52, 18, 0.22) !important;
 }
 
 /* Upper Podium Cards in Light Mode */
@@ -4097,10 +4248,12 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-card,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-card,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-card {
-  background: #ffffff;
-  border: 2px solid #475569;
-  border-bottom: 0;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15), 0 2px 6px rgba(0, 0, 0, 0.06);
+  background: #ffffff !important;
+  border: 2.5px solid #334155 !important;
+  border-bottom: 0 !important;
+  border-top: 5px solid #475569 !important;
+  border-radius: 20px 20px 0 0 !important;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.15), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-card.champion,
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-card.gold,
@@ -4110,78 +4263,99 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-card.gold,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-card.champion,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-card.gold {
-  background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
-  border: 2.5px solid #d97706;
-  border-bottom: 0;
-  box-shadow: 0 14px 35px rgba(180, 83, 9, 0.22), 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: #ffffff !important;
+  border: 3px solid #d97706 !important;
+  border-bottom: 0 !important;
+  border-top: 6px solid #d97706 !important;
+  border-radius: 22px 22px 0 0 !important;
+  box-shadow: 0 20px 48px rgba(217, 119, 6, 0.24), 0 2px 6px rgba(0, 0, 0, 0.08) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-card.bronze,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-card.bronze,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-card.bronze,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-card.bronze {
-  background: linear-gradient(180deg, #fff7ed 0%, #ffffff 100%);
-  border: 2px solid #ea580c;
-  border-bottom: 0;
-  box-shadow: 0 12px 30px rgba(194, 65, 12, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06);
+  background: #ffffff !important;
+  border: 2.5px solid #ea580c !important;
+  border-bottom: 0 !important;
+  border-top: 5px solid #ea580c !important;
+  border-radius: 20px 20px 0 0 !important;
+  box-shadow: 0 16px 36px rgba(194, 65, 12, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
 }
 
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-team-name,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-team-name,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-team-name,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-team-name {
-  color: #0f172a;
-  font-weight: 900;
+  color: #0f172a !important;
+  font-weight: 900 !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-team-score,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-team-score,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-team-score,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-team-score {
-  color: #0f172a;
-  font-weight: 900;
+  color: #0f172a !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-team-score.silver,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-team-score.silver,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-team-score.silver,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-team-score.silver {
-  color: #0f172a;
-  text-shadow: none;
+  color: #0f172a !important;
+  text-shadow: none !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-team-score.gold,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-team-score.gold,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-team-score.gold,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-team-score.gold {
-  color: #b45309;
-  text-shadow: none;
+  color: #0f172a !important;
+  text-shadow: none !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-team-score.bronze,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-team-score.bronze,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-team-score.bronze,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-team-score.bronze {
-  color: #9a3412;
-  text-shadow: none;
+  color: #0f172a !important;
+  text-shadow: none !important;
 }
+
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-team-diff,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-team-diff,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-team-diff,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-team-diff {
-  color: #475569;
-  font-weight: 800;
+  color: #334155 !important;
+  font-weight: 800 !important;
+  background: #f1f5f9 !important;
+  padding: 3px 10px !important;
+  border-radius: 6px !important;
+  border: 1px solid #cbd5e1 !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-team-diff.gold,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-team-diff.gold,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-team-diff.gold,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-team-diff.gold {
-  color: #92400e;
-  font-weight: 900;
+  color: #92400e !important;
+  font-weight: 900 !important;
+  background: #fef3c7 !important;
+  border: 1px solid #fde047 !important;
 }
+
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-seat-tag,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-seat-tag,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-seat-tag,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-seat-tag {
-  background: #0f172a;
-  color: #ffffff;
-  border-color: #0f172a;
-  font-weight: 900;
+  background: #1e293b !important;
+  color: #ffffff !important;
+  border-color: #1e293b !important;
+  font-weight: 900 !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .podium-seat-tag.gold,
+.pres-overlay[data-pres-theme="airbnb-warm"] .podium-seat-tag.gold,
+.pres-overlay[data-pres-theme="daylight-azure"] .podium-seat-tag.gold,
+.pres-overlay[data-pres-theme="warm-alabaster"] .podium-seat-tag.gold {
+  background: #d97706 !important;
+  color: #ffffff !important;
+  border-color: #d97706 !important;
 }
 
 /* Lower Podium Step Blocks in Light Mode */
@@ -4189,30 +4363,40 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-block.silver,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-block.silver,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-block.silver {
-  background: linear-gradient(180deg, #475569 0%, #1e293b 100%);
-  border-top: 3px solid #64748b;
+  background: linear-gradient(180deg, #334155 0%, #0f172a 100%) !important;
+  border: 2.5px solid #334155 !important;
+  border-top: 3.5px solid #94a3b8 !important;
+  border-radius: 0 0 20px 20px !important;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-block.gold,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-block.gold,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-block.gold,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-block.gold {
-  background: linear-gradient(180deg, #d97706 0%, #78350f 100%);
-  border-top: 3.5px solid #fde047;
+  background: linear-gradient(180deg, #d97706 0%, #78350f 100%) !important;
+  border: 3px solid #d97706 !important;
+  border-top: 4px solid #fde047 !important;
+  border-radius: 0 0 22px 22px !important;
+  box-shadow: 0 20px 48px rgba(180, 83, 9, 0.35) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-block.bronze,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-block.bronze,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-block.bronze,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-block.bronze {
-  background: linear-gradient(180deg, #c2410c 0%, #431407 100%);
-  border-top: 3px solid #fdba74;
+  background: linear-gradient(180deg, #c2410c 0%, #7c2d12 100%) !important;
+  border: 2.5px solid #ea580c !important;
+  border-top: 3.5px solid #fdba74 !important;
+  border-radius: 0 0 20px 20px !important;
+  box-shadow: 0 16px 36px rgba(194, 65, 12, 0.25) !important;
 }
+
 .pres-overlay[data-pres-theme="stage-daylight"] .podium-number,
 .pres-overlay[data-pres-theme="airbnb-warm"] .podium-number,
 .pres-overlay[data-pres-theme="daylight-azure"] .podium-number,
 .pres-overlay[data-pres-theme="warm-alabaster"] .podium-number {
   color: #ffffff !important;
-  opacity: 1;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  opacity: 1 !important;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Bottom Cards in Light Mode */
@@ -4220,85 +4404,233 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 .pres-overlay[data-pres-theme="airbnb-warm"] .arena-remaining-pill,
 .pres-overlay[data-pres-theme="daylight-azure"] .arena-remaining-pill,
 .pres-overlay[data-pres-theme="warm-alabaster"] .arena-remaining-pill {
-  background: #ffffff;
-  border: 2px solid #64748b;
-  border-top: 3px solid #0284c7;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);
+  background: #ffffff !important;
+  border: 2.5px solid #334155 !important;
+  border-top: 5px solid #0284c7 !important;
+  border-radius: 22px !important;
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.16), 0 3px 10px rgba(15, 23, 42, 0.08) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .arena-remaining-pill:hover,
 .pres-overlay[data-pres-theme="airbnb-warm"] .arena-remaining-pill:hover,
 .pres-overlay[data-pres-theme="daylight-azure"] .arena-remaining-pill:hover,
 .pres-overlay[data-pres-theme="warm-alabaster"] .arena-remaining-pill:hover {
-  background: #f8fafc;
-  border-color: #334155;
-  box-shadow: 0 16px 42px rgba(15, 23, 42, 0.18);
+  background: #f8fafc !important;
+  border-color: #0f172a !important;
+  border-top-color: #0369a1 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.22) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .remaining-team-name,
 .pres-overlay[data-pres-theme="airbnb-warm"] .remaining-team-name,
 .pres-overlay[data-pres-theme="daylight-azure"] .remaining-team-name,
 .pres-overlay[data-pres-theme="warm-alabaster"] .remaining-team-name {
-  color: #0f172a;
-  font-weight: 900;
+  color: #0f172a !important;
+  font-weight: 900 !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .remaining-total-score,
 .pres-overlay[data-pres-theme="airbnb-warm"] .remaining-total-score,
 .pres-overlay[data-pres-theme="daylight-azure"] .remaining-total-score,
 .pres-overlay[data-pres-theme="warm-alabaster"] .remaining-total-score {
-  color: #0f172a;
-  font-weight: 900;
+  color: #0f172a !important;
+  font-weight: 900 !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .remaining-avatar-wrap,
 .pres-overlay[data-pres-theme="airbnb-warm"] .remaining-avatar-wrap,
 .pres-overlay[data-pres-theme="daylight-azure"] .remaining-avatar-wrap,
 .pres-overlay[data-pres-theme="warm-alabaster"] .remaining-avatar-wrap {
-  background: #ffffff;
-  border: 2px solid #64748b;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+  background: #ffffff !important;
+  border: 2.5px solid #334155 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .remaining-seat-badge,
 .pres-overlay[data-pres-theme="airbnb-warm"] .remaining-seat-badge,
 .pres-overlay[data-pres-theme="daylight-azure"] .remaining-seat-badge,
 .pres-overlay[data-pres-theme="warm-alabaster"] .remaining-seat-badge {
-  background: #0f172a;
-  color: #ffffff;
-  border: 1px solid #0f172a;
-  font-weight: 900;
+  background: #334155 !important;
+  color: #ffffff !important;
+  border: 1.5px solid #334155 !important;
+  font-weight: 900 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .remaining-seat-badge.seat-4,
 .pres-overlay[data-pres-theme="airbnb-warm"] .remaining-seat-badge.seat-4,
 .pres-overlay[data-pres-theme="daylight-azure"] .remaining-seat-badge.seat-4,
 .pres-overlay[data-pres-theme="warm-alabaster"] .remaining-seat-badge.seat-4 {
-  background: #0284c7;
-  color: #ffffff;
-  border: 1px solid #0284c7;
-  font-weight: 900;
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  font-weight: 900 !important;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25) !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .remaining-rnd-badge.zero,
 .pres-overlay[data-pres-theme="airbnb-warm"] .remaining-rnd-badge.zero,
 .pres-overlay[data-pres-theme="daylight-azure"] .remaining-rnd-badge.zero,
 .pres-overlay[data-pres-theme="warm-alabaster"] .remaining-rnd-badge.zero {
-  background: #e2e8f0;
-  color: #0f172a;
-  border: 1.5px solid #94a3b8;
-  font-weight: 900;
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  border: 1.5px solid #94a3b8 !important;
+  font-weight: 900 !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .remaining-rnd-badge.pos,
 .pres-overlay[data-pres-theme="airbnb-warm"] .remaining-rnd-badge.pos,
 .pres-overlay[data-pres-theme="daylight-azure"] .remaining-rnd-badge.pos,
 .pres-overlay[data-pres-theme="warm-alabaster"] .remaining-rnd-badge.pos {
-  background: #dcfce7;
-  color: #166534;
-  border: 1.5px solid #22c55e;
-  font-weight: 900;
+  background: #dcfce7 !important;
+  color: #14532d !important;
+  border: 1.5px solid #22c55e !important;
+  font-weight: 900 !important;
 }
 .pres-overlay[data-pres-theme="stage-daylight"] .remaining-rnd-badge.neg,
 .pres-overlay[data-pres-theme="airbnb-warm"] .remaining-rnd-badge.neg,
 .pres-overlay[data-pres-theme="daylight-azure"] .remaining-rnd-badge.neg,
 .pres-overlay[data-pres-theme="warm-alabaster"] .remaining-rnd-badge.neg {
-  background: #fee2e2;
-  color: #991b1b;
-  border: 1.5px solid #ef4444;
-  font-weight: 900;
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1.5px solid #ef4444 !important;
+  font-weight: 900 !important;
+}
+
+/* Stats Drawer in Light Mode */
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-drawer,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-drawer,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-drawer,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-drawer {
+  background: #ffffff !important;
+  border-left: 2.5px solid #94a3b8 !important;
+  box-shadow: -15px 0 45px rgba(15, 23, 42, 0.16) !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-head,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-head,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-head,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-head {
+  background: #f8fafc !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-titles strong,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-titles strong,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-titles strong,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-titles strong {
+  color: #0f172a !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-titles small,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-titles small,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-titles small,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-titles small {
+  color: #475569 !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-close,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-close,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-close,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-close {
+  background: #e2e8f0 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-team-card,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-team-card,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-team-card,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-team-card {
+  background: #ffffff !important;
+  border: 2px solid #cbd5e1 !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06) !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-team-card.leader,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-team-card.leader,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-team-card.leader,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-team-card.leader {
+  background: #fffbeb !important;
+  border: 2px solid #d97706 !important;
+  box-shadow: 0 6px 16px rgba(217, 119, 6, 0.16) !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-team-name,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-team-name,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-team-name,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-team-name {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-total,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-total,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-total,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-total {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-total.gold,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-total.gold,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-total.gold,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-total.gold {
+  color: #b45309 !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-round-chip,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-round-chip,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-round-chip,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-round-chip {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-round-chip .r-chip-label,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-round-chip .r-chip-label,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-round-chip .r-chip-label,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-round-chip .r-chip-label {
+  color: #475569 !important;
+  font-weight: 800 !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-round-chip .r-chip-val,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-round-chip .r-chip-val,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-round-chip .r-chip-val,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-round-chip .r-chip-val {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-stats-round-chip.current-round,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-stats-round-chip.current-round,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-stats-round-chip.current-round,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-stats-round-chip.current-round {
+  background: #e0f2fe !important;
+  border-color: #0284c7 !important;
+}
+
+/* Operator Dock in Light Mode */
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-operator-dock,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-operator-dock,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-operator-dock,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-operator-dock {
+  background: #ffffff !important;
+  border: 2px solid #94a3b8 !important;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.16) !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-target-pill,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-target-pill,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-target-pill,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-target-pill {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-hotkeys-toggle-btn,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-hotkeys-toggle-btn,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-hotkeys-toggle-btn,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-hotkeys-toggle-btn {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-undo-btn,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-undo-btn,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-undo-btn,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-undo-btn {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.pres-overlay[data-pres-theme="stage-daylight"] .pres-dock-minimize,
+.pres-overlay[data-pres-theme="airbnb-warm"] .pres-dock-minimize,
+.pres-overlay[data-pres-theme="daylight-azure"] .pres-dock-minimize,
+.pres-overlay[data-pres-theme="warm-alabaster"] .pres-dock-minimize {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
 }
 
 @media (max-width: 800px) {
