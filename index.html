@@ -3552,6 +3552,67 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   box-sizing: border-box;
 }
 
+/* Excess space on top of the podium: Round Number & Name Banner */
+.podium-stage-round-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  margin-bottom: clamp(2px, 0.8vh, 8px);
+}
+.podium-stage-round-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(180deg, rgba(20, 32, 54, 0.92) 0%, rgba(11, 18, 34, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1.5px solid rgba(56, 189, 248, 0.45);
+  border-radius: 9999px;
+  padding: clamp(7px, 1vh, 11px) clamp(20px, 2vw, 30px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+}
+.podium-stage-round-num {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 900;
+  color: #38bdf8;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.38);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  line-height: 1.2;
+}
+.podium-stage-round-divider {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  font-weight: 700;
+}
+.podium-stage-round-name {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(16px, 1.4vw, 22px);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.podium-stage-round-final {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  color: #fbbf24;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(251, 191, 36, 0.18);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  padding: 3px 9px;
+  border-radius: 9999px;
+  line-height: 1.2;
+}
+
 /* 3 Pedestal Columns Aligned at Bottom */
 .arena-podium-cols {
   width: 100%;
@@ -3799,18 +3860,18 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(14px, 1.6vw, 24px);
+  gap: clamp(14px, 1.5vw, 22px);
   background: linear-gradient(145deg, rgba(16, 26, 48, 0.94) 0%, rgba(9, 15, 30, 0.98) 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 24px;
-  padding: clamp(26px, 3.6vh, 44px) clamp(22px, 2vw, 34px);
-  min-height: clamp(160px, 20vh, 215px);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: clamp(20px, 2.5vh, 28px) clamp(20px, 1.8vw, 28px);
+  min-height: clamp(122px, 14.5vh, 146px);
   box-sizing: border-box;
   cursor: pointer;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.56), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(20px);
   position: relative;
 }
@@ -3818,7 +3879,7 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   border-color: rgba(255, 255, 255, 0.28);
   background: linear-gradient(145deg, rgba(22, 36, 66, 0.96) 0%, rgba(13, 22, 42, 0.98) 100%);
   transform: translateY(-3px);
-  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .arena-remaining-pill.is-active, .arena-remaining-pill.active-target {
   border: 2px solid #38bdf8 !important;
@@ -3832,7 +3893,7 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 .remaining-left {
   display: flex;
   align-items: center;
-  gap: clamp(12px, 1.4vw, 20px);
+  gap: clamp(12px, 1.3vw, 18px);
   min-width: 0;
   flex: 1;
 }
@@ -3841,10 +3902,10 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   color: #94a3b8;
   border: 1px solid rgba(255, 255, 255, 0.16);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: clamp(12.5px, 1vw, 14px);
   font-weight: 900;
-  padding: clamp(5px, 0.7vh, 8px) clamp(10px, 1vw, 14px);
-  border-radius: 9px;
+  padding: clamp(4px, 0.6vh, 6px) clamp(8px, 0.9vw, 11px);
+  border-radius: 8px;
   flex-shrink: 0;
   letter-spacing: 0.04em;
 }
@@ -3859,17 +3920,17 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
   border-color: rgba(148, 163, 184, 0.28);
 }
 .remaining-avatar-wrap {
-  width: clamp(72px, 5.8vw, 94px);
-  height: clamp(72px, 5.8vw, 94px);
-  border-radius: 20px;
+  width: clamp(52px, 4.2vw, 62px);
+  height: clamp(52px, 4.2vw, 62px);
+  border-radius: 14px;
   background: #ffffff;
-  padding: 5px;
+  padding: 3px;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.38);
   box-sizing: border-box;
 }
 .remaining-avatar-wrap img {
@@ -3880,20 +3941,20 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 .remaining-avatar-wrap span {
   font-family: 'Manrope', sans-serif;
   font-weight: 900;
-  font-size: clamp(32px, 2.6vw, 42px);
+  font-size: clamp(24px, 2vw, 30px);
   color: #0f172a;
   line-height: 1;
 }
 .remaining-info-col {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: clamp(8px, 1vw, 14px);
   min-width: 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .remaining-team-name {
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(22px, 1.8vw, 30px);
+  font-size: clamp(18px, 1.5vw, 24px);
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.01em;
@@ -3904,14 +3965,15 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 .remaining-rnd-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: clamp(12px, 1vw, 14px);
+  font-size: clamp(11.5px, 0.95vw, 13px);
   font-weight: 800;
-  padding: clamp(4px, 0.6vh, 7px) clamp(10px, 0.9vw, 14px);
-  border-radius: 8px;
+  padding: 3px 9px;
+  border-radius: 7px;
   letter-spacing: 0.03em;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .remaining-rnd-badge.pos {
   background: rgba(16, 185, 129, 0.22);
@@ -3938,7 +4000,7 @@ body.pres-paddles-off .pres-stage-body.podium-layout {
 }
 .remaining-total-score {
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(52px, 5vw, 74px);
+  font-size: clamp(42px, 4.2vw, 56px);
   font-weight: 900;
   color: #ffffff;
   line-height: 1;
@@ -6703,6 +6765,16 @@ function renderPresentation() {
     var bronzeDiffStr = (bronzeDiff === 0 ? 'TIED' : bronzeDiff + ' PTS') + ' • ' + (bronzeRnd >= 0 ? '+' + bronzeRnd : bronzeRnd) + ' IN R' + (selected + 1);
 
     var podHtml = '<div class="arena-podium-wrap">';
+    podHtml += '  <div class="podium-stage-round-header">';
+    podHtml += '    <div class="podium-stage-round-pill">';
+    podHtml += '      <span class="podium-stage-round-num">ROUND ' + (selected + 1) + '</span>';
+    podHtml += '      <span class="podium-stage-round-divider">·</span>';
+    podHtml += '      <span class="podium-stage-round-name">' + safe(roundName) + '</span>';
+    if (isFinalRound) {
+      podHtml += '      <span class="podium-stage-round-final">FINAL ROUND</span>';
+    }
+    podHtml += '    </div>';
+    podHtml += '  </div>';
     podHtml += '  <div class="arena-podium-cols">';
 
     // Silver (#2) - Left Column
